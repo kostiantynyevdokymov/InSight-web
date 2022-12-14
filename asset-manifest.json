@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/InSight-web/static/css/main.7acaea2f.css",
+    "main.js": "/InSight-web/static/js/main.855d520c.js",
+    "index.html": "/InSight-web/index.html",
+    "main.7acaea2f.css.map": "/InSight-web/static/css/main.7acaea2f.css.map",
+    "main.855d520c.js.map": "/InSight-web/static/js/main.855d520c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.855d520c.js"
+  ]
+}
