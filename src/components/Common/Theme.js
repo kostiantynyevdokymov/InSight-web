@@ -3,7 +3,7 @@ export const theme = {
     text: {
       defaultText: '#212121',
       mediumText: '#9B9FAA',
-      inverseText: '#ffffff',
+      inverseText: '#FFFFFF',
       accentText: '#FC842D',
       calorieText: '#264061',
     },
@@ -20,7 +20,7 @@ export const theme = {
     accentButton: {
       background: '#FC842D',
       border: 'none',
-      text: '#FFFFF',
+      text: '#FFFFFF',
     },
     defaultButton: {
       background: '#FFFFFF',
@@ -29,7 +29,7 @@ export const theme = {
     },
     shadow: {
       default: '0px 4px 10px rgba(252, 132, 45, 0.5)',
-      hover: '4px 8px 18px rgba(252, 132, 45, 0.5)',
+      hover: '2px 6px 14px rgba(252, 132, 45, 0.5)',
       active: '0px 2px 5px rgba(252, 132, 45, 0.5)',
     },
   },

@@ -1,5 +1,13 @@
 @import-normalize; /* bring in normalize.css styles */
 
+* {
+  font-family: 'Verdana', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
 body {
   margin: 0;
   font-family: 'Verdana', sans-serif;
