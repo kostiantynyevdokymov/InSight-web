@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/InSight-web/static/css/main.085d8eba.css",
-    "main.js": "/InSight-web/static/js/main.c274d6dc.js",
+    "main.js": "/InSight-web/static/js/main.54952791.js",
     "index.html": "/InSight-web/index.html",
     "main.085d8eba.css.map": "/InSight-web/static/css/main.085d8eba.css.map",
-    "main.c274d6dc.js.map": "/InSight-web/static/js/main.c274d6dc.js.map"
+    "main.54952791.js.map": "/InSight-web/static/js/main.54952791.js.map"
   },
   "entrypoints": [
     "static/css/main.085d8eba.css",
-    "static/js/main.c274d6dc.js"
+    "static/js/main.54952791.js"
   ]
 }
