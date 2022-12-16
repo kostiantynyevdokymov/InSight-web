@@ -7,14 +7,11 @@ const initialState = {
   age: 0,
   current_weight: 0,
   desired_weight: 0,
-  weight_history: [
-    {
-      date: '',
-      weight: 0,
-    },
-  ],
   blood_type: 0,
   token: '',
+  isNew: true,
+  isOAuth2: false,
+  
 };
 
 const userSlice = createSlice({

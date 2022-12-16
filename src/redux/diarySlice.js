@@ -1,13 +1,8 @@
 const { createSlice } = require('@reduxjs/toolkit');
 
 const initialState = {
-  start_weight: 0,
-  desired_weight: 0,
   inputDiary: [
     {
-      _id: {
-        $oid: '',
-      },
       date: '',
       productInput: [
         {
