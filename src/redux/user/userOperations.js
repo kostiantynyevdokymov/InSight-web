@@ -4,7 +4,7 @@ import { authHeader } from 'redux/utils/authHeader';
 
 export const loginUser = createAsyncThunk('user/login', async (val, thunkAPI) => {
   try {
-    const response = await axios.get('/user/login', val);
+    const response = await axios.post('/user/login', val);
     authHeader.set(response.data.token);
     return response.data;
   } catch (err) {
@@ -13,7 +13,7 @@ export const loginUser = createAsyncThunk('user/login', async (val, thunkAPI) =>
 });
 export const registerUser = createAsyncThunk('user/register', async (val, thunkAPI) => {
   try {
-    const response = await axios.get('/user/register', val);
+    const response = await axios.post('/user', val);
     authHeader.set(response.data.token);
     return response.data;
   } catch (err) {
@@ -22,7 +22,7 @@ export const registerUser = createAsyncThunk('user/register', async (val, thunkA
 });
 export const logoutUser = createAsyncThunk('user/logout', async (val, thunkAPI) => {
   try {
-    const response = await axios.get('/user/logout', val);
+    const response = await axios.patch('/user/logout', val);
     authHeader.clear();
     return response.data;
   } catch (err) {
@@ -31,7 +31,7 @@ export const logoutUser = createAsyncThunk('user/logout', async (val, thunkAPI) 
 });
 export const refreshUser = createAsyncThunk('user/refresh', async (val, thunkAPI) => {
   try {
-    const response = await axios.get('/user/refresh', val);
+    const response = await axios.get('/user/current', val);
     authHeader.set(response.data.token);
     return response.data;
   } catch (err) {
