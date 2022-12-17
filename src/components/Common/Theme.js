@@ -66,11 +66,6 @@ export const theme = {
 
     dev: '1px solid tomato',
   },
-  // media: {
-  //   desktop: '(min-width: 769px)',
-  //   tablet: '(min-width: 321px)',
-  //   mobile: '(max-width: 320px)',
-  // },
 };
 
 // theme.mp usage example:
