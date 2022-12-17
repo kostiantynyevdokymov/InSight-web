@@ -1,9 +1,16 @@
+import axios from 'axios';
 import { configureStore } from '@reduxjs/toolkit';
-import { diaryReducer, userReducer } from './slices';
+import { productsReducer } from './products/productsSlice';
+import { userReducer } from './user/userSlice';
+import { diaryReducer } from './diary/diarySlice';
+import { constants } from 'constants';
+
+axios.defaults.baseURL = constants.apiServerAddress;
 
 export const store = configureStore({
   reducer: {
+    products: productsReducer,
     user: userReducer,
-    diet: diaryReducer,
+    diary: diaryReducer,
   },
 });

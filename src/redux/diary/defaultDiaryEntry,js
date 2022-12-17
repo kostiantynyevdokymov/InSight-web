@@ -1,0 +1,11 @@
+export const defaultDiaryEntry = {
+  date: '',
+  productInput: [
+    {
+      _id: {
+        $oid: '',
+      },
+      weight: 0,
+    },
+  ],
+};

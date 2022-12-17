@@ -1,4 +1,3 @@
-export * from './userSlice';
-export * from './diarySlice';
+export * from './slices';
 export * from './store';
-export * from './defaultProduct';
+export * from './products/defaultProduct';
