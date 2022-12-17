@@ -14,7 +14,7 @@ export const GridDiv = styled.div`
   height: 300px;
   margin-right: auto;
   margin-left: auto;
-  margin-top: ${props => props.marginTop || '200px'};
+  margin-top: 200px;
   z-index: 50;
 `;
 
@@ -30,7 +30,7 @@ export const DivComponent = styled.div`
 export const Img = styled.img`
   width: 100px;
   height: 100px;
-  animation: ${animationDiv} ${props => props.delay} 1.5s linear infinite;
+  animation: ${animationDiv} 1.5s linear infinite;
   src: url(${props => props.img});
   z-index: 70;
 `;
