@@ -11,6 +11,7 @@ export const SharedLayout = () => {
           <div>=</div>
         ) : (
           <>
+            <div>logo</div>
             <LinkSignIn to="/user/login">SIGN IN</LinkSignIn>
             <LinkRegistration to="/user">REGISTRATION</LinkRegistration>
           </>
