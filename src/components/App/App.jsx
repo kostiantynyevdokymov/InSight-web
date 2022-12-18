@@ -1,9 +1,9 @@
-import { Header } from '../Header/header';
+import { SharedLayout } from '../Header/header';
 
 export const App = () => {
   return (
     <>
-      <Header />
+      <SharedLayout />
       <div
         style={{
           height: '100vh',
