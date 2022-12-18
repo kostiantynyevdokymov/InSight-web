@@ -1,4 +1,4 @@
-import { DivComponent, GridDiv, Img } from './loader.styled';
+import { DivComponent, GridDiv, Img } from './Lloader.styled';
 import { Watermelon, Banana, Apple, Avocado, Kiwi, Lemon, Lime, Grapefruit, Orange } from '../../images/loader';
 
 const fruits = [
