@@ -1,5 +1,5 @@
 import FruitItem from './LoaderDivItem';
-import { Overlay } from './Lloader.styled';
+import { Overlay } from './Loader.styled';
 
 export default function Loader(props) {
   return (
