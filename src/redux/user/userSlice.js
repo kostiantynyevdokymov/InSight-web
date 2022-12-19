@@ -5,19 +5,22 @@ import { loginUser, logoutUser, refreshUser, registerUser } from './userOperatio
 
 const initialState = {
   auth: {
-    name: '',
-    token: '',
+    name: null,
+    email: null,
+    token: null,
     isNew: true,
     isOAuth2: false,
   },
   params: {
-    email: '',
     height: 0,
     age: 0,
     current_weight: 0,
     desired_weight: 0,
     blood_type: 0,
-    daily_calorie: 0,
+    proposedDiet: {
+      daily_caliries: 0,
+      stop_products: [],
+    },
   },
   isLoading: false,
   error: null,
@@ -26,6 +29,11 @@ const initialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
+  reducers: {
+    googleLogin: (state, action) => {
+      state.auth = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(loginUser.fulfilled, handleLoginUser)
@@ -39,3 +47,4 @@ const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
+export const { googleLogin } = userSlice.actions;
