@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-import tabletbanana from '../Common/Images/tabletbanana.png';
-import desktopbanana from '../Common/Images/desktopbanana.png';
-import tabletstrawberry from '../Common/Images/tabletstrawberry.png';
-import desktopstrawberry from '../Common/Images/desktopstrawberry.png';
-import tabletleaf from '../Common/Images/tabletleaf.png';
-import desktopleaf from '../Common/Images/desktopleaf.png';
-import tabletgreyback from '../Common/Images/tabletgreyback.png';
-import desktopgreyback from '../Common/Images/desktopgreyback.png';
+import tabletbanana from '../../images/bcg-pages/tabletbanana.png';
+import desktopbanana from '../../images/bcg-pages/desktopbanana.png';
+import tabletstrawberry from '../../images/bcg-pages/tabletstrawberry.png';
+import desktopstrawberry from '../../images/bcg-pages/desktopstrawberry.png';
+import tabletleaf from '../../images/bcg-pages/tabletleaf.png';
+import desktopleaf from '../../images/bcg-pages/desktopleaf.png';
+import tabletgreyback from '../../images/bcg-pages/tabletgreyback.png';
+import desktopgreyback from '../../images/bcg-pages/desktopgreyback.png';
 
 export const Wrapper = styled.div`
   background: none;
