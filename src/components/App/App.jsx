@@ -2,6 +2,7 @@ import { GoogleAuth } from 'components/GoogleAuth/GoogleAuth';
 // import Loader from 'components/Loader/Loader';
 import { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router';
+import { DiaryPage } from 'pages/DiaryPage';
 
 // const HomePage = lazy(() => import('pages/HomePage'));
 const Loader = lazy(() => import('components/Loader/Loader'));
@@ -22,6 +23,7 @@ export const App = () => {
         }
       >
         <Route path="google-auth" element={<GoogleAuth />} />
+        <Route path="diary" element={<DiaryPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/InSight-web/" replace />} />
     </Routes>
