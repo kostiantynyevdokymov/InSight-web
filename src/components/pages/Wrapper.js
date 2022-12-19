@@ -102,8 +102,8 @@ export const Wrapper = styled.div`
   display: flex;
   position: relative;
   overflow: hidden;
-  border: 1px solid green;
-  margin: 100px;
+  /* border: 1px solid green;
+  margin: 50px; */
   @media (max-width: 1200px) {
     width: 768px;
     height: 1024px;
