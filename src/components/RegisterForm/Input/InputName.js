@@ -9,7 +9,6 @@ export const InputName = ({ onChange, value }) => (
     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
     title="Назва може містити лише літери, апостроф, тире та пробіли"
     required
-    placeholder="Enter name"
     onChange={onChange}
     value={value}
   />

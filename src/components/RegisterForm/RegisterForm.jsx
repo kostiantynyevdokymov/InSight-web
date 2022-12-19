@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import  registerUser  from 'redax/user/userOperations';
-import  BasicButton  from 'Common/FormComponents';
-import { StyledForm, StyledInput }  from 'Common/FormComponents';
+import  { StyledAccentButton, StyledDefaultButton }  from 'Common/FormComponents';
+import { StyledForm, StyledLabel, StyledTitleForm }  from 'Common/FormComponents';
 import InputName from './Input/InputName';
 import InputEmail from './Input/InputEmail';
 import InputPassword from './Input/InputPassword';
@@ -30,4 +30,36 @@ export const RegisterForm = () => {
         return;
     }
 };
+
+const resetForm = () => {
+  setName('');
+  setEmail('');
+  setPassword('');
+};
+
+const handleSubmit = e => {
+  e.preventDefault();
+  dispatch(registerUser.register({ name, email, password }));
+  resetForm();
+};
+
+return (
+    <StyledForm onSubmit={handleSubmit}>
+      <StyledTitleForm>Register</StyledTitleForm>
+      <StyledLabel>
+        <p>Name *</p>
+          <InputName value={name} onChange={handleChange} />
+      </StyledLabel>
+      <StyledLabel>
+        <p>E-mail *</p>
+          <InputEmail value={email} onChange={handleChange} />
+      </StyledLabel>
+      <StyledLabel>
+      <p>Password *</p>
+          <InputPassword value={password} onChange={handleChange} />
+      </StyledLabel>
+      <StyledAccentButton>Register</StyledAccentButton>
+      <StyledDefaultButton>Log in</StyledDefaultButton>
+    </StyledForm>
+);
 };

@@ -7,7 +7,6 @@ export const InputMail = ({ onChange, value }) => (
     type="email"
     name="email"
     required
-    placeholder="Enter e-mail"
     onChange={onChange}
     value={value} 
     />      

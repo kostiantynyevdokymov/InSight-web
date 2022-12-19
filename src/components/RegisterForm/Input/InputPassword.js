@@ -7,7 +7,6 @@ export const InputPassword = ({ onChange, value }) => (
       type="password"
       name="password"
       required
-      placeholder="Enter password"
       onChange={onChange}
       value={value}
       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
