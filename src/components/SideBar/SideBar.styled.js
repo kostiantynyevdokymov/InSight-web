@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import SideBarImg_1280 from '../../img/SideBarImg_1280.png';
-import SideBarImg_768 from '../../img/SideBarImg_768.png';
+import SideBarImg_1280 from '../../imgages/SideBarImg_1280.png';
+import SideBarImg_768 from '../../imgages/SideBarImg_768.png';
 
 export const Section = styled.section`
   max-width: 480px;

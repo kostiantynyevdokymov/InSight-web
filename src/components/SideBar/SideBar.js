@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Section, Container, List, Title, Item, Text } from './SideBarComponents';
+import { Section, Container, List, Title, Item, Text } from './SideBar.styled';
 //
 // Testing data ----------------
 //
