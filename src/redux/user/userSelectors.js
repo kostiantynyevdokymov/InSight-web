@@ -1,5 +1,5 @@
 export const selectUserData = store => store.params;
-export const selectAuth = ({ name, email, token }) => ({ name, email, token });
-export const selectToken = store => store.token;
-export const selectIsLoading = store => store.isLoading;
-export const selectError = store => store.error;
+export const selectUserAuth = ({ name, email, token }) => ({ name, email, token });
+export const selectUserToken = store => store.token;
+export const selectUserIsLoading = store => store.isLoading;
+export const selectUserError = store => store.error;
