@@ -1,30 +1,33 @@
 import styled from 'styled-components';
 import React from 'react';
-import layer from '../../images/homeWeb/Vector 3.png';
-import layerTab from '../../images/homeWeb/Vector 3tab.png';
-import leaves from '../../images/homeWeb/Layer-4 1.png';
-import leavesTab from '../../images/homeWeb/Layer-4 2tab.png';
-import banana from '../../images/homeWeb/Layer-9.png';
-import bananaTab from '../../images/homeWeb/Layer-9tab.png';
-import strawberry from '../../images/homeWeb/Strawberry-Big-PNG.png';
-import strawberryTab from '../../images/homeWeb/Strawberry-Big-PNGtab.png';
+import layer from '../../images/orig/Vector 3.png';
+import leaves from '../../images/orig/leaves.png';
+import banana from '../../images/orig/banana.png';
+import strawberry from '../../images/orig/Strawberry.png';
 
 export const Strawberry = () => {
   const StrawberryStyled = styled.img`
     position: absolute;
     z-index: 4;
+    //in figma shedow 10px 20px 50px ??
+    filter: drop-shadow(10px 20px 10px rgba(0, 0, 0, 0.3));
+    transform: matrix(-1, 0, 0, 1, 0, 0);
 
     @media (max-width: 1280px) {
-      margin-left: 464px;
-      margin-top: 583px;
+      width: 208px;
+      height: 203px;
+      left: 464px;
+      top: 583px;
     }
 
     @media (min-width: 1280px) {
-      margin-top: 506px;
-      margin-left: 958px;
+      width: 286px;
+      height: 279px;
+      left: 944px;
+      top: 506px;
     }
   `;
-  return <StrawberryStyled src={window.innerWidth > 1280 ? strawberry : strawberryTab} alt="strawberry" />;
+  return <StrawberryStyled src={strawberry} alt="strawberry" />;
 };
 
 export const Banana = () => {
@@ -33,32 +36,42 @@ export const Banana = () => {
     z-index: 3;
 
     @media (max-width: 1280px) {
-      margin-left: 247px;
-      margin-top: 596px;
+      width: 740px;
+      height: 527px;
+      left: 247px;
+      top: 596px;
     }
 
     @media (min-width: 1280px) {
-      margin-left: 782px;
+      width: 773px;
+      height: 552px;
+      left: 782px;
+      top: -102px;
     }
   `;
-  return <BananaStyled src={window.innerWidth > 1280 ? banana : bananaTab} alt="banana" />;
+  return <BananaStyled src={banana} alt="banana" />;
 };
 
 export const Layer = () => {
   const LayerStyled = styled.img`
-    position: relative;
+    position: absolute;
     z-index: 1;
 
-    @media screen and (max-width: 1280px) {
-      margin-left: 247px;
-      margin-top: 461px;
+    @media (max-width: 1280px) {
+      width: 553px;
+      height: 750px;
+      left: 247px;
+      top: 461px;
     }
 
-    @media screen and (min-width: 1280px) {
-      margin-left: auto;
+    @media (min-width: 1280px) {
+      width: 602.01px;
+      height: 816px;
+      left: 677.99px;
+      top: 34px;
     }
   `;
-  return <LayerStyled src={window.innerWidth > 1280 ? layer : layerTab} alt="layer" />;
+  return <LayerStyled src={layer} alt="layer" />;
 };
 
 export const Leaves = () => {
@@ -66,31 +79,40 @@ export const Leaves = () => {
     position: absolute;
     z-index: 2;
 
-    @media screen and (max-width: 1280px) {
-      margin-top: 493px;
+    @media (max-width: 1280px) {
+      width: 531px;
+      height: 602px;
+      top: 463px; //in figma 493 ??
+      left: 40px;
+
+      transform: rotate(90deg);
     }
 
-    @media screen and (min-width: 1280px) {
-      margin-left: 339px;
+    @media (min-width: 1280px) {
+      width: 746px;
+      height: 846px;
+      left: 323px;
+      top: -26px;
     }
   `;
-  return <LeavesStyled src={window.innerWidth > 1280 ? leaves : leavesTab} alt="leaves" />;
+  return <LeavesStyled src={leaves} alt="leaves" />;
 };
 
 export const Wrapper = styled.div`
   display: flex;
-
-  @media screen and (min-width: 768px) {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid green;
+  margin: 100px;
+  @media (max-width: 1200px) {
     width: 768px;
     height: 1024px;
-    border: 1px solid green;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media (min-width: 1280px) {
     width: 1280px;
     height: 850px;
     background-color: ${p => p.theme.colors.background.pageBackground};
-    border: 1px solid green;
 
     margin-top: 20px;
     margin-left: 20px;
