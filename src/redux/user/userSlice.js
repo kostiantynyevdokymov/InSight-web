@@ -29,6 +29,11 @@ const initialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
+  reducers: {
+    googleLogin: (state, action) => {
+      state.auth = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(loginUser.fulfilled, handleLoginUser)
@@ -42,3 +47,4 @@ const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
+export const { googleLogin } = userSlice.actions;
