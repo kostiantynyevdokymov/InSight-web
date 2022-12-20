@@ -1,5 +1,6 @@
 export const DairyForm = () => {
     const arr = []
+
     function searchInBase(e) {
         if (e.target.dataset !== 'dairyproduct') return
         const form = document.querySelector('dairyproduct')
@@ -8,7 +9,8 @@ export const DairyForm = () => {
         // return arr = res.arr
     }
     function sendMarktoBase(e) {
-
+        e.preventDefault()
+        // send req with product
         
     }
     return (<>
