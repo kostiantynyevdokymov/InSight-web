@@ -46,20 +46,29 @@ const handleSubmit = e => {
 return (
     <StyledForm onSubmit={handleSubmit}>
       <StyledTitleForm>Register</StyledTitleForm>
-      <StyledLabel>
-        <p>Name *</p>
-          <InputName value={name} onChange={handleChange} />
+      <StyledInputGroup>
+        <StyledLabel>
+          <p>Name *</p>
+            <InputName value={name} onChange={handleChange} type="name" name="name"/>
+        </StyledLabel>
+      </StyledInputGroup>
+      <StyledInputGroup>
+        <StyledLabel>
+          <p>E-mail *</p>
+            <InputEmail value={email} onChange={handleChange} type="email" name="email"/>
       </StyledLabel>
-      <StyledLabel>
-        <p>E-mail *</p>
-          <InputEmail value={email} onChange={handleChange} />
+      </StyledInputGroup>
+      <StyledInputGroup>
+        <StyledLabel>
+          <p>Password *</p>
+          <InputPassword value={password} onChange={handleChange} type="password" name="password"/>
       </StyledLabel>
-      <StyledLabel>
-      <p>Password *</p>
-          <InputPassword value={password} onChange={handleChange} />
-      </StyledLabel>
-      <StyledAccentButton>Register</StyledAccentButton>
-      <StyledDefaultButton>Log in</StyledDefaultButton>
+      </StyledInputGroup>        
+        <StyledAccentButton 
+        type="submit"
+        >Register
+        </StyledAccentButton>
+      <StyledDefaultButton type="submit">Log in</StyledDefaultButton>
     </StyledForm>
 );
 };
