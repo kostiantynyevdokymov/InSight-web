@@ -23,10 +23,10 @@ export const DairyForm = () => {
     </>)
 }
 
-const ListOfProducts = (arr) => {
+const ListOfProducts = ({arr}) => {
     return (<ul>
-        {arr.map(({ title: { ua } }) => {
-            return <li>{ua}</li>
+        {arr.map(({ title: { ua }, _id }) => {
+            return <li key={_id+'D'}>{ua}</li>
         })}
     </ul>)
 }
