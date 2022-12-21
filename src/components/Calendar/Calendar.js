@@ -7,6 +7,15 @@ export const Calendar = () => {
   const [choseDate, setChoseDate] = useState(new Date());
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    if (isOpen) {
+      window.addEventListener('keydown', handleKeyDownEsc);
+      return () => {
+        window.removeEventListener('keydown', handleKeyDownEsc);
+      };
+    }
+  });
+
   const useWindowWidth = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     useEffect(() => {
@@ -36,15 +45,6 @@ export const Calendar = () => {
       setIsOpen(!isOpen);
     }
   };
-
-  useEffect(() => {
-    if (isOpen) {
-      window.addEventListener('keydown', handleKeyDownEsc);
-      return () => {
-        window.removeEventListener('keydown', handleKeyDownEsc);
-      };
-    }
-  });
 
   const Test = () => {
     if (screenWidth > 767) {
