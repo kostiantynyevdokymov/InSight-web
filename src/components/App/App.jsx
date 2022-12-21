@@ -1,4 +1,5 @@
 import { GoogleAuth } from 'components/GoogleAuth/GoogleAuth';
+import { LogoMain } from 'components/Logo/Logo';
 // import Loader from 'components/Loader/Loader';
 import { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router';
@@ -20,6 +21,7 @@ export const App = () => {
         element={
           <Suspense fallback={<Loader />}>
             <CommonLayout />
+            <LogoMain />
             <LoginPage />
             {/* <RegistrationPage /> */}
           </Suspense>
