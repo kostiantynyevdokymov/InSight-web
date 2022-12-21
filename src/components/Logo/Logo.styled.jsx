@@ -27,7 +27,7 @@ export const Wrapper = styled.div`
     position: absolute;
     bottom: -15px;
     left: 51px;
-    border-right: 2px solid #e0e0e0;
+
     padding-right: 20px;
   }
 `;
@@ -40,7 +40,7 @@ export const WrapperMobile = styled.div`
     position: absolute;
     bottom: -15px;
     left: 51px;
-    border-right: 2px solid #e0e0e0;
+
     padding-right: 20px;
   }
 `;
@@ -91,6 +91,7 @@ export const LogoSlim = styled.span`
 export const LogoMom = styled.span`
   width: 59.18px;
   height: 17.27px;
+  margin-left: 5.71px;
   background-image: url(${mom});
   background-size: cover;
   transition: all 0.2s ease-in-out;
