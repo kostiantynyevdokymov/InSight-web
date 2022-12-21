@@ -12,6 +12,7 @@ export const Container = styled.div`
   @media screen and (min-width: 1280px) {
     max-width: 1280px;
     display: flex;
+    justify-content: space-between;
     background: linear-gradient(to right, white 760px, ${p => p.theme.colors.background.greyBackground} 760px 1280px);
   }
 `;

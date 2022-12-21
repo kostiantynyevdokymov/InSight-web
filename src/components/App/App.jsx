@@ -2,7 +2,7 @@ import { GoogleAuth } from 'components/GoogleAuth/GoogleAuth';
 // import Loader from 'components/Loader/Loader';
 import { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router';
-import { DiaryPage } from 'pages/DiaryPage';
+import { DiaryPage } from 'pages/DiaryPage/DiaryPage';
 
 // const HomePage = lazy(() => import('pages/HomePage'));
 const Loader = lazy(() => import('components/Loader/Loader'));

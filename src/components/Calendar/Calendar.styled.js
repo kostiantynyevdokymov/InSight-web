@@ -1,3 +1,4 @@
+import { theme } from 'components/Common/Theme';
 import styled from 'styled-components';
 import { ReactComponent as Calendar } from '../../images/icons/Calendar.svg';
 
@@ -34,5 +35,9 @@ export const Modal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: ${p => theme.colors.modalBackdropColor};
+`;
+
+export const CalendarBox = styled.div`
+  margin: 20px;
 `;
