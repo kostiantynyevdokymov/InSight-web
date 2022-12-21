@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { authHeader } from 'redux/utils/authHeader';
+import { constants } from 'constants';
+
+axios.defaults.baseURL = constants.apiServerAddress;
 
 export const loginUser = createAsyncThunk('user/login', async (val, thunkAPI) => {
   try {
