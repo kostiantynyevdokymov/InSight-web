@@ -8,7 +8,7 @@ const RegistrationPage = lazy(() => import('pages/RegistrationPage/RegistrationP
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const Loader = lazy(() => import('components/Loader/Loader'));
 // const GoogleAuth = lazy(() => import('components/GoogleAuth/GoogleAuth'));
-const CommonLayout = lazy(() => import('pages/CommonLayout'));
+const SharedLayout = lazy(() => import('pages/Header/SharedLayout'));
 // const Phonebook = lazy(() => import('pages/Phonebook'));
 // const Logout = lazy(() => import('pages/Logout'));
 
@@ -19,7 +19,7 @@ export const App = () => {
         path="/InSight-web/"
         element={
           <Suspense fallback={<Loader />}>
-            <CommonLayout />
+            <SharedLayout />
             <LoginPage />
             {/* <RegistrationPage /> */}
           </Suspense>
