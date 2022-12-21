@@ -7,11 +7,13 @@ export const HeaderContainer = styled.div`
     position: absolute;
     display: flex;
     align-items: center;
-    justify-content: right;
+    justify-content: end;
     border-bottom: ${theme.border.header};
   }
+
   @media screen and (min-width: 769px) {
     padding-top: ${theme.spacing[5]}px;
     border: none;
+    justify-content: space-between;
   }
 `;

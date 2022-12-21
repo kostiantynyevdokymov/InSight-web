@@ -8,11 +8,10 @@ export const HeaderContainer = styled.div`
   padding-top: ${theme.spacing[4]}px;
   display: flex;
   @media screen and (min-width: 321px) {
-    justify-content: right;
+    justify-content: flex-end;
     border: none;
   }
   @media screen and (min-width: 769px) {
-    justify-content: left;
   }
 `;
 
