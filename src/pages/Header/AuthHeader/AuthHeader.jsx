@@ -7,17 +7,16 @@ export const AuthHeader = () => {
   return (
     <nav>
       <HeaderContainer>
-        <LinkSignIn to="/InSight-web/user/login">SIGN IN</LinkSignIn>
-        <LinkRegistration to="/InSight-web/user">REGISTRATION</LinkRegistration>
-
-        {isLoggedIn && (
+        {isLoggedIn ? (
           <HamburgerMenu type="button">
             <GiHamburgerMenu size={18} />
           </HamburgerMenu>
+        ) : (
+          <>
+            <LinkSignIn to="/InSight-web/user/login">SIGN IN</LinkSignIn>
+            <LinkRegistration to="/InSight-web/user">REGISTRATION</LinkRegistration>
+          </>
         )}
-        {/* <HamburgerMenu type="button">
-          <GiHamburgerMenu size={18} />
-        </HamburgerMenu> */}
       </HeaderContainer>
     </nav>
   );

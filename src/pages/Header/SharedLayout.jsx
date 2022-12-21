@@ -7,11 +7,7 @@ const SharedLayout = () => {
   const isLoggedIn = useSelector(state => state.auth);
   return (
     <>
-      <HeaderContainer>
-        <AuthHeader />
-        {isLoggedIn && <NavHeader />}
-        <NavHeader />
-      </HeaderContainer>
+      <HeaderContainer>{isLoggedIn ? <NavHeader /> : <AuthHeader />}</HeaderContainer>
     </>
   );
 };

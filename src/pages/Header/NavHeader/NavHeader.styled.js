@@ -8,6 +8,9 @@ export const NavHeaderContainer = styled.div`
   background-color: ${theme.colors.background.greyBackground};
   @media screen and (min-width: 321px) {
     background-color: inherit;
+    margin-left: auto;
+  }
+  @media screen and (min-width: 769px) {
   }
 `;
 export const Exit = styled.button`

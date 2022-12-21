@@ -9,10 +9,10 @@ export const HeaderContainer = styled.div`
   display: flex;
   @media screen and (min-width: 321px) {
     justify-content: right;
+    border: none;
   }
   @media screen and (min-width: 769px) {
     justify-content: left;
-    border: none;
   }
 `;
 
@@ -21,6 +21,9 @@ export const LinkSignIn = styled(NavLink)`
   color: ${theme.colors.text.defaultText};
   text-decoration: none;
   margin-left: auto;
+  @media screen and (min-width: 321px) {
+    margin-left: auto;
+  }
   @media screen and (min-width: 769px) {
     margin-left: ${theme.spacing[3]}px;
     padding-left: ${theme.spacing[3]}px;
