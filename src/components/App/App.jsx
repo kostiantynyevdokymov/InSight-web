@@ -24,7 +24,7 @@ export const App = () => {
         element={
           <Suspense fallback={<Loader />}>
             <Home />
-            <CommonLayout />
+            {/*<CommonLayout />*/}
             <LogoMain />
             <LoginPage />
             {/* <RegistrationPage /> */}

@@ -36,22 +36,6 @@ export const StyledForm = styled.form`
   border: none;
 `;
 
-export const StyledTitleForm = styled.p`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-family: 'Verdana';
-  font-style: normal;
-  line-height: 17px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-size: ${p => p.theme.fontSizes.default};
-  font-weight: ${p => p.theme.fontWeights.bold};
-  color: ${p => p.theme.color.text.accentText};
-
-`;
-
 export const StyledLabel = styled.label`
   display: flex;
   justify-content: space-between;
@@ -72,6 +56,10 @@ export const StyledInput = styled.input`
 
   border: none;
   border-bottom: 1px solid #000000;
+`;
+
+export const RegisterButtonReg = styled.div`
+  margin: ${p => p.theme.mp(0, 0, 0, 5)};
 `;
 
 export const StyledAccentButton = styled(BasicButton)`
