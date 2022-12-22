@@ -1,5 +1,6 @@
 import { LinkSignIn, LinkRegistration, HamburgerMenu, HeaderContainer } from './AuthHeader.styled';
 import { GiHamburgerMenu } from 'react-icons/gi';
+
 import { useSelector } from 'react-redux';
 
 export const AuthHeader = () => {

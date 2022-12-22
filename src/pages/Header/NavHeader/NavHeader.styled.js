@@ -27,3 +27,7 @@ export const Name = styled.button`
   background-color: inherit;
   margin-left: auto;
 `;
+export const Back = styled.button`
+  border: none;
+  background-color: inherit;
+`;
