@@ -66,7 +66,7 @@ export const RegisterForm = () => {
         </StyledLabel>
       </StyledInputGroup>
       <StyledAccentButton type="submit" disabled={isLoading}>
-        {isLoading ? <Loader ariaLabel="loader-spinner" visible={true} /> : 'Register'}
+        {isLoading ? <Loader height="20" width="20" ariaLabel="loader-spinner" visible={true} /> : 'Register'}
       </StyledAccentButton>
       <StyledDefaultButton>Log in</StyledDefaultButton>
     </StyledForm>
