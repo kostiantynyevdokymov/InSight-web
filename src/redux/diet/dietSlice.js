@@ -1,27 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { handlePending, handleFulfilled, handleRejected } from 'redux/utils/defaultHandlers';
-import { handleAddDiaryEntry, handleDeleteDiaryEntry, handleGetDailyDiary } from './diaryHandlers';
-import { addDiaryEntry, deleteDiaryEntry, getDailyDiary } from './diaryOperations';
+import { handleFetchDiet, handleFetchUserDiet } from './dietHandlers';
+import { fetchDiet, fetchUserDiet } from './dietOperations';
 
 const initialState = {
-  date: null,
-  inputDiary: [],
+  dailyCalories: 0,
+  stopProducts: [],
   isLoading: false,
   error: null,
 };
 
-const diarySlice = createSlice({
-  name: 'diary',
+const dietSlice = createSlice({
+  name: 'diet',
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(addDiaryEntry.fulfilled, handleAddDiaryEntry)
-      .addCase(deleteDiaryEntry.fulfilled, handleDeleteDiaryEntry)
-      .addCase(getDailyDiary.fulfilled, handleGetDailyDiary)
+      .addCase(fetchDiet.fulfilled, handleFetchDiet)
+      .addCase(fetchUserDiet.fulfilled, handleFetchUserDiet)
       .addMatcher(action => action.type.endsWith('/pending'), handlePending)
       .addMatcher(action => action.type.endsWith('/fulfilled'), handleFulfilled)
       .addMatcher(action => action.type.endsWith('/rejected'), handleRejected);
   },
 });
 
-export default diarySlice.reducer;
+export default dietSlice.reducer;
+export const { googleLogin } = dietSlice.actions;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Section, Container, List, Title, Item, Text, ShowMore } from './SideBar.styled';
+import { Section, Container, List, Title, Item, Text } from './SideBar.styled';
 //
 // Testing data ----------------
 //
@@ -295,9 +295,7 @@ export const SideBar = () => {
               <Text>{it.categories[0]}</Text>
             </Item>
           ))}
-          <ShowMore href="#" onClick={() => setShow(!show)}>
-            show more ...
-          </ShowMore>
+          <button onClick={() => setShow(!show)}>show more ...</button>
         </>
       );
   };
