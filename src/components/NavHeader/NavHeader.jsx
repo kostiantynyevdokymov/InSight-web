@@ -8,7 +8,7 @@ export const NavHeader = () => {
       <NavHeaderContainer>
         <Name type="button">Hello {name}</Name>
         <Exit>
-          <a href="./logout">Logout</a>
+          <a href="./logout">Exit</a>
         </Exit>
       </NavHeaderContainer>
     </>
