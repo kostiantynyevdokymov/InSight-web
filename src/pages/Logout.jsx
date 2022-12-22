@@ -1,7 +1,7 @@
 import { useAuth } from 'hooks/useAuth';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Navigate } from 'react-router';
+// import { Navigate } from 'react-router';
 import { logoutUser } from 'redux/user/userOperations';
 
 const LogoutPage = () => {

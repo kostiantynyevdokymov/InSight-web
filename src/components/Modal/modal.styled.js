@@ -6,7 +6,7 @@ export const Backdrop = styled.div`
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100wh;
+  height: 100vh;
 
   display: flex;
   justify-content: center;
@@ -15,7 +15,7 @@ export const Backdrop = styled.div`
   background-color: rgba(33, 33, 33, 0.12);
 `;
 
-export const Modal = styled.div`
+export const Window = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
