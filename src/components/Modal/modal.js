@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Backdrop, Window, Title } from './modal.styled';
+import { Backdrop, ModalViev, Title } from './modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-function Modal({ onClose, children }) {
-  //add navigation to reg
-
+export const Modal = ({ onClose, children }) => {
   useEffect(() => {
     const hadleKeyDown = event => {
       if (event.code === 'Escape') {
@@ -27,9 +25,9 @@ function Modal({ onClose, children }) {
   };
 
   return createPortal(
-    <Backdrop onClick={handleBackdropClick}>
-      <Window>{children}</Window>
+    <Backdrop onClick={handleBackDropClick}>
+      <ModalViev>{children}</ModalViev>
     </Backdrop>,
     modalRoot
   );
-}
+};
