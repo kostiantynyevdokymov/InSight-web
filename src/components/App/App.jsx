@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { refreshUser } from 'redux/user/userOperations';
 import { useAuth } from 'hooks/useAuth';
 
-const MainPageSelector = lazy(() => import('pages/MainPageSelector'));
+const MainPageSelector = lazy(() => import('components/MainPage/MainPageSelector'));
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const LogoutPage = lazy(() => import('pages/Logout'));
