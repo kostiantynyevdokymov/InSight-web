@@ -15,7 +15,7 @@ export const Section = styled.section`
   }
 
   @media screen and (min-width: 1280px) {
-    width: 520px;
+    max-width: 517px;
     background-image: url(${SideBarImg_1280});
   }
 `;
@@ -32,7 +32,6 @@ export const Container = styled.div`
 
   @media screen and (min-width: 1280px) {
     flex-direction: column;
-    align-items: center;
   }
 `;
 
@@ -77,8 +76,4 @@ export const Item = styled.li`
 export const Text = styled.p`
   font-weight: ${p => p.theme.fontWeights.normal};
   color: ${p => p.theme.colors.text.mediumText};
-`;
-
-export const ShowMore = styled.a`
-  cursor: pointer;
 `;
