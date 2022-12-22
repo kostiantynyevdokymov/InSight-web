@@ -1,3 +1,4 @@
+import { Home } from '../pages/Home';
 import { GoogleAuth } from 'components/GoogleAuth/GoogleAuth';
 import { LogoMain } from 'components/Logo/Logo';
 // import Loader from 'components/Loader/Loader';
@@ -17,10 +18,12 @@ const SharedLayout = lazy(() => import('pages/Header/SharedLayout'));
 export const App = () => {
   return (
     <Routes>
+      {/* <Route path="/InSight-web/home" element={<Home />} /> */}
       <Route
         path="/InSight-web/"
         element={
           <Suspense fallback={<Loader />}>
+            <Home />
             <CommonLayout />
             <LogoMain />
             <LoginPage />
