@@ -2,6 +2,7 @@ import { constants } from 'constants';
 import { LoginForm } from 'components/LoginForm/LoginForm';
 import { useAuth } from 'hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { Wrapper, Container } from './Styles/LoginPage.styled';
 
 const LoginPage = () => {
   const { isLoggedIn } = useAuth();
@@ -12,11 +13,13 @@ const LoginPage = () => {
 
   return (
     !isLoggedIn && (
-      <>
-        <LoginForm />
-        <br />
-        <a href={url}>Google</a>
-      </>
+      <Container>
+        <Wrapper>
+          <LoginForm />
+          <br />
+          <a href={url}>Google</a>
+        </Wrapper>
+      </Container>
     )
   );
 };

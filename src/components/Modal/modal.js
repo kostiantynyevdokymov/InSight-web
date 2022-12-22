@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Backdrop, ModalViev } from './modal.styled';
+import { Backdrop, ModalViev, Title } from './modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -18,7 +18,7 @@ export const Modal = ({ onClose, children }) => {
     };
   }, [onClose]);
 
-  const handleBackDropClick = event => {
+  const handleBackdropClick = event => {
     if (event.currentTarget === event.target) {
       onClose();
     }
