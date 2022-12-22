@@ -14,11 +14,12 @@ const CommonLayout = lazy(() => import('pages/CommonLayout'));
 export const App = () => {
   return (
     <Routes>
-      <Route path="/InSight-web/home" element={<Home />} />
+      {/* <Route path="/InSight-web/home" element={<Home />} /> */}
       <Route
         path="/InSight-web/"
         element={
           <Suspense fallback={<Loader />}>
+            <Home />
             <CommonLayout />
           </Suspense>
         }
