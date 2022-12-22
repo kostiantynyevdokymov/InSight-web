@@ -8,6 +8,7 @@ import InputEmail from './Input/InputEmail';
 import InputPassword from './Input/InputPassword';
 import selectIsLoading from 'redux/user/userSelectors';
 import Loader from 'components/Loader/Loader';
+import { Link } from 'react-router-dom';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -65,10 +66,27 @@ export const RegisterForm = () => {
           <InputPassword value={password} onChange={handleChange} type="password" name="password" />
         </StyledLabel>
       </StyledInputGroup>
-      <StyledAccentButton type="submit" disabled={isLoading}>
-        {isLoading ? <Loader height="20" width="20" ariaLabel="loader-spinner" visible={true} /> : 'Register'}
+      <RegisterButtonReg>
+        <StyledAccentButton
+        type="submit"
+        disabled={isLoading}
+      >
+        { isLoading ? (
+          <Loader
+            ariaLabel='loader-spinner'
+            visible={true}
+          />
+        ) : (
+           'Register'
+          )}
       </StyledAccentButton>
-      <StyledDefaultButton>Log in</StyledDefaultButton>
+      </RegisterButtonReg>    
+
+      <RegisterButtonLog>
+        <Link to="/login">
+          <StyledDefaultButton type="button">Log in</StyledDefaultButton>
+        </Link>
+      </RegisterButtonLog>
     </StyledForm>
   );
 };
