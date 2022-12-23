@@ -12,7 +12,7 @@ export const SForm = styled.form`
     margin: 0;
     flex-direction: row;
     width: 610px;
-    align-items: center;
+    align-items: end;
     padding-bottom: ${p => p.theme.spacing[5]}px;
   }
 `;

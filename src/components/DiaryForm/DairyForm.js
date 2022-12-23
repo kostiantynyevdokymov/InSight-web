@@ -2,7 +2,7 @@ import {
   useDispatch,
   //useSelector
 } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 // import { deleteDiaryEntry } from 'redux/diary/diaryOperations';
 //import { selectDiary } from "redux/selectors"
 import { addDiaryEntry, getDailyDiary, deleteDiaryEntry } from '../../redux/diary/diaryOperations';
@@ -25,7 +25,7 @@ import {
 } from './DairyFormStyle';
 import { Modal } from 'components/Modal/modal';
 
-import axios from 'axios';
+import axios, { all } from 'axios';
 
 const prod = [
   {
@@ -518,73 +518,129 @@ export const DairyForm = ({ screenWidth }) => {
 
   // const products = useSelector(selectDiary)
 
-  const [value, setValue] = useState('');
+  const [valueProd, setValueProd] = useState('');
+  const [weightValue, setWeightValue] = useState('');
+  const [allProducts, setAllProducts] = useState([]);
+  const [chosedProduct, setChosedProduct] = useState();
+  const [showAutocomplete, setShowAutocomplete] = useState(false);
+
+  let autocompleteMenu = useRef();
 
   useEffect(() => {
-    const result = getProd(value);
-    console.log('Prod:', result);
-  }, [value]);
+    if (valueProd.length > 2) {
+      getProducts(valueProd);
+    }
+    if (valueProd === '') {
+      setChosedProduct([]);
+      setAllProducts([]);
+    }
+  }, [valueProd]);
 
-  const getProd = async text => {
-    console.log(text);
+  useEffect(() => {
+    const handleKeyDownEsc = e => {
+      if (!autocompleteMenu.current.contains(e.target)) {
+        setShowAutocomplete(false);
+      }
+      if (e.code === 'Escape') {
+        setShowAutocomplete(false);
+      }
+    };
+    if (showAutocomplete) {
+      window.addEventListener('keydown', handleKeyDownEsc);
+      window.addEventListener('mousedown', handleKeyDownEsc);
+      return () => {
+        window.removeEventListener('keydown', handleKeyDownEsc);
+        window.removeEventListener('mousedown', handleKeyDownEsc);
+      };
+    }
+  });
+
+  const getProducts = async text => {
     try {
       const resp = await axios.get(`/products?title=${text}`);
-      console.log(resp);
+
+      setAllProducts(resp.data);
       return resp.data;
     } catch (error) {
       console.log('ERROR:', error);
     }
   };
 
-  const handleProdChange = event => {
-    setValue(event.target.value);
+  const itemClickHandler = (event, index) => {
+    setChosedProduct(allProducts[index]);
+    setValueProd(event.target.textContent);
+    setShowAutocomplete(!showAutocomplete);
   };
+  // function searchInBase(e) {
+  //   let indexOfFood = null;
+  //   if (e.target.dataset !== 'dairyproduct') return;
+  //   if (e.target.value === '') return;
+  //   // send to base e.target.value to back, return arr of products
 
-  function searchInBase(e) {
-    let indexOfFood = null;
-    if (e.target.dataset !== 'dairyproduct') return;
-    if (e.target.value === '') return;
-    // send to base e.target.value to back, return arr of products
+  //   indexOfFood = arr.filter(el => el.title.ua.uncludes(e.target.value))._id;
+  //   return indexOfFood;
+  // }
 
-    indexOfFood = arr.filter(el => el.title.ua.uncludes(e.target.value))._id;
-    return indexOfFood;
-  }
-
-  function sendMarktoBase(e) {
-    e.preventDefault();
-    // send req with product
-    dispatch(
-      addDiaryEntry({
-        owner: user._id,
-        date: day,
-        product: indexOfFood,
-        weight: form.elements.weight.value,
-      })
-    );
-    form.reset();
-  }
+  // function sendMarktoBase(e) {
+  //   e.preventDefault();
+  //   // send req with product
+  //   dispatch(
+  //     addDiaryEntry({
+  //       owner: user._id,
+  //       date: day,
+  //       product: indexOfFood,
+  //       weight: form.elements.weight.value,
+  //     })
+  //   );
+  //   form.reset();
+  // }
 
   return (
     <>
       <DContainer>
-        {/* <input onChange={handleProdChange} value={value} /> */}
         {screenWidth > 767 && (
-          <SForm id="dairyform" onChange={searchInBase} onSubmit={sendMarktoBase}>
-            <div style={{ position: 'relative' }}>
+          <SForm
+            id="dairyform"
+            autoComplete="off"
+            onSubmit={e => {
+              e.preventDefault();
+              console.log('Send');
+              console.log('Prod:', chosedProduct);
+              console.log('Weight:', weightValue);
+              setValueProd('');
+              setWeightValue('');
+            }}
+          >
+            <div style={{ position: 'relative' }} ref={autocompleteMenu}>
               <DairyInput
-                id="dairyproduct"
-                name="dairyproduct"
-                data-name="dairyproduct"
+                id="diaryproduct"
+                name="diaryproduct"
+                data-name="diaryproduct"
                 placeholder="Enter product name"
+                required
+                value={valueProd}
+                onChange={e => setValueProd(e.target.value)}
+                onClick={() => setShowAutocomplete(true)}
               />
               <AutocompleteList>
-                <AutocompleteItems>T1</AutocompleteItems>
-                <AutocompleteItems>T2</AutocompleteItems>
-                <AutocompleteItems>T3</AutocompleteItems>
+                {allProducts.length !== 0 &&
+                  showAutocomplete &&
+                  allProducts.map(({ title, _id }, index) => (
+                    <AutocompleteItems key={_id.$oid} onClick={event => itemClickHandler(event, index)}>
+                      {title.ua}
+                    </AutocompleteItems>
+                  ))}
               </AutocompleteList>
             </div>
             {arr && arr.length > 0 && <ListOfProducts arr={arr} />}
-            <DairyInput id="dairyweight" name="dairyweight" placeholder="Enter product name" />
+            <DairyInput
+              id="diaryweight"
+              name="diaryweight"
+              placeholder="Grams"
+              required
+              value={weightValue}
+              onChange={e => setWeightValue(e.target.value)}
+            />
             <ButtonDairy>
               <Add>Add</Add>
               <Plus>+</Plus>
@@ -598,7 +654,7 @@ export const DairyForm = ({ screenWidth }) => {
         )}
         {isOpen && (
           <Modal onClose={() => setIsOpen(!isOpen)}>
-            <SForm id="dairyform" onChange={searchInBase} onSubmit={sendMarktoBase}>
+            <SForm id="dairyform" onChange onSubmit>
               <DairyInput
                 id="dairyproduct"
                 name="dairyproduct"
