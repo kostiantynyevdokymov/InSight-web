@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import loginUser from 'redax/user/userOperations';
+import loginUser from 'redux/user/userOperations';
 import selectIsLoading from 'redux/user/userSelectors';
 import Loader from 'components/Loader/Loader';
 import { Link } from 'react-router-dom';
