@@ -12,7 +12,6 @@ import { useAuth } from 'hooks/useAuth';
 const MainPageSelector = lazy(() => import('components/MainPage/MainPageSelector'));
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
-const LogoutPage = lazy(() => import('pages/Logout'));
 const GoogleAuth = lazy(() => import('pages/GoogleAuth'));
 const GoogleRedirect = lazy(() => import('pages/GoogleRedirect'));
 const Calculator = lazy(() => import('pages/Calculator'));
@@ -38,7 +37,6 @@ export const App = () => {
         <Route path={constants.basePath} element={<CommonLayout />}>
           <Route path="" element={<MainPageSelector />} />
           <Route path="login" element={<LoginPage />} />
-          <Route path="logout" element={<LogoutPage />} />
           <Route path="register" element={<RegistrationPage />} />
 
           <Route path="google" element={<GoogleRedirect />} />
