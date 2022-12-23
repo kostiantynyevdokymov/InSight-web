@@ -1,7 +1,6 @@
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
 import { useAuth } from 'hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { Wrapper, Container } from './Styles/LoginPage.styled';
 
 const LoginPage = () => {
   const { isLoggedIn } = useAuth();
@@ -11,13 +10,7 @@ const LoginPage = () => {
 
   if (isLoggedIn) navigate('/');
 
-  return (
-    <Container>
-      <Wrapper>
-        <RegisterForm />
-      </Wrapper>
-    </Container>
-  );
+  return <RegisterForm />;
 };
 
 export default LoginPage;
