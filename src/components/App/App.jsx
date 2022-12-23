@@ -1,5 +1,8 @@
 import { lazy, Suspense } from 'react';
-import { Navigate, Route, Routes } from 'react-router';
+import {
+  //Navigate,
+  Route, Routes
+} from 'react-router';
 
 import { constants } from 'constants';
 import { Loader } from 'components/Loader/Loader';
@@ -17,6 +20,7 @@ const GoogleAuth = lazy(() => import('pages/GoogleAuth'));
 const GoogleRedirect = lazy(() => import('pages/GoogleRedirect'));
 const Calculator = lazy(() => import('pages/Calculator'));
 const DiaryPage = lazy(() => import('pages/DiaryPage'));
+
 const CommonLayout = lazy(() => import('pages/CommonLayout'));
 
 export const App = () => {
@@ -45,10 +49,12 @@ export const App = () => {
           <Route path="google-auth" element={<GoogleAuth />} />
 
           <Route path="calculator" element={<Calculator />} />
-          <Route path="diary" element={<DiaryPage />} />
+          <Route path="diary/:day" element={<DiaryPage />} />
         </Route>
 
-        <Route path="*" element={<Navigate to={constants.basePath} replace />} />
+        {/* <Route path="*" 
+          element={<Navigate to={constants.basePath}
+  replace />} /> */}
       </Routes>
     </Suspense>
   );

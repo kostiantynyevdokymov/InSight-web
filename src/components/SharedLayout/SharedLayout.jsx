@@ -8,6 +8,7 @@ import { Container, Wrapper } from 'pages/Styles/Background.styled';
 
 export const SharedLayout = () => {
   const isLoggedIn = useSelector(selectUserIsLoggedIn);
+  console.log('isLoggedIn', isLoggedIn)
 
   return (
     <>

@@ -22,10 +22,10 @@ export const deleteDiaryEntry = createAsyncThunk('diary/deleteDiaryEntry', async
   }
 });
 
-export const getDailyDiary = createAsyncThunk('diary/getDailyDiary', async (date, thunkAPI) => {
+export const getDailyDiary = createAsyncThunk('diary/getDailyDiary', async (day, thunkAPI) => {
   try {
-    const dateQuery = URLSearchParams.toString(date);
-    const response = await axios.get(`/diary/daily?${dateQuery}`);
+    const dateQuery = URLSearchParams.toString(day);
+    const response = await axios.get(`/diary/${dateQuery}`);
     return response.data;
   } catch (err) {
     return thunkAPI.rejectWithValue(err.message);
