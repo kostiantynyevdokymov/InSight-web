@@ -1,16 +1,14 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Backdrop, Window, Title } from './modal.styled';
+import { Backdrop, ModalViev } from './modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export function Modal({ onClose, children }) {
-  // Add navigation to registration
-
+export const Modal = ({ onClose, children }) => {
   useEffect(() => {
     const hadleKeyDown = event => {
       if (event.code === 'Escape') {
-        onclose();
+        onClose();
       }
     };
     window.addEventListener('keydown', hadleKeyDown);
@@ -20,20 +18,16 @@ export function Modal({ onClose, children }) {
     };
   }, [onClose]);
 
-  const handleBackdropClick = event => {
+  const handleBackDropClick = event => {
     if (event.currentTarget === event.target) {
       onClose();
     }
   };
 
   return createPortal(
-    <Backdrop onClick={handleBackdropClick}>
-      <Window onClose={onClose}>
-        {/* <CloseButton type ="button" onClick={onClose}></CloseButton> */}
-        <Title>Your recommended daily calorie intake is</Title>
-        {/* <Button type="button" onClick={onClose}>Start loosing weight</Button> */}
-      </Window>
+    <Backdrop onClick={handleBackDropClick}>
+      <ModalViev>{children}</ModalViev>
     </Backdrop>,
     modalRoot
   );
-}
+};

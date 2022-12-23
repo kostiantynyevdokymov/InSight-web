@@ -1,20 +1,31 @@
-// import { LinkRegistration, LinkSignIn, HeaderContainer } from './SharedLayout.styled';
-// import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-// export const SharedLayout = () => {
-//   return (
-//     <>
-//       <HeaderContainer>
-//         <div>=</div>
+import { MainHeader } from 'components/MainHeader/MainHeader';
+import { Outlet } from 'react-router-dom';
+import { HeaderBar, HeaderBarIsLogedIn } from '../../pages/Styles/SharedLayout.styled';
+import { selectUserIsLoggedIn } from 'redux/selectors';
+import { Container, Wrapper } from 'pages/Styles/Background.styled';
 
-//         <nav>
-//           <LinkSignIn to="/InSight-web/user/login">SIGN IN</LinkSignIn>
-//           <LinkRegistration to="/InSight-web/user">REGISTRATION</LinkRegistration>
-//         </nav>
-//       </HeaderContainer>
-//       <Outlet />
-//     </>
-//   );
-// };
+export const SharedLayout = () => {
+  const isLoggedIn = useSelector(selectUserIsLoggedIn);
 
-// // https://insight-txsh.onrender.com/user/google
+  return (
+    <>
+      {isLoggedIn ? (
+        <HeaderBarIsLogedIn>
+          <MainHeader />
+          <Outlet />
+        </HeaderBarIsLogedIn>
+      ) : (
+        <HeaderBar>
+          <Container>
+            <Wrapper>
+              <MainHeader />
+              <Outlet />
+            </Wrapper>
+          </Container>
+        </HeaderBar>
+      )}
+    </>
+  );
+};

@@ -64,7 +64,7 @@ export const theme = {
   border: {
     default: '1px solid #212121',
     header: '2px solid #E0E0E0',
-    form: '1px solid #E0E0E0',
+
     dev: '1px solid tomato',
   },
 };

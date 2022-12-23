@@ -1,10 +1,23 @@
-import { theme } from 'components/Common/Theme';
 import styled from 'styled-components';
 import { ReactComponent as Calendar } from '../../images/icons/Calendar.svg';
 
 export const Block = styled.div`
   display: flex;
   align-items: center;
+  padding-left: ${p => p.theme.spacing[3]}px;
+  padding-right: ${p => p.theme.spacing[3]}px;
+  padding-bottom: ${p => p.theme.spacing[4]}px;
+
+  @media screen and (min-width: 768px) {
+    padding-left: ${p => p.theme.spacing[4]}px;
+    padding-right: ${p => p.theme.spacing[4]}px;
+    padding-bottom: ${p => p.theme.spacing[5]}px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-left: ${p => p.theme.spacing[3]}px;
+    padding-right: ${p => p.theme.spacing[3]}px;
+    padding-bottom: ${p => p.theme.spacing[5]}px;
+  }
 `;
 
 export const DateText = styled.h2`
@@ -35,9 +48,15 @@ export const Modal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${p => theme.colors.modalBackdropColor};
+  background-color: ${p => p.theme.colors.modalBackdropColor};
 `;
 
 export const CalendarBox = styled.div`
-  margin: 20px;
+  position: fixed;
+  top: 17%;
+  left: 44%;
+
+  @media screen and (min-width: 1280px) {
+    left: 27%;
+  }
 `;
