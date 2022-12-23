@@ -24,4 +24,4 @@ const diarySlice = createSlice({
   },
 });
 
-export const diaryReducer = diarySlice.reducer;
+export default diarySlice.reducer;

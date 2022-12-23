@@ -1,10 +1,10 @@
 import FruitItem from './LoaderDivItem';
 import { Overlay } from './Loader.styled';
 
-export default function Loader(props) {
+export const Loader = props => {
   return (
     <Overlay {...props}>
       <FruitItem />
     </Overlay>
   );
-}
+};
