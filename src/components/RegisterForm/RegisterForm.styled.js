@@ -1,35 +1,22 @@
 import styled from 'styled-components';
 
 export const Registration = styled.div`
-  width: 290px;
+  width: 285px;
   margin-right: auto;
   margin-left: auto;
   padding-top: 40px;
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  @media screen and (min-width: 768px) {
     width: auto;
-    padding-top: 154px;
-    padding-left: 77px;
+    padding-top: 160px;
+    padding-left: 16px;
     margin-left: 0;
     margin-right: 0;
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: auto;
-    padding-top: 187px;
-    margin-left: 0;
-    margin-right: 0;
-  }
 `;
 
 export const FormRegistration = styled.form`
-  margin-top: 60px;
-  position: relative;
-  @media screen and (min-width: 768px) {
-    margin-top: 20px;
-    width: 239px;
-  }
-`;
+  border: none;
+  `;
 
 export const StyledTitleForm = styled.p`
   display: flex;
@@ -51,6 +38,19 @@ export const StyledTitleForm = styled.p`
 `;
 
 export const StyledInputGroup = styled.div`
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`
+
+export const StyledLabelInput = styled.label`
+  font-family: 'Verdana';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: ${p => p.theme.color.text.accentText};
+  color: #9B9FAA;
 `
 

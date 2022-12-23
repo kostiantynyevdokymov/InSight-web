@@ -80,9 +80,10 @@ export const RegisterForm = () => {
     <Registration autoComplete="off">
       <FormRegistration onSubmit={handleSubmit}>
         <StyledTitleForm>Register</StyledTitleForm>
+
         <StyledInputGroup>
-          <StyledLabel>
-            <p>Name *</p>
+          <StyledLabelInput>
+            Name *
             {(nameDirty && nameError) && <div style={{ color: 'red' }}>{nameError}</div>}
             <InputName onChange={e => nameHandler(e)} value={name} onBlur={e => handleBlur(e)} type="name" name="name" />
           </StyledLabel>
@@ -101,7 +102,8 @@ export const RegisterForm = () => {
             <InputPassword onChange={e => passwordHandler(e)} value={password} onBlur={e => handleBlur(e)} type="password" name="password" />
           </StyledLabel>
         </StyledInputGroup>
-        <RegisterButtonReg>
+        <RegisterButtonGroup>
+          <RegisterButtonReg>
           <StyledAccentButton type="submit" disabled={isLoading}>
             {isLoading ? (<Loader ariaLabel="loader-spinner" visible={true} />) : ('Register')}
           </StyledAccentButton>
@@ -112,6 +114,8 @@ export const RegisterForm = () => {
             <StyledDefaultButton type="button">Log in</StyledDefaultButton>
           </Link>
         </RegisterButtonLog>
+        </RegisterButtonGroup>
+        
       </FormRegistration>
     </Registration>
   );
