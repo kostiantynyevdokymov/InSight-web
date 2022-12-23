@@ -1,16 +1,14 @@
-// import { LinkSignIn, LinkRegistration, HeaderContainer } from './AuthHeader.styled';
-import { LinkSignIn, LinkRegistration, HeaderContainer } from './AuthHeader.styled';
-// import { GiHamburgerMenu } from 'react-icons/gi';
-// import { useSelector } from 'react-redux';
-// import { selectUserIsLoggedIn } from 'redux/selectors';
+import { LinkSignIn, LinkRegistration, HeaderContainer, Aaa } from './AuthHeader.styled';
+import { LogoMain } from 'components/Logo/Logo';
 
 export const AuthHeader = () => {
-  // const isUserLoggedIn = useSelector(selectUserIsLoggedIn);
-  // const isLoggedIn = useSelector(state => state.user.isLoggedIn);
   return (
     <HeaderContainer>
-      <LinkSignIn to={'login'}>SIGN IN</LinkSignIn>
-      <LinkRegistration to={'register'}>REGISTRATION</LinkRegistration>
+      <LogoMain />
+      <Aaa>
+        <LinkSignIn to={'login'}>SIGN IN</LinkSignIn>
+        <LinkRegistration to={'register'}>REGISTRATION</LinkRegistration>
+      </Aaa>
     </HeaderContainer>
   );
 };
