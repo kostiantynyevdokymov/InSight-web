@@ -1,10 +1,13 @@
 import { SideBar } from 'components/SideBar/SideBar';
 import { Container, LeftSection } from './Styles/DiaryPage.styled';
+import CalculatorCalorieForm from 'components/CalculatorCalorieForm';
 
 const Calculator = () => {
   return (
     <Container>
-      <LeftSection></LeftSection>
+      <LeftSection>
+        <CalculatorCalorieForm />
+      </LeftSection>
       <SideBar />
     </Container>
   );
