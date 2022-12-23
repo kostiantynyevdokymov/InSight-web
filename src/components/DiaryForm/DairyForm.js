@@ -2,10 +2,10 @@ import {
   useDispatch,
   //useSelector
 } from 'react-redux';
-import { useState } from 'react';
-import { deleteDiaryEntry } from 'redux/diary/diaryOperations';
+import { useState, useEffect } from 'react';
+// import { deleteDiaryEntry } from 'redux/diary/diaryOperations';
 //import { selectDiary } from "redux/selectors"
-import { addDiaryEntry, getDailyDiary } from '../../redux/diary/diaryOperations';
+import { addDiaryEntry, getDailyDiary, deleteDiaryEntry } from '../../redux/diary/diaryOperations';
 import {
   SForm,
   DContainer,
@@ -20,8 +20,12 @@ import {
   ButtonX,
   UlDairy,
   ModalButton,
+  AutocompleteList,
+  AutocompleteItems,
 } from './DairyFormStyle';
 import { Modal } from 'components/Modal/modal';
+
+import axios from 'axios';
 
 const prod = [
   {
@@ -514,6 +518,28 @@ export const DairyForm = ({ screenWidth }) => {
 
   // const products = useSelector(selectDiary)
 
+  const [value, setValue] = useState('');
+
+  useEffect(() => {
+    const result = getProd(value);
+    console.log('Prod:', result);
+  }, [value]);
+
+  const getProd = async text => {
+    console.log(text);
+    try {
+      const resp = await axios.get(`/products?title=${text}`);
+      console.log(resp);
+      return resp.data;
+    } catch (error) {
+      console.log('ERROR:', error);
+    }
+  };
+
+  const handleProdChange = event => {
+    setValue(event.target.value);
+  };
+
   function searchInBase(e) {
     let indexOfFood = null;
     if (e.target.dataset !== 'dairyproduct') return;
@@ -541,14 +567,22 @@ export const DairyForm = ({ screenWidth }) => {
   return (
     <>
       <DContainer>
+        {/* <input onChange={handleProdChange} value={value} /> */}
         {screenWidth > 767 && (
           <SForm id="dairyform" onChange={searchInBase} onSubmit={sendMarktoBase}>
-            <DairyInput
-              id="dairyproduct"
-              name="dairyproduct"
-              data-name="dairyproduct"
-              placeholder="Enter product name"
-            />
+            <div style={{ position: 'relative' }}>
+              <DairyInput
+                id="dairyproduct"
+                name="dairyproduct"
+                data-name="dairyproduct"
+                placeholder="Enter product name"
+              />
+              <AutocompleteList>
+                <AutocompleteItems>T1</AutocompleteItems>
+                <AutocompleteItems>T2</AutocompleteItems>
+                <AutocompleteItems>T3</AutocompleteItems>
+              </AutocompleteList>
+            </div>
             {arr && arr.length > 0 && <ListOfProducts arr={arr} />}
             <DairyInput id="dairyweight" name="dairyweight" placeholder="Enter product name" />
             <ButtonDairy>

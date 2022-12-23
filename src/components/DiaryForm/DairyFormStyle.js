@@ -78,6 +78,27 @@ export const DairyInput = styled.input`
   }
 `;
 
+export const AutocompleteList = styled.ul`
+  position: absolute;
+  width: 85%;
+  background: ${p => p.theme.colors.background.pageBackground};
+  max-height: 240px;
+  height: auto;
+  overflow-y: auto;
+  padding: ${p => p.theme.spacing[2]}px;
+`;
+export const AutocompleteItems = styled.li`
+  font-weight: ${p => p.theme.fontWeights.normal};
+  color: ${p => p.theme.colors.text.mediumText};
+  padding-bottom: ${p => p.theme.spacing[1]}px;
+
+  &:hover {
+    background: ${p => p.theme.colors.background.greyBackground};
+    cursor: pointer;
+    transition: cubic-bezier(1, 0, 0, 1) 0.3s all;
+  }
+`;
+
 export const ModalButton = styled(ButtonDairy)`
   display: flex;
   align-items: center;
