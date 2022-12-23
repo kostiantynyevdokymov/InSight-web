@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
+  /* position: relative;
   margin-left: auto;
   margin-right: auto;
   padding-top: ${p => p.theme.spacing[3]}px;
@@ -22,5 +23,5 @@ export const HeaderContainer = styled.div`
     max-width: 1280px;
     border: none;
     padding-bottom: 0;
-  }
+  } */
 `;

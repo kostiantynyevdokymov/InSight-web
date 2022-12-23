@@ -7,11 +7,11 @@ export const HeaderContainer = styled.nav`
   padding-bottom: ${theme.spacing[3]}px;
   padding-top: ${theme.spacing[4]}px;
   display: flex;
-  @media screen and (min-width: 321px) {
+  @media screen and (min-width: 320px) {
     justify-content: flex-end;
-    border: none;
   }
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: 768px) {
+    border-bottom: none;
   }
 `;
 
@@ -20,10 +20,10 @@ export const LinkSignIn = styled(NavLink)`
   color: ${theme.colors.text.defaultText};
   text-decoration: none;
   margin-left: auto;
-  @media screen and (min-width: 321px) {
+  @media screen and (min-width: 320px) {
     margin-left: auto;
   }
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: 768px) {
     margin-left: ${theme.spacing[3]}px;
     padding-left: ${theme.spacing[3]}px;
     border-left: ${theme.border.header};
@@ -35,7 +35,7 @@ export const LinkRegistration = styled(NavLink)`
   color: ${theme.colors.text.mediumText};
   text-decoration: none;
   margin-right: ${theme.spacing[3]}px;
-  @media screen and (min-width: 321px) {
+  @media screen and (min-width: 320px) {
     margin-right: ${theme.spacing[3]}px;
   }
 `;

@@ -2,7 +2,7 @@ import { Exit, Name, Back, NavHeaderContainer } from './NavHeader.styled';
 import { HamburgerMenu } from '../AuthHeader/AuthHeader.styled';
 import { TiArrowBack } from 'react-icons/ti';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { useAuth } from 'hooks/useAuth';
+// import { useAuth } from 'hooks/useAuth';
 
 export const NavHeader = () => {
   // const { name } = useAuth();
