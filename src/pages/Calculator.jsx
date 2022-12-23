@@ -1,5 +1,13 @@
+import { SideBar } from 'components/SideBar/SideBar';
+import { Container, LeftSection } from './Styles/DiaryPage.styled';
+
 const Calculator = () => {
-  return <h1>Calculator page</h1>;
+  return (
+    <Container>
+      <LeftSection></LeftSection>
+      <SideBar />
+    </Container>
+  );
 };
 
 export default Calculator;

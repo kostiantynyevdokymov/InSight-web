@@ -8,6 +8,7 @@ import userReducer from './user/userSlice';
 import productsReducer from './products/productsSlice';
 import dietReducer from './diet/dietSlice';
 import diaryReducer from './diary/diarySlice';
+import { modalReducer } from './services/ModalSlice';
 import { constants } from 'constants';
 
 axios.defaults.baseURL = constants.apiServerAddress;
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   user: presistedUserReducer,
   diary: diaryReducer,
   diet: dietReducer,
+  modal: modalReducer,
 });
 
 export const store = configureStore({

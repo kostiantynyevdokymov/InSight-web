@@ -6,7 +6,7 @@ export const Backdrop = styled.div`
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100wh;
+  height: 100vh;
 
   display: flex;
   justify-content: center;
@@ -15,7 +15,7 @@ export const Backdrop = styled.div`
   background-color: rgba(33, 33, 33, 0.12);
 `;
 
-export const Modal = styled.div`
+export const ModalViev = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -31,25 +31,4 @@ export const Modal = styled.div`
     flex-direction: column;
     align-items: center;
   } ;
-`;
-
-export const Title = styled.h2`
-  display: block;
-  font-size: 18px;
-  line-height: 1.4;
-  font-weight: 700;
-  color: #212121;
-  font-family: 'Verdana';
-  margin-top: 20px;
-  padding-top: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-
-  @media screen and (min-width: 768px) {
-    font-size: 26px;
-    font-weight: 700;
-    margin-right: 82px;
-    margin-left: 82px;
-    padding-top: 64px;
-  }
 `;
