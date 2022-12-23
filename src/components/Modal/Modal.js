@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Backdrop, ModalViev } from './modal.styled';
+import { Backdrop, ModalViev, Close } from './modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -26,7 +26,10 @@ export const Modal = ({ onClose, children }) => {
 
   return createPortal(
     <Backdrop onClick={handleBackDropClick}>
-      <ModalViev>{children}</ModalViev>
+      <ModalViev>
+        <Close type="button" size="20px" onClick={onClose}></Close>
+        {children}
+      </ModalViev>
     </Backdrop>,
     modalRoot
   );
