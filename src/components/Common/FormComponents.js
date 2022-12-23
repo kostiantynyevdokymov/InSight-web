@@ -58,10 +58,6 @@ export const StyledInput = styled.input`
   border-bottom: 1px solid #000000;
 `;
 
-export const RegisterButtonReg = styled.div`
-  margin: ${p => p.theme.mp(0, 0, 0, 5)};
-`;
-
 export const StyledAccentButton = styled(BasicButton)`
   color: ${p => p.theme.button.accentButton.text};
   border: ${p => p.theme.button.accentButton.border};

@@ -1,19 +1,23 @@
 import styled from 'styled-components';
 
-export const Registration = styled.div`
+export const Login = styled.div`
   margin-right: auto;
   margin-left: auto;
-  padding-top: 40px;
+  padding-top: 56px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
     width: auto;
     padding-top: 160px;
-    padding-left: 16px;
+    padding-left: 9px;
     margin-left: 0;
     margin-right: 0;
+
+    @media screen and (min-width: 1280px) {
+      padding-left: 16px;
+    }
 `;
 
-export const FormRegistration = styled.form`
+export const FormLogin = styled.form`
   border: none;
   `;
 
@@ -53,7 +57,7 @@ export const StyledLabelInput = styled.label`
 `;
 
 export const InputForm = styled.input`
-  width: 285px;
+  width: 280px;
   height: 77px;
   border-bottom: ${p => p.theme.border.form};
   font-family: 'Verdana';
@@ -64,9 +68,8 @@ export const InputForm = styled.input`
   font-weight: ${p => p.theme.fontWeights.normal};
   color: ${p => p.theme.color.text.defaultText};
 
-   @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     width: 240px;
-    height: 76px;
   }
 `;
 
