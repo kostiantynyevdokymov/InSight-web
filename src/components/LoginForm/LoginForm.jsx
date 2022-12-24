@@ -23,7 +23,7 @@ import { InputPassword } from 'components/InputFormValid/InputPassword';
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');  c
+  const [password, setPassword] = useState('');  
   const isLoading = useSelector(selectIsLoadingUser);
 
   const handleChange = e => {
