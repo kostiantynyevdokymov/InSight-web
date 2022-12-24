@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+export const Block = styled.div``;
+
 export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;

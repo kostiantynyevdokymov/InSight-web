@@ -1,45 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 import { Section, Container, List, Title, Item, Text, ShowMore } from './SideBar.styled';
-//
-// Testing data ----------------
-//
-const eatedProducts = [
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-];
+import { selectDiary } from 'redux/selectors';
 
-//
-// Testing data ----------------
-//
+const initState = { dailyCalories: 0, stopProducts: [] };
 
-export const SideBar = ({ diet }) => {
+const person = { height: 176, age: 28, currentWeight: 70, desireWeight: 80, bloodType: 1 };
+
+export const SideBar = () => {
+  const [diet, setDiet] = useState(initState);
   const [show, setShow] = useState();
+
+  const { inputDiary } = useSelector(selectDiary);
+
+  useEffect(() => {
+    getDiet();
+  }, []);
+
+  const getDiet = async () => {
+    try {
+      const resp = await axios.post('/diet', person);
+      setDiet({ dailyCalories: resp.data.dailyIntake, stopProducts: resp.data.stopProd });
+    } catch (error) {
+      console.log('ERROR:', error);
+    }
+  };
 
   function uniqueCategories(arr) {
     let result = [];
@@ -56,7 +42,7 @@ export const SideBar = ({ diet }) => {
 
   const notRecomendedFood = uniqueCategories(diet.stopProducts);
 
-  const left = eatedProducts.reduce((prev, item) => {
+  const left = inputDiary.reduce((prev, item) => {
     if (!isNaN(item.calories)) {
       return prev + parseInt(item.calories);
     }

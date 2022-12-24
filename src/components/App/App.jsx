@@ -45,7 +45,9 @@ export const App = () => {
           <Route path="google-auth" element={<GoogleAuth />} />
 
           <Route path="calculator" element={<Calculator />} />
-          <Route path="diary" element={<DiaryPage />} />
+          <Route path="diary" element={<DiaryPage />}>
+            <Route path=":day" element={<DiaryPage />} />
+          </Route>
         </Route>
 
         <Route path="*" element={<Navigate to={constants.basePath} replace />} />

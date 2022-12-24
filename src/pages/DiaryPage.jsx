@@ -1,16 +1,24 @@
 import { useEffect, useState } from 'react';
-import { DairyForm } from 'components/DiaryForm/DairyForm';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
+
+import { Container, LeftSection } from './Styles/DiaryPage.styled';
+import { ModalButton, Plus } from '../components/DiaryForm/Form.styled';
 import { SideBar } from 'components/SideBar/SideBar';
 import { Calendar } from '../components/Calendar/Calendar';
-import { Container, LeftSection } from './Styles/DiaryPage.styled';
-import axios from 'axios';
+import { TestForm } from 'components/DiaryForm/Form';
+import { TestDiryproductsList } from 'components/DiryProductsList/DiryProductsList';
+import { Modal } from 'components/Modal/modal';
 
-const initState = { dailyCalories: 0, stopProducts: [] };
-
-const person = { height: 176, age: 28, currentWeight: 70, desireWeight: 80, bloodType: 1 };
+import { deleteDiaryEntry } from 'redux/diary/diaryOperations';
+import { selectDiary } from 'redux/selectors';
 
 const DiaryPage = () => {
-  const [diet, setDiet] = useState(initState);
+  const [isOpen, setIsOpen] = useState(false);
+  const { inputDiary } = useSelector(selectDiary);
+
+  const params = useParams();
+  const dispatch = useDispatch();
 
   const useWindowWidth = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -26,26 +34,26 @@ const DiaryPage = () => {
 
   const width = useWindowWidth();
 
-  useEffect(() => {
-    getDiet();
-  }, []);
-
-  const getDiet = async () => {
-    try {
-      const resp = await axios.post('/diet', person);
-      setDiet({ dailyCalories: resp.data.dailyIntake, stopProducts: resp.data.stopProd });
-    } catch (error) {
-      console.log('ERROR:', error);
-    }
+  const onRemoveItemHandler = id => {
+    dispatch(deleteDiaryEntry({ day: params.day, id }));
   };
 
   return (
     <Container>
       <LeftSection>
-        <Calendar screenWidth={width} />
-        <DairyForm screenWidth={width} />
+        <Calendar screenWidth />
+        {width > 768 && <TestForm />}
+        {inputDiary.length !== 0 && <TestDiryproductsList products={inputDiary} onClickItem={onRemoveItemHandler} />}
+        {width < 768 && (
+          <ModalButton onClick={() => setIsOpen(!isOpen)}>{<Plus style={{ display: 'block' }}>+</Plus>}</ModalButton>
+        )}
+        {isOpen && (
+          <Modal onClose={() => setIsOpen(!isOpen)}>
+            <TestForm />
+          </Modal>
+        )}
       </LeftSection>
-      <SideBar diet={diet} />
+      <SideBar />
     </Container>
   );
 };
