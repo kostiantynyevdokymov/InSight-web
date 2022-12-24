@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
-
+import { debounce } from 'lodash';
 import axios from 'axios';
 
 import {
@@ -33,7 +33,7 @@ export const Form = ({ onClick }) => {
 
   useEffect(() => {
     if (valueProd.length > 2) {
-      getProducts(valueProd);
+      getProducts();
     }
     if (valueProd === '') {
       setChosedProduct([]);
@@ -60,15 +60,16 @@ export const Form = ({ onClick }) => {
     }
   });
 
-  const getProducts = async text => {
+  const getProducts = debounce(async () => {
     try {
-      const resp = await axios.get(`/products?title=${text}`);
+      console.log(valueProd);
+      const resp = await axios.get(`/products?title=${valueProd}`);
       setAllProducts(resp.data);
       return resp.data;
     } catch (error) {
       console.log('ERROR:', error);
     }
-  };
+  }, 500);
 
   const itemClickHandler = (event, index) => {
     setChosedProduct(allProducts[index]);
