@@ -3,9 +3,9 @@ import axios from 'axios';
 
 export const addDiaryEntry = createAsyncThunk(
   'diary/addDiaryEntry',
-  async ({ owner, date, product, weight }, thunkAPI) => {
+  async ({ date, product, weight }, thunkAPI) => {
     try {
-      const response = await axios.post('/diary', { owner, date, product, weight });
+      const response = await axios.post(`/diary/${date}`, { product, weight });
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);

@@ -99,7 +99,7 @@ export const DairyForm = ({ screenWidth }) => {
               data-name="dairyproduct"
               placeholder="Enter product name"
             />
-            {arr && arr.length > 0 && (<ListOfProducts arr={arr} />)}
+            {arr?.length > 0 && (<ListOfProducts arr={arr} />)}
             <DairyInput id="dairyweight" name="dairyweight" placeholder="Enter product name" />
             <ButtonDairy>
               <Add>Add</Add>
@@ -120,7 +120,7 @@ export const DairyForm = ({ screenWidth }) => {
                 data-name="dairyproduct"
                 placeholder="Enter product name"
               />
-              {arr && arr.length > 0 && <ListOfProducts arr={arr} />}
+              {arr?.length > 0 && <ListOfProducts arr={arr} />}
               <DairyInput id="dairyweight" name="dairyweight" placeholder="Enter product name" />
               <ButtonDairy onClick={() => setIsOpen(!isOpen)}>
                 <Add>Add</Add>
