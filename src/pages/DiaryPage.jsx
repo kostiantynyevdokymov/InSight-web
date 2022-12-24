@@ -1,5 +1,5 @@
-import { useAuth } from 'hooks/useAuth';
 import { Navigate } from 'react-router';
+import { useAuth } from 'hooks/useAuth';
 import { DairyForm } from 'components/DiaryForm/DairyForm';
 
 export const DairyPage = () => {
