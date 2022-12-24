@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { GrFormClose } from 'react-icons/gr';
 
 export const Backdrop = styled.div`
   z-index: 100;
@@ -31,4 +32,18 @@ export const ModalViev = styled.div`
     flex-direction: column;
     align-items: center;
   } ;
+`;
+
+export const Close = styled(GrFormClose)`
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `;
