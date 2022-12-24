@@ -8,7 +8,7 @@ import { SideBar } from 'components/SideBar/SideBar';
 import { Calendar } from '../components/Calendar/Calendar';
 import { TestForm } from 'components/DiaryForm/Form';
 import { TestDiryproductsList } from 'components/DiryProductsList/DiryProductsList';
-import { Modal } from 'components/Modal/modal';
+import { Modal } from 'components/Modal/Modal';
 
 import { deleteDiaryEntry } from 'redux/diary/diaryOperations';
 import { selectDiary } from 'redux/selectors';
@@ -41,7 +41,7 @@ const DiaryPage = () => {
   return (
     <Container>
       <LeftSection>
-        <Calendar screenWidth />
+        <Calendar screenWidth={width} />
         {width > 768 && <TestForm />}
         {inputDiary.length !== 0 && <TestDiryproductsList products={inputDiary} onClickItem={onRemoveItemHandler} />}
         {width < 768 && (
@@ -58,4 +58,4 @@ const DiaryPage = () => {
   );
 };
 
-export default DairyPage;
+export default DiaryPage;
