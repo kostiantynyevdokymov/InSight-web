@@ -9,7 +9,6 @@ import { useAuth } from 'hooks/useAuth';
 
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
-const LogoutPage = lazy(() => import('pages/Logout'));
 const GoogleAuth = lazy(() => import('pages/GoogleAuth'));
 const GoogleRedirect = lazy(() => import('pages/GoogleRedirect'));
 const Calculator = lazy(() => import('pages/Calculator'));
@@ -34,7 +33,6 @@ export const App = () => {
         <Route path="/" element={<CommonLayout />}>
           <Route index element={<Calculator />} />
           <Route path="login" element={<LoginPage />} />
-          <Route path="logout" element={<LogoutPage />} />
           <Route path="register" element={<RegistrationPage />} />
 
           <Route path="google" element={<GoogleRedirect />} />
