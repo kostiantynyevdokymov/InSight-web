@@ -73,8 +73,8 @@ export const LoginForm = () => {
 
   return (
     <Login autoComplete="off">
-      <FormLogin onSubmit={handleSubmit}>
-        <StyledTitleForm>Log in</StyledTitleForm>
+      <StyledTitleForm>Log in</StyledTitleForm>
+      <FormLogin onSubmit={handleSubmit}>        
 
         <StyledInputGroup>
           <StyledLabelInput>

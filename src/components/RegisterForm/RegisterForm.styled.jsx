@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'components/Common/Theme';
 
 export const Registration = styled.div`
   margin-right: auto;
@@ -27,9 +28,9 @@ export const StyledTitleForm = styled.p`
   line-height: 17px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  font-size: ${p => p.theme.fontSizes.default};
-  font-weight: ${p => p.theme.fontWeights.bold};
-  color: ${p => p.theme.color.text.accentText};
+  font-size: ${theme.fontSizes.default};
+  font-weight: ${theme.fontWeights.bold};
+  color: ${theme.colors.text.accentText};
 
   @media screen and (min-width: 768px) {
     text-align: left;
@@ -45,24 +46,24 @@ export const StyledInputGroup = styled.div`
 export const StyledLabelInput = styled.label`
   font-family: 'Verdana';
   font-style: normal;
-  font-size: ${p => p.theme.fontSizes.default};
+  font-size: ${theme.fontSizes.default};
   line-height: 17px;
   letter-spacing: 0.04em;
-  font-weight: ${p => p.theme.fontWeights.bold};
-  color: ${p => p.theme.color.text.mediumText};
+  font-weight: ${theme.fontWeights.bold};
+  color: ${theme.colors.text.mediumText};
 `;
 
 export const InputForm = styled.input`
   width: 285px;
   height: 77px;
-  border-bottom: ${p => p.theme.border.form};
+  border-bottom: ${theme.border.form};
   font-family: 'Verdana';
   font-style: normal;
-  font-size: ${p => p.theme.fontSizes.default};
+  font-size: ${theme.fontSizes.default};
   line-height: 17px;
   letter-spacing: 0.04em;
-  font-weight: ${p => p.theme.fontWeights.normal};
-  color: ${p => p.theme.color.text.defaultText};
+  font-weight: ${theme.fontWeights.normal};
+  color: ${theme.colors.text.defaultText};
 
    @media screen and (min-width: 768px) {
     width: 240px;

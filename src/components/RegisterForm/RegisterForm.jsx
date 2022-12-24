@@ -33,8 +33,8 @@ export const RegisterForm = () => {
   const nameHandler = (e) => {
     setName(e.target.value)
       const re = /^(([A-Za-z]+[\-\']?)*([A-Za-z]+)?\s)+([A-Za-z]+[\-\']?)*([A-Za-z]+)?$/;
-      if (!re.test(String(name))) {
-      setNameError("Некоректний ім'я")
+      if (!re.test(String(name).toLowerCase())) {
+      setNameError("Некоректне ім'я")
     } else setNameError('')
   }
 
