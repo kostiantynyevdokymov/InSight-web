@@ -7,6 +7,10 @@ export const Container = styled.div`
   padding-left: ${p => p.theme.spacing[3]}px;
   padding-right: ${p => p.theme.spacing[3]}px;
 
+  @media screen and (max-width: 768px) {
+    padding-top: ${p => p.theme.spacing[5]}px;
+  }
+
   @media screen and (min-width: 768px) {
     margin: 0;
     justify-content: flex-end;
@@ -39,6 +43,7 @@ export const SForm = styled.form`
 export const ProductBlock = styled.div`
   position: relative;
   margin-bottom: 30px;
+  z-index:1;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 0px;
@@ -97,7 +102,6 @@ export const ModalButton = styled(ButtonDairy)`
   height: 48px;
   width: 48px;
   border-radius: ${p => p.theme.radii.round};
-  margin-bottom: ${p => p.theme.spacing[4]}px;
   margin-top: 0;
   margin-left: auto;
   margin-right: auto;

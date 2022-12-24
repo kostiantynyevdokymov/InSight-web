@@ -22,12 +22,15 @@ export const LeftSection = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: ${p => p.theme.mp(4)};
+  padding-bottom: ${p => p.theme.mp(4)};
 
   @media screen and (min-width: 768px) {
     padding-top: ${p => p.theme.mp(5)};
+    padding-bottom: ${p => p.theme.mp(5)};
   }
 
   @media screen and (min-width: 1280px) {
     padding-top: ${p => p.theme.mp(6)};
+    padding-bottom: ${p => p.theme.mp(6)};
   }
 `;

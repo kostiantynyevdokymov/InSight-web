@@ -1,10 +1,22 @@
 import styled from 'styled-components';
 
 export const UlDairy = styled.ul`
-  height: 244px;
+  max-height: 244px;
   overflow-y: scroll;
+  padding-left: ${p => p.theme.spacing[3]}px;
+  padding-right: ${p => p.theme.spacing[3]}px;
+
+  @media screen and (max-width: 768px) {
+    padding-bottom: ${p => p.theme.spacing[4]}px;
+  }
+  @media screen and (min-width: 768px) {
+    padding-left: ${p => p.theme.spacing[4]}px;
+    padding-right: ${p => p.theme.spacing[4]}px;
+  }
   @media screen and (min-width: 1280px) {
-    height: 270px;
+    max-height: 270px;
+    padding-left: ${p => p.theme.spacing[3]}px;
+    padding-right: ${p => p.theme.spacing[3]}px;
   }
 `;
 
@@ -17,7 +29,6 @@ export const DairyProdLi = styled.li`
     padding-bottom: ${p => p.theme.spacing[1]}px;
     align-self: flex-end;
     font-weight: ${p => p.theme.fontWeights.normal};
-    //display: flex;
   }
 
   &:not(:last-child) {
