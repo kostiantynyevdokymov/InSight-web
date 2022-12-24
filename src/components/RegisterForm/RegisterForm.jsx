@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import registerUser from 'redux/user/userOperations';
-import selectIsLoading from 'redux/user/userSelectors';
-import Loader from 'components/Loader/Loader';
+import { registerUser } from 'redux/user/userOperations';
+import { selectIsLoadingUser } from 'redux/user/userSelectors';
+import { Loader } from 'components/Loader/Loader';
 import { Link } from 'react-router-dom';
 import {
   Registration,
   FormRegistration,
+  StyledInputGroup,
   StyledTitleForm,
   StyledLabelInput,
   InputForm,
@@ -16,7 +17,7 @@ import {
   DefaultButton,
 } from './RegisterForm.styled';
 
-export const Register = () => {
+export const RegisterForm = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -27,7 +28,7 @@ export const Register = () => {
   const [nameError, setNameError] = useState("Ім'я не може бути порожнім");
   const [emailError, setEmailError] = useState("Імейл не може бути порожнім");
   const [passwordError, setPasswordError] = useState("Пароль не може бути порожнім");
-  const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoadingUser);
     
   const nameHandler = (e) => {
     setName(e.target.value)

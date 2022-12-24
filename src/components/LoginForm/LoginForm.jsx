@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import loginUser from 'redux/user/userOperations';
-import selectIsLoading from 'redux/user/userSelectors';
-import Loader from 'components/Loader/Loader';
+import { loginUser } from 'redux/user/userOperations';
+import { selectIsLoadingUser } from 'redux/user/userSelectors';
+import { Loader } from 'components/Loader/Loader';
 import { Link } from 'react-router-dom';
 import {
   Login,
   FormLogin,
+  StyledInputGroup,
   StyledTitleForm,
   StyledLabelInput,
   InputForm,
@@ -24,7 +25,7 @@ export const LoginForm = () => {
   const [passwordDirty, setPasswordDirty] = useState(false);
   const [emailError, setEmailError] = useState('Імейл не може бути порожнім');
   const [passwordError, setPasswordError] = useState('Пароль не може бути порожнім');
-  const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoadingUser);
 
   const emailHandler = (e) => {
     setEmail(e.target.value)

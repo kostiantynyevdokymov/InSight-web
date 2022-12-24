@@ -5,8 +5,8 @@ import {
   handleRegisterUser,
   handleLogoutUser,
   handleRefreshUser,
-  handleGoogleLogin,
-  handleSetParams,
+  //handleGoogleLogin,
+  //handleSetParams,
 } from './userHandlers';
 import { loginUser, logoutUser, refreshUser, registerUser } from './userOperations';
 
@@ -30,10 +30,10 @@ export const initialUserState = {
 const userSlice = createSlice({
   name: 'user',
   initialState: initialUserState,
-  reducers: {
-    googleLogin: handleGoogleLogin,
-    setParams: handleSetParams,
-  },
+  // reducers: {
+  //   googleLogin: handleGoogleLogin,
+  //   setParams: handleSetParams,
+  // },
   extraReducers: builder => {
     builder
       .addCase(loginUser.fulfilled, handleLoginUser)
