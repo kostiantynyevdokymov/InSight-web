@@ -15,12 +15,9 @@ const modalSlice = createSlice({
     closeModal: (state, action) => {
       state.isOpen = false;
     },
-    contactId: (state, action) => {
-      state.contactId = action.payload;
-    },
   },
 });
 
-export const { openModal, closeModal, contactId } = modalSlice.actions;
+export const { openModal, closeModal } = modalSlice.actions;
 
 export const modalReducer = modalSlice.reducer;

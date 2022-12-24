@@ -58,4 +58,4 @@ const DiaryPage = () => {
   );
 };
 
-export default DiaryPage;
+export default DairyPage;

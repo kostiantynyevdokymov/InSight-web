@@ -19,7 +19,7 @@ export const deleteDiaryEntry = createAsyncThunk('diary/deleteDiaryEntry', async
   }
 });
 
-export const getDailyDiary = createAsyncThunk('diary/getDailyDiary', async (date, thunkAPI) => {
+export const getDailyDiary = createAsyncThunk('diary/getDailyDiary', async (day, thunkAPI) => {
   try {
     const response = await axios.get(`/diary/${date}`);
     return response.data;
