@@ -1,10 +1,9 @@
-import {
-  useDispatch,
-  //useSelector
-} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { selectProducts } from '../../redux/products/productsSelectors';
 import { deleteDiaryEntry } from 'redux/diary/diaryOperations';
-//import { selectDiary } from "redux/selectors"
+import { selectDiaryInput } from 'redux/selectors';
+import { loadProducts } from '../../redux/products/productsOperations';
 import { addDiaryEntry, getDailyDiary } from '../../redux/diary/diaryOperations';
 import {
   SForm,
@@ -21,516 +20,49 @@ import {
   UlDairy,
   ModalButton,
 } from './DairyFormStyle';
-import { Modal } from 'components/Modal/Modal';
+//import { useEffect } from 'react';
+//import { Modal } from 'components/Modal/Modal';
 
-const prod = [
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff553b',
-    },
-    categories: ['яйца'],
-    weight: 100,
-    title: {
-      ru: 'Яйцо куриное (желток сухой)',
-      ua: 'Яйце куряче (жовток сухий)',
-    },
-    calories: 623,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-  {
-    _id: {
-      $oid: '5d51694802b2373622ff554d',
-    },
-    categories: ['зерновые'],
-    weight: 100,
-    title: {
-      ru: 'Горох маш Ярмарка Платинум',
-      ua: 'Горох маш Ярмарка Платинум',
-    },
-    calories: 312,
-    groupBloodNotAllowed: [null, true, false, false, false],
-    __v: 0,
-  },
-];
-
-export const DairyForm = ({ screenWidth }) => {
-  const arr = [];
-  const day = '22122022';
-  const user = '??';
+export const DairyForm = ({ screenWidth, day }) => {
   const dispatch = useDispatch();
   const indexOfFood = null;
   const form = document.querySelector('dairyproduct');
+  let prod = [];
 
   const [isOpen, setIsOpen] = useState(false);
 
-  // const products = useSelector(selectDiary)
+  //useEffect(() => {
+  // dispatch(getDailyDiary(day))
+  //    }, [dispatch, day]);
 
-  function searchInBase(e) {
-    let indexOfFood = null;
+  prod = useSelector(selectDiaryInput);
+
+  const todayDate = () => {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const mon = String(now.getMonth()).padStart(2, '0');
+    const year = now.getFullYear();
+    const genDate = `${day}${mon}${year}`;
+    console.log({ genDate });
+    return genDate;
+  };
+
+  async function searchInBase(e) {
+    console.log('search', e.target.value);
     if (e.target.dataset !== 'dairyproduct') return;
     if (e.target.value === '') return;
-    // send to base e.target.value to back, return arr of products
-
-    indexOfFood = arr.filter(el => el.title.ua.uncludes(e.target.value))._id;
-    return indexOfFood;
+    dispatch(loadProducts(e.target.value));
   }
+
+  console.log({ date: todayDate() });
 
   function sendMarktoBase(e) {
     e.preventDefault();
     // send req with product
     dispatch(
       addDiaryEntry({
-        owner: user._id,
-        date: day,
+        // owner: user._id,
+        date: day || todayDate(),
         product: indexOfFood,
         weight: form.elements.weight.value,
       })
@@ -538,10 +70,24 @@ export const DairyForm = ({ screenWidth }) => {
     form.reset();
   }
 
+  const arrOfProducts = useSelector(selectProducts);
+
   return (
     <>
       <DContainer>
-        {screenWidth > 767 && (
+        <SForm id="dairyform" onChange={searchInBase} onSubmit={sendMarktoBase}>
+          <DairyInput id="dairyproduct" name="dairyproduct" data-name="dairyproduct" placeholder="Enter product name" />
+          {arrOfProducts && arrOfProducts.length > 0 && <ListOfProductMatches arr={arrOfProducts} />}
+          <DairyInput id="dairyweight" name="dairyweight" placeholder="Grams" />
+          <ButtonDairy>
+            <Add>Add</Add>
+            <Plus>+</Plus>
+          </ButtonDairy>
+        </SForm>
+        {/* <ListOfEatenProdactsByDay prod={prod} /> */}
+        {prod.length > 0 && <ListOfEatenProdactsByDay products={[]} />}
+
+        {/*}  {screenWidth > 767 && (
           <SForm id="dairyform" onChange={searchInBase} onSubmit={sendMarktoBase}>
             <DairyInput
               id="dairyproduct"
@@ -549,7 +95,7 @@ export const DairyForm = ({ screenWidth }) => {
               data-name="dairyproduct"
               placeholder="Enter product name"
             />
-            {arr && arr.length > 0 && <ListOfProducts arr={arr} />}
+            {arr?.length > 0 && (<ListOfProducts arr={arr} />)}
             <DairyInput id="dairyweight" name="dairyweight" placeholder="Enter product name" />
             <ButtonDairy>
               <Add>Add</Add>
@@ -557,12 +103,11 @@ export const DairyForm = ({ screenWidth }) => {
             </ButtonDairy>
           </SForm>
         )}
-        {/* {prod.length > 0 && <ListOfEatenProdactsByDay products={prod} />} */}
-        <ListOfEatenProdactsByDay prod={prod} />
+        {/* */}
         {screenWidth < 768 && (
           <ModalButton onClick={() => setIsOpen(!isOpen)}>{<Plus style={{ display: 'block' }}>+</Plus>}</ModalButton>
         )}
-        {isOpen && (
+        {/*isOpen && (
           <Modal onClose={() => setIsOpen(!isOpen)}>
             <SForm id="dairyform" onChange={searchInBase} onSubmit={sendMarktoBase}>
               <DairyInput
@@ -571,7 +116,7 @@ export const DairyForm = ({ screenWidth }) => {
                 data-name="dairyproduct"
                 placeholder="Enter product name"
               />
-              {arr && arr.length > 0 && <ListOfProducts arr={arr} />}
+              {arr?.length > 0 && <ListOfProducts arr={arr} />}
               <DairyInput id="dairyweight" name="dairyweight" placeholder="Enter product name" />
               <ButtonDairy onClick={() => setIsOpen(!isOpen)}>
                 <Add>Add</Add>
@@ -579,27 +124,31 @@ export const DairyForm = ({ screenWidth }) => {
               </ButtonDairy>
             </SForm>
           </Modal>
-        )}
+        )} */}
       </DContainer>
     </>
   );
 };
 
-const ListOfProducts = ({ products }, day, form) => {
+const ListOfProductMatches = ({ prod }) => {
   const dispatch = useDispatch();
-  let arr = dispatch(getDailyDiary(day));
-  if (arr.length === 0) return;
+  if (prod.length === 0) return;
   return (
     <ul>
-      {arr.map(({ title: { ua }, _id }) => {
-        return <li key={_id + 'D'} onClick={e => (form.elements.product.value = ua)}></li>;
+      {prod.map(({ title: { ua }, _id }) => {
+        return (
+          <li key={_id} onClick={() => dispatch(loadProducts(ua))}>
+            {ua}
+          </li>
+        );
       })}
     </ul>
   );
 };
 
-const ListOfEatenProdactsByDay = ({ prod }) => {
+const ListOfEatenProdactsByDay = day => {
   const dispatch = useDispatch();
+  const prod = dispatch(getDailyDiary(day));
   return (
     <>
       <UlDairy>

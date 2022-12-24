@@ -1,14 +1,12 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router';
 
 import { Loader } from 'components/Loader/Loader';
 import { authHeader } from 'redux/utils/authHeader';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import { refreshUser } from 'redux/user/userOperations';
 import { useAuth } from 'hooks/useAuth';
 
-// const MainPageSelector = lazy(() => import('components/MainPage/MainPageSelector'));
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const LogoutPage = lazy(() => import('pages/Logout'));
@@ -16,6 +14,7 @@ const GoogleAuth = lazy(() => import('pages/GoogleAuth'));
 const GoogleRedirect = lazy(() => import('pages/GoogleRedirect'));
 const Calculator = lazy(() => import('pages/Calculator'));
 const DiaryPage = lazy(() => import('pages/DiaryPage'));
+
 const CommonLayout = lazy(() => import('pages/CommonLayout'));
 
 export const App = () => {
