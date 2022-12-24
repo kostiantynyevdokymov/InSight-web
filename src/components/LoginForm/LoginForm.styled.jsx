@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { theme } from 'components/Common/Theme';
 
 export const Login = styled.div` 
-  padding-top: 56px;
+  padding-top: 38px;
   width: 280px;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -20,7 +20,6 @@ export const Login = styled.div`
 
 export const FormLogin = styled.form`
   border: none;
-  background-color: transparent;
   margin-top: 55px;
   `;
 
@@ -39,7 +38,7 @@ export const StyledTitleForm = styled.p`
   color: ${theme.colors.text.accentText};
 
   @media screen and (min-width: 768px) {
-    text-align: left;
+    justify-content: flex-start;
   }
 `;
 
@@ -74,35 +73,38 @@ export const InputForm = styled.input`
   color: ${theme.colors.text.defaultText};
   border: none;
   border-bottom: 1px solid #E0E0E0;
+  background-color: transparent;
   @media screen and (min-width: 768px) {
     width: 240px;
   }
 `;
 
-export const ButtonReg = styled.div`
-  width: 182px;
+export const ButtonLogContainer = styled.div`
   margin-right: auto;
   margin-left: auto;
-  margin-top: 60px;
-}
+  margin-top: 60px; 
   @media screen and (min-width: 768px) {
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
   }
+`
+
+export const ButtonReg = styled.div`
+@media screen and (min-width: 768px) {
+  margin-left: 20px;  
+} 
 `;
 
 export const ButtonLog = styled.div`
-  width: 184px;
-  margin-right: auto;
-  margin-left: auto;
   margin-bottom: 20px;
-
-   @media screen and (min-width: 768px) {
-    display: inline-block;
-    margin-left: 32px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0;
   }
 `;
 
 export const AccentButton = styled.button`
+  height: 44px;
+  width: 182px;
   color: ${theme.button.accentButton.text};
   border: ${theme.button.accentButton.border};
   background-color: ${theme.button.accentButton.background};
@@ -111,6 +113,8 @@ export const AccentButton = styled.button`
 `;
 
 export const DefaultButton = styled.button`
+  height: 44px;
+  width: 182px;
   color: ${theme.button.defaultButton.text};
   border: ${theme.button.defaultButton.border};
   background-color: ${theme.button.defaultButton.background};

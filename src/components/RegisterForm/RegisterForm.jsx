@@ -10,64 +10,34 @@ import {
   StyledInputGroup,
   StyledTitleForm,
   StyledLabelInput,
-  InputForm,
+  ButtonRegContainer,
   ButtonReg,
   AccentButton,
   ButtonLog,
   DefaultButton,
 } from './RegisterForm.styled';
 
+import { InputName } from 'components/InputFormValid/InputName';
+import { InputMail } from 'components/InputFormValid/InputEmail';
+import { InputPassword } from 'components/InputFormValid/InputPassword';
+
 export const RegisterForm = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [nameDirty, setNameDirty] = useState(false);
-  const [emailDirty, setEmailDirty] = useState(false);
-  const [passwordDirty, setPasswordDirty] = useState(false);
-  const [nameError, setNameError] = useState("Ім'я не може бути порожнім");
-  const [emailError, setEmailError] = useState("Імейл не може бути порожнім");
-  const [passwordError, setPasswordError] = useState("Пароль не може бути порожнім");
-  const isLoading = useSelector(selectIsLoadingUser);
+  const [password, setPassword] = useState('');  
+  const isLoading = useSelector(selectIsLoadingUser); 
     
-  const nameHandler = (e) => {
-    setName(e.target.value)
-      const re = /^(([A-Za-z]+[\-\']?)*([A-Za-z]+)?\s)+([A-Za-z]+[\-\']?)*([A-Za-z]+)?$/;
-      if (!re.test(String(name).toLowerCase())) {
-      setNameError("Некоректне ім'я")
-    } else setNameError('')
-  }
-
-  const emailHandler = (e) => {
-    setEmail(e.target.value)
-    const re =  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    if (!re.test(String(email).toLowerCase())) {
-      setEmailError("Некоректний імейл")
-    } else setEmailError('')
-  }
-
-  const passwordHandler = (e) => {
-    setPassword(e.target.value)
-    if (e.target.value.length < 3 || e.target.length > 8) {
-      setPasswordError('Пароль має бути довшим за 3 та не менш ніж 8 ')
-      if (!e.target.value) {
-        setPasswordError('Пароль має бути довшим за 3 та не менш ніж 8 ')
-      }
-    } else {
-      setPassword('')
-    }
-  }
-
-  const handleBlur = (e) => {
+  const handleChange = e => {
     switch (e.currentTarget.name) {
       case 'name':
-        setNameDirty(true);
-        break;    
+        setName(e.currentTarget.value);
+        break;
       case 'email':
-        setEmailDirty(true);
+        setEmail(e.currentTarget.value);
         break;
       case 'password':
-        setPasswordDirty(true);
+        setPassword(e.currentTarget.value);
         break;
       default:
         return;
@@ -88,41 +58,41 @@ export const RegisterForm = () => {
 
   return (
     <Registration autoComplete="off">
+      <StyledTitleForm>Register</StyledTitleForm>
         <FormRegistration onSubmit={handleSubmit}>
-            <StyledTitleForm>Register</StyledTitleForm>
 
-            <StyledInputGroup>
-                <StyledLabelInput>
-                    Name *
-                    {(nameDirty && nameError) && <div style={{ color: 'red' }}>{nameError}</div>}
-                    <InputForm onChange={e => nameHandler(e)} value={name} onBlur={e => handleBlur(e)} type="name" name="name" />
-                </StyledLabelInput>
-            </StyledInputGroup>
-           <StyledInputGroup>
-                <StyledLabelInput>
-                    E-mail *
-                    {(emailDirty && emailError) && <div style={{ color: 'red' }}>{emailError}</div>}
-                    <InputForm onChange={e => emailHandler(e)} value={email} onBlur={e => handleBlur(e)} type="email" name="email" />
-                </StyledLabelInput>
-            </StyledInputGroup>
-            <StyledInputGroup>
-                <StyledLabelInput>
-                    Password *
-                    {(passwordDirty && passwordError) && <div style={{ color: 'red' }}>{passwordError}</div>}
-                    <InputForm onChange={e => passwordHandler(e)} value={password} onBlur={e => handleBlur(e)} type="password" name="password" />
-                </StyledLabelInput>
-            </StyledInputGroup>
-    
-            <ButtonReg>
-                <AccentButton type="submit" disabled={isLoading}>
-                    {isLoading ? (<Loader ariaLabel="loader-spinner" visible={true} />) : ('Register')}
-                </AccentButton>
-            </ButtonReg>
-            <ButtonLog>
-                <Link to="/login">
-                  <DefaultButton type="button">Login</DefaultButton>
-                </Link>
-            </ButtonLog>
+        <StyledInputGroup>
+          <StyledLabelInput>
+              Name *              
+              <InputName value={name} onChange={handleChange} />
+          </StyledLabelInput>
+        </StyledInputGroup>
+        <StyledInputGroup>
+          <StyledLabelInput>
+              E-mail *              
+              <InputMail value={email} onChange={handleChange} />
+          </StyledLabelInput>
+        </StyledInputGroup>
+        <StyledInputGroup>
+          <StyledLabelInput>
+              Password *              
+              <InputPassword value={password} onChange={handleChange} />
+          </StyledLabelInput>
+        </StyledInputGroup>
+        
+        <ButtonRegContainer>
+          <ButtonReg>
+            <AccentButton type="submit" disabled={isLoading}>
+                {isLoading ? (<Loader ariaLabel="loader-spinner" visible={true} />) : ('Register')}
+            </AccentButton>
+        </ButtonReg>
+        <ButtonLog>
+            <Link to="/login">
+              <DefaultButton type="button">Login</DefaultButton>
+            </Link>
+          </ButtonLog>
+        </ButtonRegContainer>
+       
         </FormRegistration>
         </Registration>
    );

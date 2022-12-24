@@ -10,56 +10,34 @@ import {
   StyledInputGroup,
   StyledTitleForm,
   StyledLabelInput,
-  InputForm,
+  ButtonLogContainer,
   ButtonReg,
   AccentButton,
   ButtonLog,
   DefaultButton,
 } from './LoginForm.styled';
 
+import { InputMail } from 'components/InputFormValid/InputEmail';
+import { InputPassword } from 'components/InputFormValid/InputPassword';
+
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailDirty, setEmailDirty] = useState(false);
-  const [passwordDirty, setPasswordDirty] = useState(false);
-  const [emailError, setEmailError] = useState('Імейл не може бути порожнім');
-  const [passwordError, setPasswordError] = useState('Пароль не може бути порожнім');
+  const [password, setPassword] = useState('');  c
   const isLoading = useSelector(selectIsLoadingUser);
 
-  const emailHandler = (e) => {
-    setEmail(e.target.value)
-    const re =  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    if (!re.test(String(email).toLowerCase())) {
-      setEmailError("Некоректний імейл")
-    } else setEmailError('')
-  }
-
-  const passwordHandler = (e) => {
-    setPassword(e.target.value)
-    if (e.target.value.length < 3 || e.target.length > 8) {
-      setPasswordError('Пароль має бути довшим за 3 та не менш ніж 8 ')
-      if (!e.target.value) {
-        setPasswordError('Пароль має бути довшим за 3 та не менш ніж 8 ')
-      }
-    } else {
-      setPassword('')
-    }
-  }
-
-  const handleBlur = (e) => {
-    switch (e.currentTarget.name) {
+  const handleChange = e => {
+    switch (e.currentTarget.name) {     
       case 'email':
-        setEmailDirty(true);
+        setEmail(e.currentTarget.value);
         break;
       case 'password':
-        setPasswordDirty(true);
+        setPassword(e.currentTarget.value);
         break;
       default:
         return;
     }
-  };
-
+  };  
   const resetForm = () => {
     setEmail('');
     setPassword('');
@@ -79,19 +57,18 @@ export const LoginForm = () => {
         <StyledInputGroup>
           <StyledLabelInput>
             E-mail *
-            {(emailDirty && emailError) && <div style={{ color: 'red' }}>{emailError}</div>}
-            <InputForm onChange={e => emailHandler(e)} value={email} onBlur={e => handleBlur(e)} type="email" name="email" />
+            <InputMail value={email} onChange={handleChange} />
           </StyledLabelInput>
         </StyledInputGroup>
         <StyledInputGroup>
           <StyledLabelInput>
             Password *
-            {(passwordDirty && passwordError) && <div style={{ color: 'red' }}>{passwordError}</div>}
-            <InputForm onChange={e => passwordHandler(e)} value={password} onBlur={e => handleBlur(e)} type="password" name="password" />
+            <InputPassword value={password} onChange={handleChange} />
           </StyledLabelInput>
         </StyledInputGroup>
 
-        <ButtonLog>
+        <ButtonLogContainer>
+          <ButtonLog>
           <AccentButton type="submit" disabled={isLoading}>
             {isLoading ? (<Loader ariaLabel="loader-spinner" visible={true} />) : ('Log in')}
           </AccentButton>
@@ -100,7 +77,9 @@ export const LoginForm = () => {
           <Link to="/register">
             <DefaultButton type="button">Register</DefaultButton>
           </Link>
-        </ButtonReg>
+          </ButtonReg>
+        </ButtonLogContainer> 
+       
 
       </FormLogin>
     </Login>
