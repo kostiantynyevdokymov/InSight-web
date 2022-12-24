@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { refreshUser } from 'redux/user/userOperations';
 import { useAuth } from 'hooks/useAuth';
 
-const MainPageSelector = lazy(() => import('components/MainPage/MainPageSelector'));
+// const MainPageSelector = lazy(() => import('components/MainPage/MainPageSelector'));
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const LogoutPage = lazy(() => import('pages/Logout'));
@@ -33,7 +33,7 @@ export const App = () => {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<CommonLayout />}>
-          <Route path="" element={<MainPageSelector />} />
+          <Route index element={<Calculator />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="logout" element={<LogoutPage />} />
           <Route path="register" element={<RegistrationPage />} />

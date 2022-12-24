@@ -3,8 +3,12 @@ import { DairyForm } from 'components/DiaryForm/DairyForm';
 import { SideBar } from 'components/SideBar/SideBar';
 import { Calendar } from '../components/Calendar/Calendar';
 import { Container, LeftSection } from './Styles/DiaryPage.styled';
+import { Navigate } from 'react-router';
+import { useAuth } from 'hooks/useAuth';
 
 const DiaryPage = () => {
+  const { isLoggedIn } = useAuth();
+
   const useWindowWidth = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     useEffect(() => {
@@ -19,7 +23,7 @@ const DiaryPage = () => {
 
   const width = useWindowWidth();
 
-  return (
+  return isLoggedIn ? (
     <Container>
       <LeftSection>
         <Calendar screenWidth={width} />
@@ -27,6 +31,8 @@ const DiaryPage = () => {
       </LeftSection>
       <SideBar />
     </Container>
+  ) : (
+    <Navigate to="/login" />
   );
 };
 
