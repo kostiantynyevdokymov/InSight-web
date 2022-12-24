@@ -1,7 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router';
 
-import { constants } from 'constants';
 import { Loader } from 'components/Loader/Loader';
 import { authHeader } from 'redux/utils/authHeader';
 import { useDispatch } from 'react-redux';
@@ -23,8 +22,6 @@ export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing, token } = useAuth();
 
-  console.log({ isRefreshing, token });
-
   useEffect(() => {
     if (!isRefreshing) return;
 
@@ -35,7 +32,7 @@ export const App = () => {
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
-        <Route path={constants.basePath} element={<CommonLayout />}>
+        <Route path="/" element={<CommonLayout />}>
           <Route path="" element={<MainPageSelector />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="logout" element={<LogoutPage />} />
@@ -45,10 +42,12 @@ export const App = () => {
           <Route path="google-auth" element={<GoogleAuth />} />
 
           <Route path="calculator" element={<Calculator />} />
-          <Route path="diary" element={<DiaryPage />} />
+          <Route path="diary" element={<DiaryPage />}>
+            <Route path=":day" element={<DiaryPage />} />
+          </Route>
         </Route>
 
-        <Route path="*" element={<Navigate to={constants.basePath} replace />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Suspense>
   );
