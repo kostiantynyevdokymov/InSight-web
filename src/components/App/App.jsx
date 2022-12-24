@@ -1,17 +1,12 @@
-import { lazy, Suspense } from 'react';
-import {
-  //Navigate,
-  Route, Routes
-} from 'react-router';
+import { lazy, Suspense, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Navigate, Route, Routes } from 'react-router';
 
 import { Loader } from 'components/Loader/Loader';
 import { authHeader } from 'redux/utils/authHeader';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import { refreshUser } from 'redux/user/userOperations';
 import { useAuth } from 'hooks/useAuth';
 
-// const MainPageSelector = lazy(() => import('components/MainPage/MainPageSelector'));
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const LogoutPage = lazy(() => import('pages/Logout'));
