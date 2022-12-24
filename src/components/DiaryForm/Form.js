@@ -18,7 +18,7 @@ import { Input } from './Input/Input';
 
 import { addDiaryEntry } from 'redux/diary/diaryOperations';
 
-export const TestForm = () => {
+export const Form = ({ onClick }) => {
   const [showAutocomplete, setShowAutocomplete] = useState(false);
 
   const [allProducts, setAllProducts] = useState([]);
@@ -81,6 +81,9 @@ export const TestForm = () => {
     dispatch(addDiaryEntry({ day: params.day, id: chosedProduct._id, weight: weightValue }));
     setValueProd('');
     setWeightValue('');
+    if (onClick) {
+      onClick();
+    }
   };
 
   const onDiryProductClick = () => {

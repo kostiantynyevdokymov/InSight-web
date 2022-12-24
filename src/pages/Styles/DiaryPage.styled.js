@@ -32,5 +32,6 @@ export const LeftSection = styled.div`
   @media screen and (min-width: 1280px) {
     padding-top: ${p => p.theme.mp(6)};
     padding-bottom: ${p => p.theme.mp(6)};
+    max-width: 670px;
   }
 `;

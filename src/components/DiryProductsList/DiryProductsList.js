@@ -1,6 +1,6 @@
 import { UlDairy, DairyProdLi, TitleDairy, WeightDairy, CalDairy, ButtonX } from './DiryProductsList.styled';
 
-export const TestDiryproductsList = ({ products, onClickItem }) => {
+export const DiryproductsList = ({ products, onClickItem }) => {
   return (
     <UlDairy>
       {products.map(el => (

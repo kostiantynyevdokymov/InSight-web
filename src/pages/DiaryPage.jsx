@@ -6,8 +6,8 @@ import { Container, LeftSection } from './Styles/DiaryPage.styled';
 import { ModalButton, Plus } from '../components/DiaryForm/Form.styled';
 import { SideBar } from 'components/SideBar/SideBar';
 import { Calendar } from '../components/Calendar/Calendar';
-import { TestForm } from 'components/DiaryForm/Form';
-import { TestDiryproductsList } from 'components/DiryProductsList/DiryProductsList';
+import { Form } from 'components/DiaryForm/Form';
+import { DiryproductsList } from 'components/DiryProductsList/DiryProductsList';
 import { Modal } from 'components/Modal/Modal';
 
 import { deleteDiaryEntry } from 'redux/diary/diaryOperations';
@@ -38,18 +38,20 @@ const DiaryPage = () => {
     dispatch(deleteDiaryEntry({ day: params.day, id }));
   };
 
+  const onModalClose = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <Container>
       <LeftSection>
         <Calendar screenWidth={width} />
-        {width > 768 && <TestForm />}
-        {inputDiary.length !== 0 && <TestDiryproductsList products={inputDiary} onClickItem={onRemoveItemHandler} />}
-        {width < 768 && (
-          <ModalButton onClick={() => setIsOpen(!isOpen)}>{<Plus style={{ display: 'block' }}>+</Plus>}</ModalButton>
-        )}
+        {width > 768 && <Form />}
+        {inputDiary.length !== 0 && <DiryproductsList products={inputDiary} onClickItem={onRemoveItemHandler} />}
+        {width < 768 && <ModalButton onClick={onModalClose}>{<Plus style={{ display: 'block' }}>+</Plus>}</ModalButton>}
         {isOpen && (
-          <Modal onClose={() => setIsOpen(!isOpen)}>
-            <TestForm />
+          <Modal onClose={onModalClose}>
+            <Form onClick={onModalClose} />
           </Modal>
         )}
       </LeftSection>
