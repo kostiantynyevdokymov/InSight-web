@@ -21,7 +21,7 @@ import {
   UlDairy,
   ModalButton,
 } from './DairyFormStyle';
-import { Modal } from 'components/Modal/modal';
+import { Modal } from 'components/Modal/Modal';
 
 const prod = [
   {
