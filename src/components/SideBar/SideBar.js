@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+
+//                     // це поки що для тестыв
+//---------------------------------------------------------------------
 import axios from 'axios';
+//---------------------------------------------------------------------
+
 import { Section, Container, List, Title, Item, Text, ShowMore } from './SideBar.styled';
 import { selectDiary } from 'redux/selectors';
 
@@ -9,8 +14,11 @@ const initState = { dailyCalories: 0, stopProducts: [] };
 const person = { height: 176, age: 28, currentWeight: 70, desireWeight: 80, bloodType: 1 };
 
 export const SideBar = () => {
-  const [diet, setDiet] = useState(initState);
   const [show, setShow] = useState();
+  //                     // це поки що для тестыв
+  //---------------------------------------------------------------------
+  const [diet, setDiet] = useState(initState);
+  //---------------------------------------------------------------------
 
   const { inputDiary } = useSelector(selectDiary);
 
@@ -18,6 +26,8 @@ export const SideBar = () => {
     getDiet();
   }, []);
 
+  //                     // це поки що для тестыв
+  //---------------------------------------------------------------------
   const getDiet = async () => {
     try {
       const resp = await axios.post('/diet', person);
@@ -26,6 +36,7 @@ export const SideBar = () => {
       console.log('ERROR:', error);
     }
   };
+  //---------------------------------------------------------------------
 
   function uniqueCategories(arr) {
     let result = [];

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
+import DatePicker from 'react-datepicker';
 
 import { Block, CalendarBox, DateText, Icon, Modal } from './Calendar.styled';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import { getDailyDiary, resetDailyDiary } from 'redux/diary/diaryOperations';

@@ -15,10 +15,10 @@ import { selectDiary } from 'redux/selectors';
 
 const DiaryPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { inputDiary } = useSelector(selectDiary);
 
-  const params = useParams();
+  const { inputDiary } = useSelector(selectDiary);
   const dispatch = useDispatch();
+  const params = useParams();
 
   const useWindowWidth = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
