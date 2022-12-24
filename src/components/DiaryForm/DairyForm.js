@@ -25,7 +25,7 @@ import {
 } from './DairyFormStyle';
 import { useParams } from 'react-router';
 //import { useEffect } from 'react';
-//import { Modal } from 'components/Modal/modal';
+//import { Modal } from 'components/Modal/Modal';
 
 export const DairyForm = ({ screenWidth }) => {
   const { day } = useParams()
