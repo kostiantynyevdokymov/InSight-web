@@ -1,8 +1,8 @@
 import { Item, Text, ShowMore } from './NotRecomendedFoodList.styled';
 
-export const NotRecomendedFoodList = ({ data, show, forbidenFood, onClick }) => {
+export const NotRecomendedFoodList = ({ show, forbidenFood, onClick }) => {
   if (show) {
-    return { forbidenFood, show }.map(it => (
+    return forbidenFood.map(it => (
       <Item key={it._id} style={{ display: 'block' }}>
         <p>{it._id}</p>
         <Text>{it.categories[0]}</Text>
