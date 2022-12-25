@@ -42,7 +42,7 @@ export const MainPageHeaderStyled = styled.div`
 export const MainPageFormContainer = styled.div`
   position: absolute;
   top: calc(100% / 5.7);
-  margin-left: 16px;
+  margin-left: calc(100% / 24);
 `;
 
 export const Wrapper = styled.div`
