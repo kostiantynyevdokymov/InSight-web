@@ -35,6 +35,7 @@ export const MainPageHeaderStyled = styled.div`
   @media screen and (min-width: 1280px) {
     border: none;
     padding-bottom: 0;
+    justify-content: flex-start;
   }
 `;
 
