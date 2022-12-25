@@ -12,22 +12,22 @@ export const HeaderContainer = styled.nav`
     justify-content: flex-end;
   }
   @media screen and (min-width: 768px) {
-    border-bottom: none;
     justify-content: flex-start;
+  }
+  @media screen and (min-width: 1280px) {
+    border-bottom: none;
     align-items: flex-end;
   }
-`;
-export const Aaa = styled.div`
-  display: block;
 `;
 export const LinkSignIn = styled(NavLink)`
   margin: ${theme.mp(0, 0, 0, 3)};
   color: ${theme.colors.text.defaultText};
   text-decoration: none;
   margin-left: auto;
-  @media screen and (min-width: 320px) {
-  }
   @media screen and (min-width: 768px) {
+    margin-left: auto;
+  }
+  @media screen and (min-width: 1280px) {
     margin-left: ${theme.spacing[3]}px;
     padding-left: ${theme.spacing[3]}px;
     border-left: ${theme.border.header};
