@@ -20,10 +20,7 @@ const MainPageSelector = () => {
 
   return (
     <Wrapper>
-      <MainPageHeaderStyled>
-        [LOGO] - - [Calculator] [Diary]
-        {isLoggedIn ? <NavHeader /> : <AuthHeader />}
-      </MainPageHeaderStyled>
+      <MainPageHeaderStyled>{isLoggedIn ? <NavHeader /> : <AuthHeader />}</MainPageHeaderStyled>
       <MainPageFormContainer>
         <Outlet />
       </MainPageFormContainer>
