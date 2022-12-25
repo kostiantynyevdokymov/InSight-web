@@ -49,15 +49,10 @@ export const Calendar = ({ screenWidth }) => {
       setChoseDate(new Date());
       return;
     }
-    let day = choseDate.getDate();
-    let month = choseDate.getMonth() + 1;
-    if (day < 10) {
-      day = '0' + day;
-    }
-    if (month < 10) {
-      month = '0' + month;
-    }
-    const year = choseDate.getFullYear();
+
+    const day = String(choseDate.getDate()).padStart(2, '0');
+    const month = String(choseDate.getMonth() + 1).padStart(2, '0');
+    const year = String(choseDate.getFullYear());
 
     navigate({ pathname: `${day}.${month}.${year}` });
     dispatch(resetDailyDiary());
