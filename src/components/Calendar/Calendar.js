@@ -25,7 +25,6 @@ export const Calendar = ({ screenWidth }) => {
   });
 
   useEffect(() => {
-    // const dayParam = choseDate.toLocaleDateString().split('.').join('');
     let day = choseDate.getDate();
     let month = choseDate.getMonth() + 1;
     if (day < 10) {

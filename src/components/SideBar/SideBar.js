@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 
 //                     // це поки що для тестыв
 //---------------------------------------------------------------------
@@ -7,8 +8,9 @@ import axios from 'axios';
 //---------------------------------------------------------------------
 
 import { Section, Container, List, Title, Item, Text, ShowMore } from './SideBar.styled';
+import { NotRecomendedFoodList } from './NotRecomendedFoodList/NotRecomendedFoodList';
+
 import { selectDiary } from 'redux/selectors';
-import { useParams } from 'react-router';
 
 const initState = { dailyCalories: 0, stopProducts: [] };
 
@@ -25,12 +27,12 @@ export const SideBar = () => {
 
   const { inputDiary } = useSelector(selectDiary);
 
+  //                     // це поки що для тестыв
+  //---------------------------------------------------------------------
   useEffect(() => {
     getDiet();
   }, []);
 
-  //                     // це поки що для тестыв
-  //---------------------------------------------------------------------
   const getDiet = async () => {
     try {
       const resp = await axios.post('/diet', person);
@@ -56,6 +58,10 @@ export const SideBar = () => {
 
   const notRecomendedFood = uniqueCategories(diet.stopProducts);
 
+  const onShowClick = () => {
+    setShow(!show);
+  };
+
   const consumed = inputDiary.reduce((prev, item) => {
     if (!isNaN(item.calories)) {
       return prev + parseInt(item.calories);
@@ -65,29 +71,6 @@ export const SideBar = () => {
 
   const left = diet.dailyCalories - consumed;
 
-  const FullList = arr => {
-    if (show) {
-      return arr.map(it => (
-        <Item key={it._id.$oid} style={{ display: 'block' }}>
-          <Text>{it.categories[0]}</Text>
-        </Item>
-      ));
-    } else
-      return (
-        <>
-          {notRecomendedFood.slice(0, 4).map(it => (
-            <Item key={it._id.$oid} style={{ display: 'block' }}>
-              <Text>{it.categories[0]}</Text>
-            </Item>
-          ))}
-          {notRecomendedFood.length > 4 && (
-            <ShowMore href="#" onClick={() => setShow(!show)}>
-              show more ...
-            </ShowMore>
-          )}
-        </>
-      );
-  };
   return (
     <Section>
       <Container>
@@ -113,7 +96,7 @@ export const SideBar = () => {
         <List>
           <Title>Food not recommended</Title>
           {notRecomendedFood.length !== 0 ? (
-            FullList(notRecomendedFood)
+            <NotRecomendedFoodList show={show} forbidenFood={notRecomendedFood} onClick={onShowClick} />
           ) : (
             <Item style={{ display: 'block' }}>
               <Text>Your diet will be displayed here</Text>
