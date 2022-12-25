@@ -1,19 +1,4 @@
 import styled from 'styled-components';
-import { theme } from '../../components/Common/Theme';
-
-export const HeaderBar = styled.div`
-  display: flex;
-  width: 100%;
-  margin: 0;
-  /* padding: ${theme.mp(3, 4)}; */
-
-  height: ${theme.spacing[5]}px;
-
-  font-size: ${theme.fontSizes.l};
-  color: ${theme.colors.defaultText};
-
-  background-color: ${theme.colors.pageBackgroundAccent};
-`;
 
 export const HeaderBarIsLogedIn = styled.div`
   @media screen and (min-width: 1280px) {

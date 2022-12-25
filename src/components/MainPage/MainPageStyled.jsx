@@ -23,15 +23,13 @@ export const Leaves = () => {
 };
 
 export const MainPageHeaderStyled = styled.div`
+  width: 100%;
+  border-bottom: ${p => p.theme.border.header};
+  height: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   @media screen and (min-width: 768px) {
-    width: 100%;
-    height: 100px;
-
-    /* height: max-content; */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: ${p => p.theme.border.header};
   }
 
   @media screen and (min-width: 1280px) {
@@ -64,7 +62,7 @@ const StrawberryStyled = styled.img`
     display: none;
   }
   @media (max-width: 1280px) {
-    width: calc(100% / 4);
+    width: calc(100% / 5);
     left: calc(100% / 1.66);
     top: calc(100% / 1.76);
   }
