@@ -25,7 +25,7 @@ export const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');  
   const isLoading = useSelector(selectIsLoadingUser);
-
+  
   const handleChange = e => {
     switch (e.currentTarget.name) {     
       case 'email':
@@ -69,15 +69,16 @@ export const LoginForm = () => {
 
         <ButtonLogContainer>
           <ButtonLog>
-          <AccentButton type="submit" disabled={isLoading}>
+            <AccentButton type="submit" disabled={isLoading}>
             {isLoading ? (<Loader ariaLabel="loader-spinner" visible={true} />) : ('Log in')}
-          </AccentButton>
-        </ButtonLog>
-        <ButtonReg>
-          <Link to="/register">
-            <DefaultButton type="button">Register</DefaultButton>
-          </Link>
+            </AccentButton> 
+          </ButtonLog>
+          <ButtonReg>
+            <Link to={'register'}>
+              <DefaultButton type="button">Register</DefaultButton>
+            </Link>
           </ButtonReg>
+          <></>
         </ButtonLogContainer> 
        
 

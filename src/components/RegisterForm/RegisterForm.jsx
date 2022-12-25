@@ -87,10 +87,10 @@ export const RegisterForm = () => {
             </AccentButton>
         </ButtonReg>
         <ButtonLog>
-            <Link to="/login">
+            <Link to={'login'}>
               <DefaultButton type="button">Login</DefaultButton>
             </Link>
-          </ButtonLog>
+          </ButtonLog>       
         </ButtonRegContainer>
        
         </FormRegistration>
