@@ -26,20 +26,9 @@ export const Calendar = ({ screenWidth }) => {
     }
   });
 
-  function validate_date(value) {
-    let date = value.split('.');
-    date[1] -= 1;
-    let d = new Date(date[2], date[1], date[0]);
-    if (d.getFullYear() == date[2] && d.getMonth() == date[1] && d.getDate() == date[0]) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   useEffect(() => {
     if (!choseDate) {
-      if (params.day && validate_date(params.day)) {
+      if (params.day && validateDay(params.day)) {
         let date = params.day.split('.');
         date[1] -= 1;
         const searchingDate = new Date(date[2], date[1], date[0]);
@@ -50,14 +39,31 @@ export const Calendar = ({ screenWidth }) => {
       return;
     }
 
-    const day = String(choseDate.getDate()).padStart(2, '0');
-    const month = String(choseDate.getMonth() + 1).padStart(2, '0');
-    const year = String(choseDate.getFullYear());
+    const date = parseDay(choseDate);
 
-    navigate({ pathname: `${day}.${month}.${year}` });
+    navigate({ pathname: `${date.day}.${date.month}.${date.year}` });
     dispatch(resetDailyDiary());
-    dispatch(getDailyDiary(`${day}${month}${year}`));
+    dispatch(getDailyDiary(`${date.day}${date.month}${date.year}`));
   }, [choseDate, dispatch, navigate, params.day]);
+
+  const parseDay = value => {
+    const day = String(value.getDate()).padStart(2, '0');
+    const month = String(value.getMonth() + 1).padStart(2, '0');
+    const year = String(value.getFullYear());
+
+    return { day, month, year };
+  };
+
+  function validateDay(value) {
+    let date = value.split('.');
+    date[1] -= 1;
+    let d = new Date(date[2], date[1], date[0]);
+    if (d.getFullYear() == date[2] && d.getMonth() == date[1] && d.getDate() == date[0]) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   const handleChoseDate = e => {
     setChoseDate(e);
