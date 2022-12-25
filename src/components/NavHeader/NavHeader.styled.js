@@ -48,7 +48,7 @@ export const HamburgerMenu = styled.button`
   border: none;
   background-color: inherit;
   margin: ${theme.mp(0, 3, 0, 'auto')};
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 768px) {
     margin: ${theme.mp(0, 3, 0, 0)};
   }
 `;

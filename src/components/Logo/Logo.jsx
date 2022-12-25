@@ -10,9 +10,9 @@ import { Logo } from './Logo.styled';
 
 export const LogoMain = () => {
   const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
-  const isMobile = useMediaQuery({ query: '(max-width: 479px)' });
-  const isTablet = useMediaQuery({ query: '(min-width: 480px) and (max-width: 768px)' });
-  const isDesktop = useMediaQuery({ query: '(min-width: 769px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const isTablet = useMediaQuery({ query: '(min-width: 768px) and (max-width: 1279px)' });
+  const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
 
   const takeLogo = () => {
     if (isMobile) {
