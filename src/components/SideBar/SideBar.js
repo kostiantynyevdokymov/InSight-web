@@ -7,7 +7,7 @@ import { useParams } from 'react-router';
 import axios from 'axios';
 //---------------------------------------------------------------------
 
-import { Section, Container, List, Title, Item, Text, ShowMore } from './SideBar.styled';
+import { Section, Container, List, Title, Item, Text } from './SideBar.styled';
 import { NotRecomendedFoodList } from './NotRecomendedFoodList/NotRecomendedFoodList';
 
 import { selectDiary } from 'redux/selectors';

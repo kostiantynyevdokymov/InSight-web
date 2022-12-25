@@ -57,7 +57,7 @@ export const Calendar = ({ screenWidth }) => {
     navigate({ pathname: `${day}.${month}.${year}` });
     dispatch(resetDailyDiary());
     dispatch(getDailyDiary(`${day}${month}${year}`));
-  }, [choseDate]);
+  }, [choseDate, dispatch, navigate, params.day]);
 
   const handleChoseDate = e => {
     setChoseDate(e);
