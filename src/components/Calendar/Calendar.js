@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import DatePicker from 'react-datepicker';
 
 import { Block, CalendarBox, DateText, Icon, Modal } from './Calendar.styled';
@@ -9,11 +9,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { getDailyDiary, resetDailyDiary } from 'redux/diary/diaryOperations';
 
 export const Calendar = ({ screenWidth }) => {
-  const [choseDate, setChoseDate] = useState(new Date());
+  const [choseDate, setChoseDate] = useState();
   const [isOpen, setIsOpen] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const params = useParams();
 
   useEffect(() => {
     if (isOpen) {
@@ -24,7 +26,29 @@ export const Calendar = ({ screenWidth }) => {
     }
   });
 
+  function validate_date(value) {
+    let date = value.split('.');
+    date[1] -= 1;
+    let d = new Date(date[2], date[1], date[0]);
+    if (d.getFullYear() == date[2] && d.getMonth() == date[1] && d.getDate() == date[0]) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   useEffect(() => {
+    if (!choseDate) {
+      if (params.day && validate_date(params.day)) {
+        let date = params.day.split('.');
+        date[1] -= 1;
+        const searchingDate = new Date(date[2], date[1], date[0]);
+        setChoseDate(searchingDate);
+        return;
+      }
+      setChoseDate(new Date());
+      return;
+    }
     let day = choseDate.getDate();
     let month = choseDate.getMonth() + 1;
     if (day < 10) {
