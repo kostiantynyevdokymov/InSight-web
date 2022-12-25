@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { theme } from 'components/Common/Theme';
 
 export const NavHeaderContainer = styled.nav`
-  height: 40px;
   text-align: end;
   display: flex;
   border-bottom: ${theme.border.header};
@@ -16,7 +15,7 @@ export const NavHeaderContainer = styled.nav`
   @media screen and (min-width: 1280px) {
     border-bottom: none;
     align-items: flex-end;
-    padding: ${theme.mp(6, 0, 3, 0)};
+    padding: ${theme.mp(5, 0, 3, 0)};
   } ;
 `;
 export const LogoContainer = styled.div`
@@ -28,7 +27,6 @@ export const LinkDiary = styled(NavLink)`
   color: ${theme.colors.text.defaultText};
   text-decoration: none;
   margin-left: auto;
-  padding: ${theme.mp(2, 0, 2, 0)};
   @media screen and (min-width: 320px) {
   }
   @media screen and (min-width: 768px) {
@@ -39,7 +37,6 @@ export const LinkDiary = styled(NavLink)`
 `;
 export const LinkCalculator = styled(NavLink)`
   margin: ${theme.mp(0, 3, 0, 3)};
-  padding: ${theme.mp(2, 0, 2, 0)};
   color: ${theme.colors.text.mediumText};
   text-decoration: none;
 `;

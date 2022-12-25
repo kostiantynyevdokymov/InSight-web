@@ -61,7 +61,6 @@ export const NavHeader = () => {
         <>
           <NavHeaderContainer>
             <LogoMain />
-
             <LinkDiary to={'diary'}>DIARY</LinkDiary>
             <LinkCalculator to={'calculator'}>CALCULATOR</LinkCalculator>
             <Name type="button">Name</Name>
