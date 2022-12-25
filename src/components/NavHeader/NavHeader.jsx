@@ -21,9 +21,10 @@ import { useMediaQuery } from 'react-responsive';
 export const NavHeader = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const url = window.location.href;
-  const diary = 'http://localhost:3000/InSight-web/diary';
-  const calculator = 'http://localhost:3000/InSight-web/calculator';
+  // const url = window.location.href.slice(-1);
+  // console.log(url);
+  // const diary = '/diary';
+  // const calculator = 'http://localhost:3000/InSight-web/calculator';
 
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({ query: '(min-width: 768px) and (max-width: 1279px)' });
@@ -39,7 +40,7 @@ export const NavHeader = () => {
             </HamburgerMenu>
           </LogoContainer>
           <NavHeaderContainer>
-            {url === diary || url === calculator ? (
+            {/* {url === diary || url === calculator ? (
               <>
                 <Back type="button" onClick={() => navigate(-1)}>
                   <TiArrowBack size={20} />
@@ -47,7 +48,7 @@ export const NavHeader = () => {
               </>
             ) : (
               <></>
-            )}
+            )} */}
             <Name type="button">Name</Name>
             <Exit type="button" onClick={() => dispatch(handleLogoutUser())}>
               Exit
