@@ -29,7 +29,7 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   /* padding: 0 20px; */
   width: 100%;
-  margin: auto;
+  /* margin: auto; */
   @media screen and (min-width: 320px) {
     width: 320px;
   }

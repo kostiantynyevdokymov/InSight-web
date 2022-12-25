@@ -22,29 +22,54 @@ export const Leaves = () => {
   return <LeavesStyled src={leaves} alt="leaves" />;
 };
 
+export const MainPageHeaderStyled = styled.div`
+  @media screen and (min-width: 768px) {
+    width: 100%;
+    height: 100px;
+
+    /* height: max-content; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: ${p => p.theme.border.header};
+  }
+
+  @media screen and (min-width: 1280px) {
+    border: none;
+    padding-bottom: 0;
+  }
+`;
+
+export const MainPageFormContainer = styled.div`
+  position: absolute;
+  top: calc(100% / 5.7);
+  margin-left: 16px;
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: calc(100vh - (${theme.spacing[5]}px + 40px));
+  height: 100vh;
+  /* height: calc(100vh - (${theme.spacing[5]}px + 40px)); */
 `;
 
 const StrawberryStyled = styled.img`
   position: absolute;
-  z-index: -2;
-  //in figma shedow 10px 20px 50px ??
+  z-index: -1;
   filter: drop-shadow(10px 20px 10px rgba(0, 0, 0, 0.3));
   transform: matrix(-1, 0, 0, 1, 0, 0);
+  @media (max-width: 480px) {
+    display: none;
+  }
   @media (max-width: 1280px) {
-    width: calc(100% / 3.69);
-    height: calc(100% / 5.04);
+    width: calc(100% / 4);
     left: calc(100% / 1.66);
     top: calc(100% / 1.76);
   }
   @media (min-width: 1280px) {
-    width: calc(100% / 4.48);
-    height: calc(100% / 3.05);
+    height: calc(100% / 4);
     left: calc(100% / 1.36);
     top: calc(100% / 1.68);
   }
@@ -52,15 +77,16 @@ const StrawberryStyled = styled.img`
 
 const BananaStyled = styled.img`
   position: absolute;
-  z-index: -3;
+  z-index: -2;
+  @media (max-width: 480px) {
+    display: none;
+  }
   @media (max-width: 1280px) {
     width: calc(100% / 1.04);
-    height: calc(100% / 1.94);
     left: calc(100% / 3.11);
-    top: calc(100% / 1.71);
+    top: calc(100% / 1.8);
   }
   @media (min-width: 1280px) {
-    width: calc(100% / 1.66);
     height: calc(100% / 1.54);
     left: calc(100% / 1.64);
     top: calc(- (100% / 1.66));
@@ -70,11 +96,15 @@ const BananaStyled = styled.img`
 const LayerStyled = styled.img`
   position: absolute;
   z-index: -4;
+  @media (max-width: 480px) {
+    display: none;
+  }
   @media (max-width: 1280px) {
     width: calc(100% / 1.39);
     height: calc(100% / 1.37);
     left: calc(100% / 3.11);
-    top: calc(100% / 1.64);
+    top: calc(100% / 2.64);
+    /* top: calc(100% / 1.64); */
   }
   @media (min-width: 1280px) {
     width: calc(100% / 2.12);
@@ -86,9 +116,12 @@ const LayerStyled = styled.img`
 
 const LeavesStyled = styled.img`
   position: absolute;
-  z-index: -1;
+  z-index: -3;
   animation: anim 10s infinite linear;
   animation-delay: 2.5s;
+  @media (max-width: 480px) {
+    display: none;
+  }
   @media (max-width: 1280px) {
     width: calc(100% / 1.45);
     height: calc(100% / 1.7);

@@ -3,12 +3,9 @@ import { theme } from '../../components/Common/Theme';
 
 export const HeaderBar = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
+  width: 100%;
   margin: 0;
-  padding: ${theme.mp(3, 4)};
+  /* padding: ${theme.mp(3, 4)}; */
 
   height: ${theme.spacing[5]}px;
 
