@@ -1,12 +1,22 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useAuth } from 'hooks/useAuth';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import SC from './CalculatorCalorieForm.styled';
+import { selectIsLoadingDiet, selectUserParams } from 'redux/selectors';
+import { setParams } from 'redux/user/userSlice';
 
 function CalculatorCalorieForm() {
+  const dispatch = useDispatch();
+  const userParams = useSelector(selectUserParams);
+  const { isLoggedIn } = useAuth();
   const handleSubmit = values => {
+    const { height, age, currentWeight, desireWeight, bloodType } = values;
     values.bloodType = Number(values.bloodType);
+    dispatch(setParams({ height, age, currentWeight, desireWeight, bloodType }));
   };
+
   const ErrorMessagesSchema = Yup.object().shape({
     height: Yup.number('Значення має бути число')
       .min(100, 'Вкажіть значення більше 100 см')
@@ -38,11 +48,11 @@ function CalculatorCalorieForm() {
       <Formik
         validationSchema={ErrorMessagesSchema}
         initialValues={{
-          height: '',
-          age: '',
-          weight: '',
-          desiredWeight: '',
-          bloodType: '1',
+          height: userParams && userParams.height ? userParams.height : '',
+          age: userParams && userParams.age ? userParams.age : '',
+          weight: userParams && userParams.weight ? userParams.weight : '',
+          desiredWeight: userParams && userParams.desiredWeight ? userParams.desiredWeight : '',
+          bloodType: userParams && userParams.bloodType ? userParams.bloodType.toString() : '',
         }}
         enableReinitialize
         onSubmit={values => {
