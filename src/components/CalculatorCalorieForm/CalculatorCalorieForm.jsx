@@ -83,7 +83,7 @@ function CalculatorCalorieForm() {
                   ) : (
                     <SC.InputField placeholder=" " name="height" type="number" min="100" max="260" required />
                   )}
-                  <SC.LabelValue>Зріст *</SC.LabelValue>
+                  <SC.LabelValue>Зріст*</SC.LabelValue>
                   {touched.height && errors.height && <SC.Error>{errors.height}</SC.Error>}
                 </SC.Label>
                 <SC.Label>
@@ -92,7 +92,7 @@ function CalculatorCalorieForm() {
                   ) : (
                     <SC.InputField placeholder=" " name="age" type="number" min="12" max="100" required />
                   )}
-                  <SC.LabelValue>Вік *</SC.LabelValue>
+                  <SC.LabelValue>Вік*</SC.LabelValue>
                   {touched.age && errors.age && <SC.Error>{errors.age}</SC.Error>}
                 </SC.Label>
 
@@ -109,7 +109,7 @@ function CalculatorCalorieForm() {
                   ) : (
                     <SC.InputField placeholder=" " name="currentWeight" type="number" min="40" max="200" required />
                   )}
-                  <SC.LabelValue>Нинішня вага *</SC.LabelValue>
+                  <SC.LabelValue>Нинішня вага*</SC.LabelValue>
                   {touched.currentWeight && errors.currentWeight && <SC.Error>{errors.currentWeight}</SC.Error>}
                 </SC.Label>
               </SC.InputBlock>
@@ -120,7 +120,7 @@ function CalculatorCalorieForm() {
                   ) : (
                     <SC.InputField placeholder=" " name="desireWeight" type="number" min="40" max="150" required />
                   )}
-                  <SC.LabelValue>Бажана вага *</SC.LabelValue>
+                  <SC.LabelValue>Бажана вага*</SC.LabelValue>
                   {touched.desireWeight && errors.desireWeight && <SC.Error>{errors.desireWeight}</SC.Error>}
                 </SC.Label>
                 <SC.RadioGroupContainer>
