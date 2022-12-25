@@ -55,6 +55,7 @@ export const CalendarBox = styled.div`
   position: fixed;
   top: 17%;
   left: 44%;
+  z-index: 1;
 
   @media screen and (min-width: 1280px) {
     left: 27%;
