@@ -25,10 +25,20 @@ export const Calendar = ({ screenWidth }) => {
   });
 
   useEffect(() => {
-    const dayParam = choseDate.toLocaleDateString().split('.').join('');
-    navigate({ pathname: `${dayParam}` });
+    // const dayParam = choseDate.toLocaleDateString().split('.').join('');
+    let day = choseDate.getDate();
+    let month = choseDate.getMonth() + 1;
+    if (day < 10) {
+      day = '0' + day;
+    }
+    if (month < 10) {
+      month = '0' + month;
+    }
+    const year = choseDate.getFullYear();
+
+    navigate({ pathname: `${day}.${month}.${year}` });
     dispatch(resetDailyDiary());
-    dispatch(getDailyDiary(dayParam));
+    dispatch(getDailyDiary(`${day}${month}${year}`));
   }, [choseDate]);
 
   const handleChoseDate = e => {

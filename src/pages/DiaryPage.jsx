@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 
-import { Container, LeftSection } from './Styles/DiaryPage.styled';
+import { Container, EmptyList, LeftSection } from './Styles/DiaryPage.styled';
 import { ModalButton, Plus } from '../components/DiaryForm/Form.styled';
 import { SideBar } from 'components/SideBar/SideBar';
 import { Calendar } from '../components/Calendar/Calendar';
 import { Form } from 'components/DiaryForm/Form';
-import { DiryproductsList } from 'components/DiryProductsList/DiryProductsList';
+import { DiryproductList } from 'components/DiryProductsList/DiryProductList';
 import { Modal } from 'components/Modal/Modal';
 
 import { deleteDiaryEntry } from 'redux/diary/diaryOperations';
@@ -35,7 +35,8 @@ const DiaryPage = () => {
   const width = useWindowWidth();
 
   const onRemoveItemHandler = id => {
-    dispatch(deleteDiaryEntry({ day: params.day, id }));
+    const date = params.day.split('.').join('');
+    dispatch(deleteDiaryEntry({ day: date, id }));
   };
 
   const onModalClose = () => {
@@ -47,7 +48,13 @@ const DiaryPage = () => {
       <LeftSection>
         <Calendar screenWidth={width} />
         {width > 768 && <Form />}
-        {inputDiary.length !== 0 && <DiryproductsList products={inputDiary} onClickItem={onRemoveItemHandler} />}
+        {inputDiary.length !== 0 ? (
+          <DiryproductList products={inputDiary} onClickItem={onRemoveItemHandler} />
+        ) : (
+          <EmptyList>
+            <h3>Still did not added any products</h3>
+          </EmptyList>
+        )}
         {width < 768 && <ModalButton onClick={onModalClose}>{<Plus style={{ display: 'block' }}>+</Plus>}</ModalButton>}
         {isOpen && (
           <Modal onClose={onModalClose}>

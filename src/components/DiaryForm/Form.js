@@ -62,12 +62,11 @@ export const Form = ({ onClick }) => {
 
   const getProducts = debounce(async () => {
     try {
-      console.log(valueProd);
       const resp = await axios.get(`/products?title=${valueProd}`);
       setAllProducts(resp.data);
       return resp.data;
     } catch (error) {
-      console.log('ERROR:', error);
+      setAllProducts([]);
     }
   }, 500);
 
@@ -79,7 +78,8 @@ export const Form = ({ onClick }) => {
 
   const onSubmitForm = e => {
     e.preventDefault();
-    dispatch(addDiaryEntry({ day: params.day, id: chosedProduct._id, weight: weightValue }));
+    const date = params.day.split('.').join('');
+    dispatch(addDiaryEntry({ day: date, id: chosedProduct._id, weight: weightValue }));
     setValueProd('');
     setWeightValue('');
     if (onClick) {

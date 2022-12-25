@@ -35,3 +35,21 @@ export const LeftSection = styled.div`
     max-width: 670px;
   }
 `;
+
+export const EmptyList = styled.div`
+  padding-left: ${p => p.theme.spacing[3]}px;
+  padding-right: ${p => p.theme.spacing[3]}px;
+
+  @media screen and (max-width: 768px) {
+    padding-bottom: ${p => p.theme.spacing[4]}px;
+  }
+  @media screen and (min-width: 768px) {
+    padding-left: ${p => p.theme.spacing[4]}px;
+    padding-right: ${p => p.theme.spacing[4]}px;
+  }
+  @media screen and (min-width: 1280px) {
+    max-height: 270px;
+    padding-left: ${p => p.theme.spacing[3]}px;
+    padding-right: ${p => p.theme.spacing[3]}px;
+  }
+`;

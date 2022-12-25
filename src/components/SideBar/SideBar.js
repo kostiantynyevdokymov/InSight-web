@@ -8,6 +8,7 @@ import axios from 'axios';
 
 import { Section, Container, List, Title, Item, Text, ShowMore } from './SideBar.styled';
 import { selectDiary } from 'redux/selectors';
+import { useParams } from 'react-router';
 
 const initState = { dailyCalories: 0, stopProducts: [] };
 
@@ -15,6 +16,8 @@ const person = { height: 176, age: 28, currentWeight: 70, desireWeight: 80, bloo
 
 export const SideBar = () => {
   const [show, setShow] = useState();
+  const params = useParams();
+
   //                     // це поки що для тестыв
   //---------------------------------------------------------------------
   const [diet, setDiet] = useState(initState);
@@ -53,14 +56,14 @@ export const SideBar = () => {
 
   const notRecomendedFood = uniqueCategories(diet.stopProducts);
 
-  const left = inputDiary.reduce((prev, item) => {
+  const consumed = inputDiary.reduce((prev, item) => {
     if (!isNaN(item.calories)) {
       return prev + parseInt(item.calories);
     }
     return prev + item.calories;
   }, 0);
 
-  const consumed = diet.dailyCalories - left;
+  const left = diet.dailyCalories - consumed;
 
   const FullList = arr => {
     if (show) {
@@ -89,7 +92,7 @@ export const SideBar = () => {
     <Section>
       <Container>
         <List>
-          <Title>Summary for 20/06/2020</Title>
+          <Title>Summary for {params.day}</Title>
           <Item>
             <Text>Left</Text>
             <Text>{left} kcal</Text>
@@ -103,7 +106,7 @@ export const SideBar = () => {
             <Text>{diet.dailyCalories} kcal</Text>
           </Item>
           <Item>
-            <Text>n% of normal</Text>
+            <Text>&#37; of total</Text>
             <Text>{Math.ceil((consumed / diet.dailyCalories) * 100)} &#37;</Text>
           </Item>
         </List>

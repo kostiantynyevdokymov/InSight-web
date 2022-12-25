@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const UlDairy = styled.ul`
+export const UlDiary = styled.ul`
   max-height: 244px;
   overflow-y: scroll;
   padding-left: ${p => p.theme.spacing[3]}px;
@@ -20,7 +20,7 @@ export const UlDairy = styled.ul`
   }
 `;
 
-export const DairyProdLi = styled.li`
+export const DiaryProdLi = styled.li`
   display: grid;
   grid-template-columns: 3fr 2fr 2fr 1fr;
   gap: 8px;
@@ -45,15 +45,15 @@ export const DairyProdLi = styled.li`
   }
 `;
 
-export const TitleDairy = styled.div`
+export const TitleDiary = styled.div`
   text-align: left;
 `;
 
-export const WeightDairy = styled.div`
+export const WeightDiary = styled.div`
   text-align: right;
 `;
 
-export const CalDairy = styled.div`
+export const CalDiary = styled.div`
   text-align: right;
 `;
 
