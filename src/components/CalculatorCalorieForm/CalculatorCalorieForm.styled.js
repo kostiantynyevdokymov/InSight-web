@@ -5,7 +5,7 @@ const Title = styled.h2`
   margin-bottom: 40px;
   font-family: Verdana;
   font-style: normal;
-  font-weight: bold;
+  font-weight: ${p => p.theme.fontWeights.bold};
   font-size: 18px;
   line-height: 26px;
   color: #212121;
@@ -24,6 +24,9 @@ const Title = styled.h2`
 `;
 const FormikForm = styled(Form)`
   width: 240px;
+  padding: ${p => p.theme.mp(3)};
+  box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.9);
 
   @media screen and (min-width: 768px) {
     width: 605px;

@@ -8,6 +8,7 @@ import { selectUserParams } from 'redux/selectors';
 import { setParams } from 'redux/user/userSlice';
 import { useEffect } from 'react';
 import { fetchDiet, fetchUserDiet } from 'redux/diet/dietOperations';
+import { refreshUser } from 'redux/user/userOperations';
 
 function CalculatorCalorieForm() {
   const dispatch = useDispatch();
@@ -50,6 +51,10 @@ function CalculatorCalorieForm() {
     if (isLoggedIn) dispatch(fetchUserDiet(userParams));
     else dispatch(fetchDiet(userParams));
   }, [dispatch, isLoggedIn, userParams]);
+
+  useEffect(() => {
+    if (isLoggedIn) dispatch(refreshUser());
+  }, [dispatch, isLoggedIn]);
 
   return (
     <>
