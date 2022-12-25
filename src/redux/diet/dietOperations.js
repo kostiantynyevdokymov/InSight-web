@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-
 export const fetchDiet = createAsyncThunk('diet/fetchDiet', async (val, thunkAPI) => {
   try {
+    console.log('values:', val);
     const response = await axios.post('/diet', val);
+    console.log('RespDIet:', response.data);
     return response.data;
   } catch (err) {
     return thunkAPI.rejectWithValue(err.message);

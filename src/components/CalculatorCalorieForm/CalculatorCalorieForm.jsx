@@ -2,10 +2,15 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import SC from './CalculatorCalorieForm.styled';
+import { useDispatch } from 'react-redux';
+import { fetchDiet } from 'redux/diet/dietOperations';
 
-function CalculatorCalorieForm() {
+function CalculatorCalorieForm({ modal }) {
+  const dispatch = useDispatch();
   const handleSubmit = values => {
     values.bloodType = Number(values.bloodType);
+    dispatch(fetchDiet(values));
+    modal();
   };
   const ErrorMessagesSchema = Yup.object().shape({
     height: Yup.number('Значення має бути число')
@@ -16,17 +21,17 @@ function CalculatorCalorieForm() {
       .min(12, 'Вкажіть значення більше 12')
       .max(100, 'Вкажіть значення менше 100')
       .required("Обов'язкове поле"),
-    weight: Yup.number('Значення має бути число')
+    currentWeight: Yup.number('Значення має бути число')
       .min(40, 'Мінімальна вага 40 кг')
       .max(200, 'Максимальна вага 200 кг')
       .required("Обов'язкове поле"),
-    desiredWeight: Yup.number('Значення має бути число')
+    desireWeight: Yup.number('Значення має бути число')
       .min(40, 'Мінімальна вага 40 кг')
       .max(150, 'Максимальна вага 150 кг')
       .required("Обов'язкове поле")
-      .when('weight', (weight, schema) => {
+      .when('currentWeight', (currentWeight, schema) => {
         return schema.test({
-          test: desiredWeight => !!weight && desiredWeight < weight,
+          test: desireWeight => !!currentWeight && desireWeight < currentWeight,
           message: 'Бажана вага повинна бути менше поточної',
         });
       }),
@@ -40,8 +45,8 @@ function CalculatorCalorieForm() {
         initialValues={{
           height: '',
           age: '',
-          weight: '',
-          desiredWeight: '',
+          currentWeight: '',
+          desireWeight: '',
           bloodType: '1',
         }}
         enableReinitialize
@@ -74,31 +79,31 @@ function CalculatorCalorieForm() {
                 </SC.Label>
 
                 <SC.Label>
-                  {touched.weight && errors.weight ? (
-                    <SC.ErrorInputField placeholder=" " name="weight" type="number" min="40" max="200" required />
+                  {touched.currentWeight && errors.currentWeight ? (
+                    <SC.ErrorInputField
+                      placeholder=" "
+                      name="currentWeight"
+                      type="number"
+                      min="40"
+                      max="200"
+                      required
+                    />
                   ) : (
-                    <SC.InputField placeholder=" " name="weight" type="number" min="40" max="200" required />
+                    <SC.InputField placeholder=" " name="currentWeight" type="number" min="40" max="200" required />
                   )}
                   <SC.LabelValue>Нинішня вага *</SC.LabelValue>
-                  {touched.weight && errors.weight && <SC.Error>{errors.weight}</SC.Error>}
+                  {touched.currentWeight && errors.currentWeight && <SC.Error>{errors.currentWeight}</SC.Error>}
                 </SC.Label>
               </SC.InputBlock>
               <SC.InputBlock>
                 <SC.Label>
-                  {touched.desiredWeight && errors.desiredWeight ? (
-                    <SC.ErrorInputField
-                      placeholder=" "
-                      name="desiredWeight"
-                      type="number"
-                      min="40"
-                      max="150"
-                      required
-                    />
+                  {touched.desireWeight && errors.desireWeight ? (
+                    <SC.ErrorInputField placeholder=" " name="desireWeight" type="number" min="40" max="150" required />
                   ) : (
-                    <SC.InputField placeholder=" " name="desiredWeight" type="number" min="40" max="150" required />
+                    <SC.InputField placeholder=" " name="desireWeight" type="number" min="40" max="150" required />
                   )}
                   <SC.LabelValue>Бажана вага *</SC.LabelValue>
-                  {touched.desiredWeight && errors.desiredWeight && <SC.Error>{errors.desiredWeight}</SC.Error>}
+                  {touched.desireWeight && errors.desireWeight && <SC.Error>{errors.desireWeight}</SC.Error>}
                 </SC.Label>
                 <SC.RadioGroupContainer>
                   <SC.RadioTitle>Група крові *</SC.RadioTitle>
