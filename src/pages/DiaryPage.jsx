@@ -1,33 +1,12 @@
-import { useEffect, useState } from 'react';
+import { Navigate, useParams } from 'react-router';
+import { useAuth } from 'hooks/useAuth';
 import { DairyForm } from 'components/DiaryForm/DairyForm';
-import { SideBar } from 'components/SideBar/SideBar';
-import { Calendar } from '../components/Calendar/Calendar';
-import { Container, LeftSection } from './Styles/DiaryPage.styled';
 
-const DiaryPage = () => {
-  const useWindowWidth = () => {
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    useEffect(() => {
-      function handleResize() {
-        setWindowWidth(window.innerWidth);
-      }
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
-    return windowWidth;
-  };
+export const DairyPage = () => {
+  const { day } = useParams();
+  const { isLoggedIn } = useAuth();
 
-  const width = useWindowWidth();
-
-  return (
-    <Container>
-      <LeftSection>
-        <Calendar screenWidth={width} />
-        <DairyForm screenWidth={width} />
-      </LeftSection>
-      <SideBar />
-    </Container>
-  );
+  return isLoggedIn ? <DairyForm day={day} /> : <Navigate to="/login" />;
 };
 
-export default DiaryPage;
+export default DairyPage;
