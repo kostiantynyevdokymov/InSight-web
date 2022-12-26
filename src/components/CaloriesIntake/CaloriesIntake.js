@@ -1,20 +1,29 @@
-import { Container, Title, Calories, List, Item, Text } from './CaloriesIntake.styled';
+import { NotRecomendedFoodList } from 'components/SideBar/NotRecomendedFoodList/NotRecomendedFoodList';
+import { useState } from 'react';
+import { Container, Title, Calories, List, HeaderBlock, Kcal, Text, Button } from './CaloriesIntake.styled';
 
 export const CaloriesIntake = ({ diet }) => {
+  const [show, setShow] = useState(false);
+
+  const onShowClick = () => {
+    setShow(!show);
+  };
+
   return (
     <Container>
-      <Title> Your recommended daily calorie intake is</Title>
-      <Calories>
-        {diet.dailyIntake} <span>kcal</span>
-      </Calories>
+      <HeaderBlock>
+        <Title> Your recommended daily calorie intake is</Title>
+        <Calories>
+          {diet.dailyCalories} <Kcal>kcal</Kcal>
+        </Calories>
+      </HeaderBlock>
       <List>
-        <h3>Foods you should not eat</h3>
-        {diet.stopProd.map(it => (
-          <Item>
-            <Text></Text>
-          </Item>
-        ))}
+        <Text>Foods you should not eat</Text>
+        {diet.stopProducts.length !== 0 && (
+          <NotRecomendedFoodList products={diet.stopProducts} show={show} onClick={onShowClick} />
+        )}
       </List>
+      <Button>Start losing weight</Button>
     </Container>
   );
 };

@@ -19,18 +19,22 @@ const Title = styled.h2`
   @media screen and (min-width: 1280px) {
     font-size: 34px;
     line-height: 41px;
-    margin-bottom: 85px;
   }
 `;
 const FormikForm = styled(Form)`
-  width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 300px;
 
   @media screen and (min-width: 768px) {
-    width: 605px;
-  }
-
-  @media screen and (min-width: 1280px) {
     margin: 0;
+    max-width: 605px;
+    padding-left: ${p => p.theme.mp(4)};
+    padding-right: ${p => p.theme.mp(4)};
+  }
+  @media screen and (min-width: 1280px) {
+    padding-left: ${p => p.theme.mp(3)};
+    padding-right: ${p => p.theme.mp(3)};
   }
 `;
 

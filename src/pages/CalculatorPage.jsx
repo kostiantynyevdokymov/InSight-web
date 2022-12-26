@@ -4,20 +4,24 @@ import CalculatorCalorieForm from 'components/CalculatorCalorieForm';
 import { useState } from 'react';
 import { Modal } from 'components/Modal/Modal';
 import { CaloriesIntake } from 'components/CaloriesIntake/CaloriesIntake';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectDiet } from 'redux/selectors';
+import { useEffect } from 'react';
+import { refreshUser } from 'redux/user/userOperations';
 
 const Calculator = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const dispatch = useDispatch();
   const diet = useSelector(selectDiet);
 
-  console.log('Diet:', diet);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, []);
+
   const modalHandler = () => {
     setIsOpen(!isOpen);
   };
-
-  console.log(isOpen);
 
   return (
     <Container>
@@ -25,7 +29,7 @@ const Calculator = () => {
         <CalculatorCalorieForm modal={modalHandler} />
       </LeftSection>
       <SideBar />
-      {isOpen && (
+      {isOpen && diet && (
         <Modal onClose={modalHandler}>
           <CaloriesIntake diet={diet} />
         </Modal>

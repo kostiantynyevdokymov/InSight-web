@@ -13,17 +13,21 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { useNavigate } from 'react-router';
 import { LogoMain } from 'components/Logo/Logo';
 import { useMediaQuery } from 'react-responsive';
+import { useSelector } from 'react-redux';
+import { selectUserAuth } from 'redux/selectors';
 // import { useAuth } from 'hooks/useAuth';
 
 export const NavHeader = () => {
   const navigate = useNavigate();
   const url = window.location.href.split('/').pop();
 
+  const { name } = useSelector(selectUserAuth);
+
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({ query: '(min-width: 768px) and (max-width: 1279px)' });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
   return (
-    <>
+    <div style={{ maxWidth: '1280px', marginLeft: 'auto', marginRight: 'auto' }}>
       {isMobile && (
         <>
           <LogoContainer>
@@ -40,7 +44,7 @@ export const NavHeader = () => {
                 </Back>
               </>
             )}
-            <Name type="button">Name</Name>
+            <Name type="button">{name}</Name>
             <Exit type="button">Exit</Exit>
           </NavHeaderContainer>
         </>
@@ -49,7 +53,7 @@ export const NavHeader = () => {
         <>
           <NavHeaderContainer>
             <LogoMain />
-            <Name type="button">Name</Name>
+            <Name type="button">{name}</Name>
             <Exit type="button">Exit</Exit>
             <HamburgerMenu type="button">
               <GiHamburgerMenu size={20} />
@@ -63,11 +67,11 @@ export const NavHeader = () => {
             <LogoMain />
             <LinkDiary to={'diary'}>DIARY</LinkDiary>
             <LinkCalculator to={'calculator'}>CALCULATOR</LinkCalculator>
-            <Name type="button">Name</Name>
+            <Name type="button">{name}</Name>
             <Exit type="button">Exit</Exit>
           </NavHeaderContainer>
         </>
       )}
-    </>
+    </div>
   );
 };
