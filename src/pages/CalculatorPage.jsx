@@ -20,8 +20,6 @@ const Calculator = () => {
 
   const newUserParam = JSON.parse(sessionStorage.getItem('param'));
 
-  console.log('newUserParam:', newUserParam);
-
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(refreshUser());
@@ -30,13 +28,11 @@ const Calculator = () => {
 
   useEffect(() => {
     if (isLoggedIn && userparams) {
-      console.log('getUserparam');
       const { _id, ...param } = userparams;
       dispatch(fetchUserDiet(param));
       return;
     }
     if (isLoggedIn && !userparams && newUserParam) {
-      console.log('setUserparam');
       dispatch(fetchUserDiet(newUserParam));
       return;
     }
