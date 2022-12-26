@@ -16,6 +16,10 @@ export const NotRecomendedFoodList = ({ show, products, onClick }) => {
 
   const notRecomendedFood = uniqueCategories(products);
 
+  const capitalized = word => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  };
+
   if (show) {
     return notRecomendedFood.map(it => (
       <Item key={it._id} style={{ display: 'block' }}>
@@ -27,7 +31,7 @@ export const NotRecomendedFoodList = ({ show, products, onClick }) => {
       <>
         {notRecomendedFood.slice(0, 4).map(it => (
           <Item key={it._id} style={{ display: 'block' }}>
-            <Text>{it.categories[0]}</Text>
+            <Text>{capitalized(it.categories[0])}</Text>
           </Item>
         ))}
         {notRecomendedFood.length > 4 && (
