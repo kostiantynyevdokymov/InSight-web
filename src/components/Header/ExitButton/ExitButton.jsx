@@ -1,6 +1,6 @@
-import { Exit } from "components/NavHeader/NavHeader.styled";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "redux/user/userOperations";
+import { Exit } from "./ExitButton.styled";
 
 export const ExitButton = () => {
   const dispatch = useDispatch();
