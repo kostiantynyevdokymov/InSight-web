@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
 
 export const BurgerModal = styled.div`
   position: fixed;
@@ -44,7 +43,7 @@ export const LinkContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-export const NavLink = styled(NavLink)`
+export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   color: #969faa;
   &.active {
