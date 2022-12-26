@@ -2,13 +2,22 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import SC from './CalculatorCalorieForm.styled';
-import { useDispatch } from 'react-redux';
-import { fetchDiet } from 'redux/diet/dietOperations';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDiet, fetchUserDiet } from 'redux/diet/dietOperations';
+import { selectUserIsLoggedIn } from 'redux/selectors';
 
 function CalculatorCalorieForm({ modal }) {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectUserIsLoggedIn);
+
   const handleSubmit = values => {
     values.bloodType = Number(values.bloodType);
+    if (isLoggedIn) {
+      dispatch(fetchUserDiet(values));
+      modal();
+      return;
+    }
+    sessionStorage.setItem('param', JSON.stringify(values));
     dispatch(fetchDiet(values));
     modal();
   };

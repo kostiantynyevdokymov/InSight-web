@@ -5,8 +5,9 @@ import { useState } from 'react';
 import { Modal } from 'components/Modal/Modal';
 import { CaloriesIntake } from 'components/CaloriesIntake/CaloriesIntake';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectDiet } from 'redux/selectors';
+import { selectDiet, selectParams, selectUserIsLoggedIn } from 'redux/selectors';
 import { useEffect } from 'react';
+import { fetchUserDiet } from 'redux/diet/dietOperations';
 import { refreshUser } from 'redux/user/userOperations';
 
 const Calculator = () => {
@@ -14,10 +15,24 @@ const Calculator = () => {
 
   const dispatch = useDispatch();
   const diet = useSelector(selectDiet);
+  const userparams = useSelector(selectParams);
+  const isLoggedIn = useSelector(selectUserIsLoggedIn);
+
+  console.log('calc', isLoggedIn);
+  console.log('calcParam', userparams);
 
   useEffect(() => {
-    dispatch(refreshUser());
+    if (isLoggedIn) {
+      dispatch(refreshUser());
+    }
   }, []);
+
+  useEffect(() => {
+    if (isLoggedIn && userparams) {
+      const { _id, ...param } = userparams;
+      dispatch(fetchUserDiet(param));
+    }
+  }, [dispatch, isLoggedIn, userparams]);
 
   const modalHandler = () => {
     setIsOpen(!isOpen);
@@ -28,7 +43,7 @@ const Calculator = () => {
       <LeftSection>
         <CalculatorCalorieForm modal={modalHandler} />
       </LeftSection>
-      <SideBar />
+      {isLoggedIn && <SideBar />}
       {isOpen && diet && (
         <Modal onClose={modalHandler}>
           <CaloriesIntake diet={diet} />

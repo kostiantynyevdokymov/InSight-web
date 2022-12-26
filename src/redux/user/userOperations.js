@@ -37,7 +37,6 @@ export const refreshUser = createAsyncThunk('user/refresh', async (_, thunkAPI) 
     const response = await axios.get('/user/current');
     const { name, email, params } = response.data;
     const token = thunkAPI.getState().user.token;
-    console.log(response);
     return { name, email, token, params };
   } catch (err) {
     return thunkAPI.rejectWithValue(err.message);

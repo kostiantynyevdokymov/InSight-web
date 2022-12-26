@@ -8,7 +8,10 @@ export const Container = styled.div`
 `;
 
 export const HeaderBlock = styled.div`
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
+  width: 450px;
 `;
 export const Title = styled.h1`
   font-size: ${p => p.theme.fontSizes.l};
@@ -29,7 +32,7 @@ export const List = styled.ul`
   list-style: auto;
   margin-left: auto;
   margin-right: auto;
-  padding-top: ${p => p.theme.mp(3)};
+  padding-top: ${p => p.theme.mp(2)};
   padding-bottom: ${p => p.theme.mp(4)};
   border-top: ${p => p.theme.border.header};
   width: 280px;

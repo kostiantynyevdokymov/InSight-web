@@ -46,7 +46,11 @@ export const SideBar = () => {
           </Item>
           <Item>
             <Text>&#37; of total</Text>
-            <Text>{Math.ceil((consumed / diet.dailyCalories) * 100)} &#37;</Text>
+            {diet.dailyCalories ? (
+              <Text>{Math.ceil((consumed / diet.dailyCalories) * 100)} &#37;</Text>
+            ) : (
+              <Text>0 &#37;</Text>
+            )}
           </Item>
         </List>
         <List>

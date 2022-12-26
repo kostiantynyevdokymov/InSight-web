@@ -19,7 +19,6 @@ export const NotRecomendedFoodList = ({ show, products, onClick }) => {
   if (show) {
     return notRecomendedFood.map(it => (
       <Item key={it._id} style={{ display: 'block' }}>
-        <p>{it._id}</p>
         <Text>{it.categories[0]}</Text>
       </Item>
     ));
