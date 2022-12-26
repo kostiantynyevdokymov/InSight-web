@@ -1,12 +1,12 @@
-import { BurgerModal, Menu, LinkContainer, NavLink } from './BurgerModal.styled';
+import { BurgerModal, Menu, LinkContainer, StyledNavLink } from './BurgerModal.styled';
 
 export const BurgerMenu = ({ active, setActive }) => {
   return (
     <BurgerModal className={active ? 'active' : ''}>
       <Menu>
         <LinkContainer>
-          <NavLink to={'diary'}>DIARY</NavLink>
-          <NavLink to={'calculator'}>CALCULATOR</NavLink>
+          <StyledNavLink to={'diary'}>DIARY</StyledNavLink>
+          <StyledNavLink to={'calculator'}>CALCULATOR</StyledNavLink>
         </LinkContainer>
       </Menu>
     </BurgerModal>

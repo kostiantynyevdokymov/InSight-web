@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { constants } from 'constants';
 import { registerUser } from 'redux/user/userOperations';
-import { selectIsLoadingUser } from 'redux/user/userSelectors';
+import { selectIsLoadingUser, selectErrorUser } from 'redux/user/userSelectors';
 import { Link } from 'react-router-dom';
 import {
   Registration,
@@ -13,6 +13,7 @@ import {
   ButtonRegContainer,
   ButtonReg,
   ButtonLog,
+  StyledError,
 } from './RegisterForm.styled';
 
 import { InputName } from 'components/InputFormValid/InputName';
@@ -25,7 +26,9 @@ export const RegisterForm = () => {
   const dispatch = useDispatch();
   const initialUser = { name: '', email: '', password: '' };
   const [user, setUser] = useState(initialUser);
+  const [isError, setIsError] = useState(false);
   const isLoading = useSelector(selectIsLoadingUser);
+  const userError = useSelector(selectErrorUser);
   const googleUrl = `${constants.apiServerAddress}/user/google`;
 
   const handleChange = e => {
@@ -38,10 +41,16 @@ export const RegisterForm = () => {
     setUser(initialUser);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    dispatch(registerUser({ name, email, password }));
-    resetForm();
+    setIsError(false);
+    await dispatch(registerUser({ name, email, password }));
+    
+    if (!isLoading && userError) {
+      setIsError(true);
+    } else {
+      resetForm();
+    };
   };
 
   const { name, email, password } = user;
@@ -72,6 +81,8 @@ export const RegisterForm = () => {
           </StyledLabelInput>
         </StyledInputGroup>
 
+        {isError ? <StyledError>{userError}</StyledError> : null}
+        
         <ButtonRegContainer>
           <ButtonReg>
             <StyledAccentButton type="submit" disabled={isLoading}>
