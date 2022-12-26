@@ -13,6 +13,7 @@ import { Modal } from 'components/Modal/Modal';
 import { deleteDiaryEntry } from 'redux/diary/diaryOperations';
 import { selectDiary } from 'redux/selectors';
 import { useAuth } from 'hooks/useAuth';
+import { NavHeader } from 'components/NavHeader/NavHeader';
 
 const DiaryPage = () => {
   const { isLoggedIn } = useAuth();
@@ -58,8 +59,9 @@ const DiaryPage = () => {
           </EmptyList>
         )}
         {width < 768 && <ModalButton onClick={onModalClose}>{<Plus style={{ display: 'block' }}>+</Plus>}</ModalButton>}
-        {isOpen && (
+        {isOpen && width < 768 && (
           <Modal onClose={onModalClose}>
+            <NavHeader showButton={isOpen} onButtonClick={onModalClose} />
             <Form onClick={onModalClose} />
           </Modal>
         )}

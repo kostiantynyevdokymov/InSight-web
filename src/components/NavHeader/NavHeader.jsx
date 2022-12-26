@@ -1,16 +1,12 @@
 import { Back, NavHeaderContainer, HamburgerMenu, LogoContainer, LinkDiary, LinkCalculator } from './NavHeader.styled';
 import { TiArrowBack } from 'react-icons/ti';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { useNavigate } from 'react-router';
 import { LogoMain } from 'components/Logo/Logo';
 import { useMediaQuery } from 'react-responsive';
 import { ExitButton } from 'components/Header/ExitButton/ExitButton';
 import { NameButton } from 'components/Header/NameButton/NameButton';
 
-export const NavHeader = () => {
-  const navigate = useNavigate();
-  const url = window.location.href.split('/').pop();
-
+export const NavHeader = ({ showButton, onButtonClick }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({ query: '(min-width: 768px) and (max-width: 1279px)' });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
@@ -26,12 +22,10 @@ export const NavHeader = () => {
             </HamburgerMenu>
           </LogoContainer>
           <NavHeaderContainer>
-            {(url === 'diary' || url === 'calculator') && (
-              <>
-                <Back type="button" onClick={() => navigate(-1)}>
-                  <TiArrowBack size={20} />
-                </Back>
-              </>
+            {showButton && (
+              <Back type="button" onClick={onButtonClick}>
+                <TiArrowBack size={20} />
+              </Back>
             )}
             <NameButton />
             <ExitButton />

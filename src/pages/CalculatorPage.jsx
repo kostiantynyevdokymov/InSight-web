@@ -41,8 +41,14 @@ const Calculator = () => {
       {isLoggedIn && <SideBar />}
       {isOpen && diet && (
         <Modal onClose={modalHandler}>
-          {isLoggedIn && width < 768 ? <NavHeader /> : <AuthHeader />}
-          <CaloriesIntake diet={diet} />
+          {width < 768 ? (
+            <>
+              {isLoggedIn ? <NavHeader showButton={isOpen} onButtonClick={modalHandler} /> : <AuthHeader />}
+              <CaloriesIntake diet={diet} />
+            </>
+          ) : (
+            <CaloriesIntake diet={diet} />
+          )}
         </Modal>
       )}
     </Container>
