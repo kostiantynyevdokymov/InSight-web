@@ -1,22 +1,13 @@
-import { constants } from 'constants';
 import { LoginForm } from 'components/LoginForm/LoginForm';
 import { useAuth } from 'hooks/useAuth';
-import { Navigate } from 'react-router';
+import { Navigate, useSearchParams } from 'react-router-dom';
 
 const LoginPage = () => {
   const { isLoggedIn } = useAuth();
+  const [searchParams] = useSearchParams();
+  const retPath = searchParams.get('retPath') || '/';
 
-  const url = `${constants.apiServerAddress}/user/google`;
-
-  return !isLoggedIn ? (
-    <>
-      <LoginForm />
-      <br />
-      <a href={url}>Google</a>
-    </>
-  ) : (
-    <Navigate to="/" />
-  );
+  return isLoggedIn ? <Navigate to={`/${retPath}`} /> : <LoginForm />;
 };
 
 export default LoginPage;
