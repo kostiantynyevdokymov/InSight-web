@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { Navigate, useParams } from 'react-router';
 
 import { Container, EmptyList, LeftSection } from './Styles/DiaryPage.styled';
 import { ModalButton, Plus } from '../components/DiaryForm/Form.styled';
@@ -12,8 +12,10 @@ import { Modal } from 'components/Modal/Modal';
 
 import { deleteDiaryEntry } from 'redux/diary/diaryOperations';
 import { selectDiary } from 'redux/selectors';
+import { useAuth } from 'hooks/useAuth';
 
 const DiaryPage = () => {
+  const { isLoggedIn } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
   const { inputDiary } = useSelector(selectDiary);
@@ -43,7 +45,7 @@ const DiaryPage = () => {
     setIsOpen(!isOpen);
   };
 
-  return (
+  return isLoggedIn ? (
     <Container>
       <LeftSection>
         <Calendar screenWidth={width} />
@@ -64,6 +66,8 @@ const DiaryPage = () => {
       </LeftSection>
       <SideBar />
     </Container>
+  ) : (
+    <Navigate to="/login" />
   );
 };
 
