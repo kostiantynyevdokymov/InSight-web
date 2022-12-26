@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { handlePending, handleFulfilled, handleRejected } from 'redux/utils/defaultHandlers';
-import { handleLoadProducts } from './productHanglers';
+import { handleLoadProducts } from './productHandlers';
 import { loadProducts } from './productsOperations';
 
 const initialState = {
