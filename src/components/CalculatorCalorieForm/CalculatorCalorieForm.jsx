@@ -17,6 +17,8 @@ function CalculatorCalorieForm({ modal }) {
 
   const handleSubmit = values => {
     dispatch(setParams(values));
+    if (isLoggedIn) dispatch(fetchUserDiet(values));
+    else dispatch(fetchDiet(values));
     modal();
   };
 
@@ -49,11 +51,6 @@ function CalculatorCalorieForm({ modal }) {
   useEffect(() => {
     if (isLoggedIn) dispatch(refreshUser());
   }, [dispatch, isLoggedIn]);
-
-  useEffect(() => {
-    if (isLoggedIn) dispatch(fetchUserDiet(userParams));
-    else dispatch(fetchDiet(userParams));
-  }, [dispatch, isLoggedIn, userParams]);
 
   return (
     <>
