@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form, Field } from 'formik';
+import { Form, Field, ErrorMessage} from 'formik';
 
 const Title = styled.h2`
   margin-bottom: 40px;
@@ -166,7 +166,7 @@ const RadioField = styled(Field)`
     background: #fc842d;
   }
 `;
-const Error = styled.div`
+const Error = styled(ErrorMessage)`
   width: 300px;
   position: absolute;
   top: 22px;
@@ -191,10 +191,11 @@ const LabelValue = styled.p`
   transition: 0.3s;
 `;
 const InputField = styled(Field)`
-  margin-bottom: 40px;
+  margin-bottom: ${p => p.isError ? '50px' : '40px'};
   width: 240px;
   border: 0;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: ${p => p.isError ? '1px solid #e11616' : '1px solid #e0e0e0'};
+  background-color: ${p => p.isError ? '#e1161613' : 'inherit'};
   &:focus {
     outline: none;
   }
@@ -207,24 +208,7 @@ const InputField = styled(Field)`
     margin: 0;
   }
 `;
-const ErrorInputField = styled(Field)`
-  margin-bottom: 40px;
-  width: 240px;
-  border: 0;
-  background-color: #e1161613;
-  border-bottom: 1px solid #e11616;
-  &:focus {
-    outline: none;
-  }
-  & {
-    -moz-appearance: textfield;
-  }
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-`;
+
 const SC = {
   Title,
   FormikForm,
@@ -241,7 +225,6 @@ const SC = {
   Error,
   LabelValue,
   InputField,
-  ErrorInputField,
 };
 
 export default SC;

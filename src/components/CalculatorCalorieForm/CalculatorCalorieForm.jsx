@@ -79,50 +79,28 @@ function CalculatorCalorieForm() {
             <SC.InputWrapper>
               <SC.InputBlock>
                 <SC.Label>
-                  {touched.height && errors.height ? (
-                    <SC.ErrorInputField placeholder=" " name="height" type="number" min="100" max="260" required />
-                  ) : (
-                    <SC.InputField placeholder=" " name="height" type="number" min="100" max="260" required />
-                  )}
+                  <SC.InputField placeholder=" " name="height" type="number" isError={!!errors.height}/>
                   <SC.LabelValue>Зріст*</SC.LabelValue>
-                  {touched.height && errors.height && <SC.Error>{errors.height}</SC.Error>}
-                </SC.Label>
-                <SC.Label>
-                  {touched.age && errors.age ? (
-                    <SC.ErrorInputField placeholder=" " name="age" type="number" min="12" max="100" required />
-                  ) : (
-                    <SC.InputField placeholder=" " name="age" type="number" min="12" max="100" required />
-                  )}
-                  <SC.LabelValue>Вік*</SC.LabelValue>
-                  {touched.age && errors.age && <SC.Error>{errors.age}</SC.Error>}
+                  <SC.Error component="div" name="height" />
                 </SC.Label>
 
                 <SC.Label>
-                  {touched.currentWeight && errors.currentWeight ? (
-                    <SC.ErrorInputField
-                      placeholder=" "
-                      name="currentWeight"
-                      type="number"
-                      min="40"
-                      max="200"
-                      required
-                    />
-                  ) : (
-                    <SC.InputField placeholder=" " name="currentWeight" type="number" min="40" max="200" required />
-                  )}
+                  <SC.InputField placeholder=" " name="age" type="number" isError={!!errors.age}/>
+                  <SC.LabelValue>Вік*</SC.LabelValue>
+                  <SC.Error component="div" name="age" />
+                </SC.Label>
+
+                <SC.Label>
+                  <SC.InputField placeholder=" " name="currentWeight" type="number" isError={!!errors.currentWeight}/>
                   <SC.LabelValue>Нинішня вага*</SC.LabelValue>
-                  {touched.currentWeight && errors.currentWeight && <SC.Error>{errors.currentWeight}</SC.Error>}
+                  <SC.Error component="div" name="currentWeight" />
                 </SC.Label>
               </SC.InputBlock>
               <SC.InputBlock>
                 <SC.Label>
-                  {touched.desireWeight && errors.desireWeight ? (
-                    <SC.ErrorInputField placeholder=" " name="desireWeight" type="number" min="40" max="150" required />
-                  ) : (
-                    <SC.InputField placeholder=" " name="desireWeight" type="number" min="40" max="150" required />
-                  )}
+                  <SC.InputField placeholder=" " name="desireWeight" type="number" isError={!!errors.desireWeight}/>
                   <SC.LabelValue>Бажана вага*</SC.LabelValue>
-                  {touched.desireWeight && errors.desireWeight && <SC.Error>{errors.desireWeight}</SC.Error>}
+                  <SC.Error component="div" name="desireWeight" />
                 </SC.Label>
                 <SC.RadioGroupContainer>
                   <SC.RadioTitle>Група крові *</SC.RadioTitle>
