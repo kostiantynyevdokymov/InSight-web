@@ -78,7 +78,7 @@ export const Form = ({ onClick }) => {
       setChosedProduct([]);
       setAllProducts([]);
     }
-  }, [valueProd]);
+  }, [getProducts, valueProd]);
 
   useEffect(() => {
     const handleKeyDownEsc = e => {
