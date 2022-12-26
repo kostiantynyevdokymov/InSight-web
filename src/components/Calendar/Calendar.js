@@ -58,7 +58,7 @@ export const Calendar = ({ screenWidth }) => {
     let date = value.split('.');
     date[1] -= 1;
     let d = new Date(date[2], date[1], date[0]);
-    if (d.getFullYear() == date[2] && d.getMonth() == date[1] && d.getDate() == date[0]) {
+    if (d.getFullYear() === date[2] && d.getMonth() === date[1] && d.getDate() === date[0]) {
       return true;
     } else {
       return false;
