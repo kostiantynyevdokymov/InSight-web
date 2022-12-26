@@ -49,8 +49,3 @@ export const App = () => {
     </Suspense>
   );
 };
-
-// <Home />
-// <LogoMain />
-// <LoginPage />
-// <RegistrationPage />
