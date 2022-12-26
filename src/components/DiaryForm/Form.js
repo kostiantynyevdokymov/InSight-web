@@ -23,42 +23,12 @@ export const Form = ({ onClick }) => {
 
   const [allProducts, setAllProducts] = useState([]);
   const [chosedProduct, setChosedProduct] = useState();
-
   const [valueProd, setValueProd] = useState('');
   const [weightValue, setWeightValue] = useState('');
 
   const dispatch = useDispatch();
   const params = useParams();
   const autocompleteMenu = useRef();
-
-  useEffect(() => {
-    if (valueProd.length > 2) {
-      getProducts();
-    }
-    if (valueProd === '') {
-      setChosedProduct([]);
-      setAllProducts([]);
-    }
-  }, [valueProd]);
-
-  useEffect(() => {
-    const handleKeyDownEsc = e => {
-      if (!autocompleteMenu.current.contains(e.target)) {
-        setShowAutocomplete(false);
-      }
-      if (e.code === 'Escape') {
-        setShowAutocomplete(false);
-      }
-    };
-    if (showAutocomplete) {
-      window.addEventListener('keydown', handleKeyDownEsc);
-      window.addEventListener('mousedown', handleKeyDownEsc);
-      return () => {
-        window.removeEventListener('keydown', handleKeyDownEsc);
-        window.removeEventListener('mousedown', handleKeyDownEsc);
-      };
-    }
-  });
 
   const getProducts = debounce(async () => {
     try {
@@ -99,6 +69,35 @@ export const Form = ({ onClick }) => {
       setWeightValue(e.target.value);
     }
   };
+
+  useEffect(() => {
+    if (valueProd.length > 2) {
+      getProducts();
+    }
+    if (valueProd === '') {
+      setChosedProduct([]);
+      setAllProducts([]);
+    }
+  }, [getProducts, valueProd]);
+
+  useEffect(() => {
+    const handleKeyDownEsc = e => {
+      if (!autocompleteMenu.current.contains(e.target)) {
+        setShowAutocomplete(false);
+      }
+      if (e.code === 'Escape') {
+        setShowAutocomplete(false);
+      }
+    };
+    if (showAutocomplete) {
+      window.addEventListener('keydown', handleKeyDownEsc);
+      window.addEventListener('mousedown', handleKeyDownEsc);
+      return () => {
+        window.removeEventListener('keydown', handleKeyDownEsc);
+        window.removeEventListener('mousedown', handleKeyDownEsc);
+      };
+    }
+  });
 
   return (
     <Container>

@@ -45,7 +45,7 @@ export const theme = {
     normal: 400,
     bold: 700,
   },
-  spacing: [0, 5, 10, 20, 40, 80, 160, 320, 640],
+  spacing: [0, 5, 10, 20, 40, 60, 80, 160, 320, 640],
   radii: {
     none: 0,
     normal: '5px',
@@ -64,6 +64,7 @@ export const theme = {
   border: {
     default: '1px solid #212121',
     header: '2px solid #E0E0E0',
+
     dev: '1px solid tomato',
   },
 };
