@@ -1,6 +1,5 @@
 import React from 'react';
 import { InputForm } from './InputForm.styled';
-import PropTypes from 'prop-types';
 
 export const InputPassword = ({ onChange, value }) => (
   <InputForm
