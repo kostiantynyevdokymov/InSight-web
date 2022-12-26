@@ -8,7 +8,6 @@ import MainPageSelector from 'components/MainPage/MainPageSelector';
 
 export const SharedLayout = () => {
   const isLoggedIn = useSelector(selectUserIsLoggedIn);
-  console.log('isLoggedIn', isLoggedIn);
 
   return (
     <>
