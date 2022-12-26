@@ -102,3 +102,7 @@ export const ButtonLog = styled.div`
     margin-bottom: 0;
   }
 `;
+
+export const StyledError = styled.div`
+  color: #e11616;
+`;
