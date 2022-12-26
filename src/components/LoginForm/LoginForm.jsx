@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { constants } from 'constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from 'redux/user/userOperations';
-import { selectIsLoadingUser } from 'redux/user/userSelectors';
+import { selectIsLoadingUser, selectErrorUser } from 'redux/user/userSelectors';
 import { Link } from 'react-router-dom';
 import {
   Login,
@@ -13,6 +13,7 @@ import {
   ButtonLogContainer,
   ButtonReg,
   ButtonLog,
+  StyledError,
 } from './LoginForm.styled';
 
 import { InputMail } from 'components/InputFormValid/InputEmail';
@@ -24,7 +25,9 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
   const initialUser = { email: '', password: '' };
   const [user, setUser] = useState(initialUser);
+  const [isError, setIsError] = useState(false);
   const isLoading = useSelector(selectIsLoadingUser);
+  const userError = useSelector(selectErrorUser);
   const googleUrl = `${constants.apiServerAddress}/user/google`;
 
   const resetForm = () => {
@@ -37,10 +40,16 @@ export const LoginForm = () => {
     setUser(newUserData);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    dispatch(loginUser({ email, password }));
-    resetForm();
+    setIsError(false);
+    await dispatch(loginUser({ email, password }));
+
+    if (!isLoading && userError) {
+      setIsError(true);
+    } else {
+      resetForm();
+    };
   };
 
   const { email, password } = user;
@@ -63,6 +72,8 @@ export const LoginForm = () => {
             <InputPassword value={password} onChange={handleChange} />
           </StyledLabelInput>
         </StyledInputGroup>
+
+        {isError ? <StyledError>{userError}</StyledError> : null}
 
         <ButtonLogContainer>
           <ButtonLog>
