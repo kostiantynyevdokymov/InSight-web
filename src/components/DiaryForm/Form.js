@@ -78,7 +78,7 @@ export const Form = ({ onClick }) => {
       setChosedProduct([]);
       setAllProducts([]);
     }
-  }, [getProducts, valueProd]);
+  }, [valueProd]);
 
   useEffect(() => {
     const handleKeyDownEsc = e => {
@@ -116,7 +116,7 @@ export const Form = ({ onClick }) => {
               {allProducts.length !== 0 &&
                 showAutocomplete &&
                 allProducts.map(({ title, _id }, index) => (
-                  <AutocompleteItems key={_id.$oid} onClick={event => itemClickHandler(event, index)}>
+                  <AutocompleteItems key={_id} onClick={event => itemClickHandler(event, index)}>
                     {title.ua}
                   </AutocompleteItems>
                 ))}
