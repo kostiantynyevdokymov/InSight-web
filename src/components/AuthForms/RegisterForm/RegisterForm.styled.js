@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from 'components/Common/Theme';
 
 export const Registration = styled.div`
   padding-top: 40px;
@@ -34,9 +33,9 @@ export const StyledTitleForm = styled.p`
   line-height: 17px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  font-size: ${theme.fontSizes.default};
-  font-weight: ${theme.fontWeights.bold};
-  color: ${theme.colors.text.accentText};
+  font-size: ${p => p.theme.fontSizes.default};
+  font-weight: ${p => p.theme.fontWeights.bold};
+  color: ${p => p.theme.colors.text.accentText};
 
   @media screen and (min-width: 768px) {
     justify-content: flex-start;
@@ -54,17 +53,18 @@ export const StyledLabelInput = styled.label`
   padding-bottom: 20px;
   font-family: 'Verdana';
   font-style: normal;
-  font-size: ${theme.fontSizes.default};
+  font-size: ${p => p.theme.fontSizes.default};
   line-height: 17px;
   letter-spacing: 0.04em;
-  font-weight: ${theme.fontWeights.bold};
-  color: ${theme.colors.text.mediumText};
+  font-weight: ${p => p.theme.fontWeights.bold};
+  color: ${p => p.theme.colors.text.mediumText};
 `;
 
 export const ButtonRegContainer = styled.div`
   margin-right: auto;
   margin-left: auto;
   margin-top: 60px;
+
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: row;
@@ -73,6 +73,7 @@ export const ButtonRegContainer = styled.div`
 
 export const ButtonReg = styled.div`
   margin-bottom: 20px;
+
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
   }

@@ -17,9 +17,9 @@ import {
   DefaultButton,
 } from './RegisterForm.styled';
 
-import { InputName } from 'components/InputFormValid/InputName';
-import { InputMail } from 'components/InputFormValid/InputEmail';
-import { InputPassword } from 'components/InputFormValid/InputPassword';
+import { InputName } from 'components/AuthForms/InputFormValid/InputName';
+import { InputMail } from 'components/AuthForms/InputFormValid/InputEmail';
+import { InputPassword } from 'components/AuthForms/InputFormValid/InputPassword';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();

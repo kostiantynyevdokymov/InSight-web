@@ -18,8 +18,8 @@ import {
   DefaultButton,
 } from './LoginForm.styled';
 
-import { InputMail } from 'components/InputFormValid/InputEmail';
-import { InputPassword } from 'components/InputFormValid/InputPassword';
+import { InputMail } from 'components/AuthForms/InputFormValid/InputEmail';
+import { InputPassword } from 'components/AuthForms/InputFormValid/InputPassword';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
