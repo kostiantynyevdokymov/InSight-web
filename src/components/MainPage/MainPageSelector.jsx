@@ -1,6 +1,5 @@
-// import { useSelector } from 'react-redux';
-import { useSelector } from 'react-redux';
-
+import { Outlet } from 'react-router';
+import { AuthHeader } from 'components/AuthHeader/AuthHeader';
 import {
   Wrapper,
   Layer,
@@ -10,17 +9,13 @@ import {
   MainPageHeaderStyled,
   MainPageFormContainer,
 } from 'components/MainPage/MainPageStyled';
-import { Outlet } from 'react-router';
-import { selectUserIsLoggedIn } from 'redux/selectors';
-import { NavHeader } from 'components/NavHeader/NavHeader';
-import { AuthHeader } from 'components/AuthHeader/AuthHeader';
 
 const MainPageSelector = () => {
-  const isLoggedIn = useSelector(selectUserIsLoggedIn);
-
   return (
     <Wrapper>
-      <MainPageHeaderStyled>{isLoggedIn ? <NavHeader /> : <AuthHeader />}</MainPageHeaderStyled>
+      <MainPageHeaderStyled>
+        <AuthHeader />
+      </MainPageHeaderStyled>
       <MainPageFormContainer>
         <Outlet />
       </MainPageFormContainer>
