@@ -17,8 +17,9 @@ function CalculatorCalorieForm() {
 
   const handleSubmit = values => {
     dispatch(setParams(values));
-
-    //TODO: show modal
+    setTimeout(() => {
+      //TODO: show modal
+    }, 2000);
   };
 
   const ErrorMessagesSchema = Yup.object().shape({
