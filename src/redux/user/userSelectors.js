@@ -3,19 +3,15 @@ export const selectUserAuth = store => {
   return { name, email, token };
 };
 
-export const selectUserToken = store => {
-  console.log(store.user);
-  const { token } = store.user;
-  console.log({ token });
-  return token;
-};
+export const selectUserToken = store => store.user.token;
 
-export const selectParams = store => store.user.params;
+export const selectUserParams = store => store.user.params;
 
 export const selectIsLoadingUser = store => store.user.isLoading;
 
 export const selectErrorUser = store => store.user.error;
 
 export const selectUserIsLoggedIn = store => {
-  return store.user.token === null ? false : true;
+  const { name, token } = selectUserAuth(store);
+  return token !== null && name !== null;
 };

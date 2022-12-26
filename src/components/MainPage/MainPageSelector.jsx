@@ -1,15 +1,24 @@
-// import { useSelector } from 'react-redux';
-import { useAuth } from 'hooks/useAuth';
-import { LoginForm } from 'components/LoginForm/LoginForm';
-
-import { Wrapper, Layer, Leaves, Banana, Strawberry } from 'components/MainPage/MainPageStyled';
+import { Outlet } from 'react-router';
+import { AuthHeader } from 'components/AuthHeader/AuthHeader';
+import {
+  Wrapper,
+  Layer,
+  Leaves,
+  Banana,
+  Strawberry,
+  MainPageHeaderStyled,
+  MainPageFormContainer,
+} from 'components/MainPage/MainPageStyled';
 
 const MainPageSelector = () => {
-  const { isLoggedin } = useAuth();
-
   return (
     <Wrapper>
-      {isLoggedin ? 'calculator' : <LoginForm />}
+      <MainPageHeaderStyled>
+        <AuthHeader />
+      </MainPageHeaderStyled>
+      <MainPageFormContainer>
+        <Outlet />
+      </MainPageFormContainer>
       <Strawberry />
       <Banana />
       <Leaves />
