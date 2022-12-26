@@ -1,7 +1,7 @@
 import { SideBar } from 'components/SideBar/SideBar';
 import { Container, LeftSection } from './Styles/DiaryPage.styled';
 import CalculatorCalorieForm from 'components/CalculatorCalorieForm';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Modal } from 'components/Modal/Modal';
 import { CaloriesIntake } from 'components/CaloriesIntake/CaloriesIntake';
 import { useSelector } from 'react-redux';
@@ -15,6 +15,20 @@ const Calculator = () => {
   const diet = useSelector(selectDiet);
   const isLoggedIn = useSelector(selectUserIsLoggedIn);
 
+  const useWindowWidth = () => {
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    useEffect(() => {
+      function handleResize() {
+        setWindowWidth(window.innerWidth);
+      }
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    return windowWidth;
+  };
+
+  const width = useWindowWidth();
+
   const modalHandler = () => {
     setIsOpen(!isOpen);
   };
@@ -27,7 +41,7 @@ const Calculator = () => {
       {isLoggedIn && <SideBar />}
       {isOpen && diet && (
         <Modal onClose={modalHandler}>
-          {isLoggedIn ? <NavHeader /> : <AuthHeader />}
+          {isLoggedIn && width < 768 ? <NavHeader /> : <AuthHeader />}
           <CaloriesIntake diet={diet} />
         </Modal>
       )}
