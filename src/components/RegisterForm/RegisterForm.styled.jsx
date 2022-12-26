@@ -10,19 +10,19 @@ export const Registration = styled.div`
     padding-left: 16px;
     margin-left: 0;
     margin-right: 0;
-  
+  }
+
   @media screen and (min-width: 1280px) {
-      padding-left: 16px;
-      margin-left: 0;
-      margin-right: 0;
-    }  
+    padding-left: 16px;
+    margin-left: 0;
+    margin-right: 0;
+  }
 `;
 
 export const FormRegistration = styled.form`
   border: none;
   margin-top: 55px;
-  `;
-  
+`;
 
 export const StyledTitleForm = styled.p`
   display: flex;
@@ -64,12 +64,12 @@ export const StyledLabelInput = styled.label`
 export const ButtonRegContainer = styled.div`
   margin-right: auto;
   margin-left: auto;
-  margin-top: 60px; 
+  margin-top: 60px;
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: row;
   }
-`
+`;
 
 export const ButtonReg = styled.div`
   margin-bottom: 20px;
@@ -79,8 +79,8 @@ export const ButtonReg = styled.div`
 `;
 
 export const ButtonLog = styled.div`
- @media screen and (min-width: 768px) {
-   margin-left: 20px;
+  @media screen and (min-width: 768px) {
+    margin-left: 20px;
   }
 `;
 
@@ -103,4 +103,3 @@ export const DefaultButton = styled.button`
   box-shadow: none;
   border-radius: 30px;
 `;
-

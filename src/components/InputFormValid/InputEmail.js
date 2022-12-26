@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 export const InputMail = ({ onChange, value }) => (
   <InputForm
+    autoComplete="email"
     type="email"
     name="email"
     required
@@ -11,8 +12,3 @@ export const InputMail = ({ onChange, value }) => (
     value={value}
   />
 );
-
-InputMail.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-};

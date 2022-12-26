@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 export const InputName = ({ onChange, value }) => (
   <InputForm
+    autoComplete="name"
     type="text"
     name="name"
     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -13,8 +14,3 @@ export const InputName = ({ onChange, value }) => (
     value={value}
   />
 );
-
-InputName.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-};

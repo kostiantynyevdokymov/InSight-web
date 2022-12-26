@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from 'components/Common/Theme';
 
-export const Login = styled.div` 
+export const Login = styled.div`
   padding-top: 38px;
   width: 280px;
 
@@ -10,18 +10,19 @@ export const Login = styled.div`
     padding-left: 32px;
     margin-left: 0;
     margin-right: 0;
+  }
 
-    @media screen and (min-width: 1280px) {
-      padding-left: 16px;
-      margin-left: 0;
-      margin-right: 0;
-    }
+  @media screen and (min-width: 1280px) {
+    padding-left: 16px;
+    margin-left: 0;
+    margin-right: 0;
+  }
 `;
 
 export const FormLogin = styled.form`
   border: none;
   margin-top: 55px;
-  `;
+`;
 
 export const StyledTitleForm = styled.p`
   display: flex;
@@ -72,7 +73,7 @@ export const InputForm = styled.input`
   font-weight: ${theme.fontWeights.normal};
   color: ${theme.colors.text.defaultText};
   border: none;
-  border-bottom: 1px solid #E0E0E0;
+  border-bottom: 1px solid #e0e0e0;
   background-color: transparent;
   @media screen and (min-width: 768px) {
     width: 240px;
@@ -82,17 +83,17 @@ export const InputForm = styled.input`
 export const ButtonLogContainer = styled.div`
   margin-right: auto;
   margin-left: auto;
-  margin-top: 60px; 
+  margin-top: 60px;
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: row;
   }
-`
+`;
 
 export const ButtonReg = styled.div`
-@media screen and (min-width: 768px) {
-  margin-left: 20px;  
-} 
+  @media screen and (min-width: 768px) {
+    margin-left: 20px;
+  }
 `;
 
 export const ButtonLog = styled.div`

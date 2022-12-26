@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 export const InputPassword = ({ onChange, value }) => (
   <InputForm
+    autoComplete="current-password"
     type="password"
     name="password"
     required
@@ -13,8 +14,3 @@ export const InputPassword = ({ onChange, value }) => (
     title="Має містити принаймні одну цифру, одну велику та малу літеру та принаймні 6 або більше символів"
   />
 );
-
-InputPassword.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-};

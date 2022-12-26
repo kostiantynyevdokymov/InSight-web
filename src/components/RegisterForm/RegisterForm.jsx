@@ -23,77 +23,68 @@ import { InputPassword } from 'components/InputFormValid/InputPassword';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');  
-  const isLoading = useSelector(selectIsLoadingUser); 
-    
+  const initialUser = { name: '', email: '', password: '' };
+  const [user, setUser] = useState(initialUser);
+  const isLoading = useSelector(selectIsLoadingUser);
+
   const handleChange = e => {
-    switch (e.currentTarget.name) {
-      case 'name':
-        setName(e.currentTarget.value);
-        break;
-      case 'email':
-        setEmail(e.currentTarget.value);
-        break;
-      case 'password':
-        setPassword(e.currentTarget.value);
-        break;
-      default:
-        return;
-    }
+    const newUserData = { ...user };
+    newUserData[e.currentTarget.name] = e.currentTarget.value;
+    setUser(newUserData);
   };
 
   const resetForm = () => {
-    setName('');
-    setEmail('');
-    setPassword('');
+    setUser(initialUser);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     dispatch(registerUser({ name, email, password }));
     resetForm();
   };
 
+  const { name, email, password } = user;
+
   return (
-    <Registration autoComplete="off">
+    <Registration>
       <StyledTitleForm>Register</StyledTitleForm>
-        <FormRegistration onSubmit={handleSubmit}>
+
+      <FormRegistration onSubmit={handleSubmit}>
+        <StyledInputGroup>
+          <StyledLabelInput>
+            Name *
+            <InputName value={name} onChange={handleChange} />
+          </StyledLabelInput>
+        </StyledInputGroup>
 
         <StyledInputGroup>
           <StyledLabelInput>
-              Name *              
-              <InputName value={name} onChange={handleChange} />
+            E-mail *
+            <InputMail value={email} onChange={handleChange} />
           </StyledLabelInput>
         </StyledInputGroup>
+
         <StyledInputGroup>
           <StyledLabelInput>
-              E-mail *              
-              <InputMail value={email} onChange={handleChange} />
+            Password *
+            <InputPassword value={password} onChange={handleChange} />
           </StyledLabelInput>
         </StyledInputGroup>
-        <StyledInputGroup>
-          <StyledLabelInput>
-              Password *              
-              <InputPassword value={password} onChange={handleChange} />
-          </StyledLabelInput>
-        </StyledInputGroup>
-        
+
         <ButtonRegContainer>
           <ButtonReg>
             <AccentButton type="submit" disabled={isLoading}>
-                {isLoading ? (<Loader ariaLabel="loader-spinner" visible={true} />) : ('Register')}
+              {isLoading ? <Loader ariaLabel="loader-spinner" visible={true} /> : 'Register'}
             </AccentButton>
-        </ButtonReg>
-        <ButtonLog>
-            <Link to={'login'}>
+          </ButtonReg>
+
+          <ButtonLog>
+            <Link to={'/login'}>
               <DefaultButton type="button">Login</DefaultButton>
             </Link>
-          </ButtonLog>       
+          </ButtonLog>
         </ButtonRegContainer>
-       
-        </FormRegistration>
-        </Registration>
-   );
-  };
+      </FormRegistration>
+    </Registration>
+  );
+};

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { constants } from 'constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from 'redux/user/userOperations';
 import { selectIsLoadingUser } from 'redux/user/userSelectors';
@@ -22,44 +23,41 @@ import { InputPassword } from 'components/InputFormValid/InputPassword';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');  
+  const initialUser = { email: '', password: '' };
+  const [user, setUser] = useState(initialUser);
   const isLoading = useSelector(selectIsLoadingUser);
-  
-  const handleChange = e => {
-    switch (e.currentTarget.name) {     
-      case 'email':
-        setEmail(e.currentTarget.value);
-        break;
-      case 'password':
-        setPassword(e.currentTarget.value);
-        break;
-      default:
-        return;
-    }
-  };  
+  const googleUrl = `${constants.apiServerAddress}/user/google`;
+
   const resetForm = () => {
-    setEmail('');
-    setPassword('');
+    setUser(initialUser);
   };
 
-  const handleSubmit = (e) => {
+  const handleChange = e => {
+    const newUserData = { ...user };
+    newUserData[e.currentTarget.name] = e.currentTarget.value;
+    setUser(newUserData);
+  };
+
+  const handleSubmit = e => {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
     resetForm();
   };
 
-  return (
-    <Login autoComplete="off">
-      <StyledTitleForm>Log in</StyledTitleForm>
-      <FormLogin onSubmit={handleSubmit}>        
+  const { email, password } = user;
 
+  return (
+    <Login>
+      <StyledTitleForm>Log in</StyledTitleForm>
+
+      <FormLogin onSubmit={handleSubmit}>
         <StyledInputGroup>
           <StyledLabelInput>
             E-mail *
             <InputMail value={email} onChange={handleChange} />
           </StyledLabelInput>
         </StyledInputGroup>
+
         <StyledInputGroup>
           <StyledLabelInput>
             Password *
@@ -70,18 +68,22 @@ export const LoginForm = () => {
         <ButtonLogContainer>
           <ButtonLog>
             <AccentButton type="submit" disabled={isLoading}>
-            {isLoading ? (<Loader ariaLabel="loader-spinner" visible={true} />) : ('Log in')}
-            </AccentButton> 
+              {isLoading ? <Loader ariaLabel="loader-spinner" visible={true} /> : 'Log in'}
+            </AccentButton>
           </ButtonLog>
+
           <ButtonReg>
-            <Link to={'register'}>
+            <Link to={'/register'}>
               <DefaultButton type="button">Register</DefaultButton>
             </Link>
           </ButtonReg>
-          <></>
-        </ButtonLogContainer> 
-       
+        </ButtonLogContainer>
 
+        <ButtonReg style={{ margin: 0, marginTop: 20 }}>
+          <a href={googleUrl}>
+            <DefaultButton type="button">Google</DefaultButton>
+          </a>
+        </ButtonReg>
       </FormLogin>
     </Login>
   );
