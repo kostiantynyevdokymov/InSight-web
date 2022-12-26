@@ -23,7 +23,7 @@ export const NotRecomendedFoodList = ({ show, products, onClick }) => {
   if (show) {
     return notRecomendedFood.map(it => (
       <Item key={it._id} style={{ display: 'block' }}>
-        <Text>{it.categories[0]}</Text>
+        <Text>{capitalized(it.categories[0])}</Text>
       </Item>
     ));
   } else

@@ -10,16 +10,14 @@ import { useEffect } from 'react';
 import { fetchDiet, fetchUserDiet } from 'redux/diet/dietOperations';
 import { refreshUser } from 'redux/user/userOperations';
 
-function CalculatorCalorieForm() {
+function CalculatorCalorieForm({ modal }) {
   const dispatch = useDispatch();
   const userParams = useSelector(selectUserParams);
   const { isLoggedIn } = useAuth();
 
   const handleSubmit = values => {
     dispatch(setParams(values));
-    setTimeout(() => {
-      //TODO: show modal
-    }, 2000);
+    modal();
   };
 
   const ErrorMessagesSchema = Yup.object().shape({
@@ -33,11 +31,11 @@ function CalculatorCalorieForm() {
       .required("Обов'язкове поле"),
     currentWeight: Yup.number('Значення має бути число')
       .min(40, 'Мінімальна вага 40 кг')
-      .max(200, 'Максимальна вага 200 кг')
+      .max(500, 'Максимальна вага 200 кг')
       .required("Обов'язкове поле"),
     desireWeight: Yup.number('Значення має бути число')
       .min(40, 'Мінімальна вага 40 кг')
-      .max(150, 'Максимальна вага 150 кг')
+      .max(500, 'Максимальна вага 150 кг')
       .required("Обов'язкове поле")
       .when('currentWeight', (currentWeight, schema) => {
         return schema.test({
@@ -49,13 +47,15 @@ function CalculatorCalorieForm() {
   });
 
   useEffect(() => {
-    if (isLoggedIn) dispatch(fetchUserDiet(userParams));
-    else dispatch(fetchDiet(userParams));
-  }, [dispatch, isLoggedIn, userParams]);
-
-  useEffect(() => {
     if (isLoggedIn) dispatch(refreshUser());
   }, [dispatch, isLoggedIn]);
+
+  useEffect(() => {
+    if (isLoggedIn) dispatch(fetchUserDiet(userParams));
+    else {
+      dispatch(fetchDiet(userParams));
+    }
+  }, [dispatch, isLoggedIn, userParams]);
 
   return (
     <>
@@ -108,7 +108,7 @@ function CalculatorCalorieForm() {
                       required
                     />
                   ) : (
-                    <SC.InputField placeholder=" " name="currentWeight" type="number" min="40" max="200" required />
+                    <SC.InputField placeholder=" " name="currentWeight" type="number" min="40" max="500" required />
                   )}
                   <SC.LabelValue>Нинішня вага*</SC.LabelValue>
                   {touched.currentWeight && errors.currentWeight && <SC.Error>{errors.currentWeight}</SC.Error>}

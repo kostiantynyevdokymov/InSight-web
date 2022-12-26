@@ -1,21 +1,32 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding-left: ${p => p.theme.mp(5)};
-  padding-right: ${p => p.theme.mp(5)};
   padding-top: ${p => p.theme.mp(4)};
   padding-bottom: ${p => p.theme.mp(5)};
+
+  @media screen and (min-width: 768px) {
+    padding-left: ${p => p.theme.mp(5)};
+    padding-right: ${p => p.theme.mp(5)};
+  }
 `;
 
 export const HeaderBlock = styled.div`
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  width: 450px;
+  width: 300px;
+
+  @media screen and (min-width: 768px) {
+    width: 450px;
+  }
 `;
 export const Title = styled.h1`
-  font-size: ${p => p.theme.fontSizes.l};
+  font-size: ${p => p.theme.fontSizes.s};
   padding-bottom: ${p => p.theme.mp(3)};
+
+  @media screen and (min-width: 768px) {
+    font-size: ${p => p.theme.fontSizes.l};
+  }
 `;
 export const Calories = styled.p`
   font-size: ${p => p.theme.fontSizes.xxl};
