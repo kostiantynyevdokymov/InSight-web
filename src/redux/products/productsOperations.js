@@ -7,6 +7,6 @@ export const loadProducts = createAsyncThunk('products/fetch', async (query , th
     const response = await axios.get(`/products${queryString === '' ? '' : `?${queryString}`}`);
     return response.data || [];
   } catch (err) {
-    return thunkAPI.rejectWithValue(err.message);
+    return thunkAPI.rejectWithValue(err.response.data.message || err.message);
   }
 });
