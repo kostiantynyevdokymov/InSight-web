@@ -8,3 +8,4 @@ export const handleFetchUserDiet = (state, action) => {
   state.stopProducts = action.payload.stopProd;
   return state;
 };
+export const handleGettingDiet = (state, action) => (state = action.payload);

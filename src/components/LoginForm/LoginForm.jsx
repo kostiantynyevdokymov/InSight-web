@@ -3,7 +3,6 @@ import { constants } from 'constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from 'redux/user/userOperations';
 import { selectIsLoadingUser } from 'redux/user/userSelectors';
-import { Loader } from 'components/Loader/Loader';
 import { Link } from 'react-router-dom';
 import {
   Login,
@@ -13,13 +12,13 @@ import {
   StyledLabelInput,
   ButtonLogContainer,
   ButtonReg,
-  AccentButton,
   ButtonLog,
-  DefaultButton,
 } from './LoginForm.styled';
 
 import { InputMail } from 'components/InputFormValid/InputEmail';
 import { InputPassword } from 'components/InputFormValid/InputPassword';
+import { LoaderSmall } from 'components/Loader/LoaderSmall';
+import { StyledAccentButton, StyledDefaultButton } from 'components/Common/FormComponents';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -67,21 +66,21 @@ export const LoginForm = () => {
 
         <ButtonLogContainer>
           <ButtonLog>
-            <AccentButton type="submit" disabled={isLoading}>
-              {isLoading ? <Loader ariaLabel="loader-spinner" visible={true} /> : 'Log in'}
-            </AccentButton>
+            <StyledAccentButton type="submit" disabled={isLoading}>
+              {isLoading ? <LoaderSmall /> : 'Log in'}
+            </StyledAccentButton>
           </ButtonLog>
 
           <ButtonReg>
             <Link to={'/register'}>
-              <DefaultButton type="button">Register</DefaultButton>
+              <StyledDefaultButton type="button">Register</StyledDefaultButton>
             </Link>
           </ButtonReg>
         </ButtonLogContainer>
 
         <ButtonReg style={{ margin: 0, marginTop: 20 }}>
           <a href={googleUrl}>
-            <DefaultButton type="button">Google</DefaultButton>
+            <StyledDefaultButton type="button">Google</StyledDefaultButton>
           </a>
         </ButtonReg>
       </FormLogin>

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { constants } from 'constants';
 import { registerUser } from 'redux/user/userOperations';
 import { selectIsLoadingUser } from 'redux/user/userSelectors';
-import { Loader } from 'components/Loader/Loader';
 import { Link } from 'react-router-dom';
 import {
   Registration,
@@ -12,20 +12,21 @@ import {
   StyledLabelInput,
   ButtonRegContainer,
   ButtonReg,
-  AccentButton,
   ButtonLog,
-  DefaultButton,
 } from './RegisterForm.styled';
 
 import { InputName } from 'components/InputFormValid/InputName';
 import { InputMail } from 'components/InputFormValid/InputEmail';
 import { InputPassword } from 'components/InputFormValid/InputPassword';
+import { LoaderSmall } from 'components/Loader/LoaderSmall';
+import { StyledAccentButton, StyledDefaultButton } from 'components/Common/FormComponents';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
   const initialUser = { name: '', email: '', password: '' };
   const [user, setUser] = useState(initialUser);
   const isLoading = useSelector(selectIsLoadingUser);
+  const googleUrl = `${constants.apiServerAddress}/user/google`;
 
   const handleChange = e => {
     const newUserData = { ...user };
@@ -73,17 +74,23 @@ export const RegisterForm = () => {
 
         <ButtonRegContainer>
           <ButtonReg>
-            <AccentButton type="submit" disabled={isLoading}>
-              {isLoading ? <Loader ariaLabel="loader-spinner" visible={true} /> : 'Register'}
-            </AccentButton>
+            <StyledAccentButton type="submit" disabled={isLoading}>
+              {isLoading ? <LoaderSmall /> : 'Register'}
+            </StyledAccentButton>
           </ButtonReg>
 
           <ButtonLog>
             <Link to={'/login'}>
-              <DefaultButton type="button">Login</DefaultButton>
+              <StyledDefaultButton type="button">Login</StyledDefaultButton>
             </Link>
           </ButtonLog>
         </ButtonRegContainer>
+
+        <ButtonReg style={{ margin: 0, marginTop: 20 }}>
+          <a href={googleUrl}>
+            <StyledDefaultButton type="button">Google</StyledDefaultButton>
+          </a>
+        </ButtonReg>
       </FormRegistration>
     </Registration>
   );

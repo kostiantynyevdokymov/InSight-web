@@ -9,9 +9,11 @@ const BasicButton = styled.button`
   padding: ${p => p.theme.mp(1, 3)};
 
   font-size: ${p => p.theme.fontSizes.default};
+  height: 44px;
+  width: 182px;
 
   outline: none;
-  border-radius: ${p => p.theme.radii.large};
+  border-radius: ${p => p.theme.radii.xlarge};
 
   transition: box-shadow ${p => p.theme.animation.fast};
 

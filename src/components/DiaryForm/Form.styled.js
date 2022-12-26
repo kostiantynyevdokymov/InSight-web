@@ -32,6 +32,7 @@ export const SForm = styled.form`
   display: flex;
   flex-direction: column;
   width: 285px;
+
   @media screen and (min-width: 768px) {
     margin: 0;
     flex-direction: row;
@@ -43,12 +44,12 @@ export const SForm = styled.form`
 export const ProductBlock = styled.div`
   position: relative;
   margin-bottom: 30px;
-  z-index:1;
+  z-index: 1;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 0px;
-      margin-right: ${p => p.theme.spacing[4]}px;
-
+    margin-right: ${p => p.theme.spacing[4]}px;
+  }
 `;
 
 export const AutocompleteList = styled.ul`
@@ -60,6 +61,7 @@ export const AutocompleteList = styled.ul`
   overflow-y: auto;
   padding: ${p => p.theme.spacing[2]}px;
 `;
+
 export const AutocompleteItems = styled.li`
   font-weight: ${p => p.theme.fontWeights.normal};
   color: ${p => p.theme.colors.text.mediumText};
@@ -83,6 +85,7 @@ export const ButtonDairy = styled.button`
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   border: none;
   color: ${p => p.theme.colors.text.inverseText};
+
   @media screen and (min-width: 768px) {
     display: flex;
     align-items: center;
@@ -109,6 +112,7 @@ export const ModalButton = styled(ButtonDairy)`
 
 export const Plus = styled.span`
   display: none;
+
   @media screen and (min-width: 768px) {
     display: block;
   }
