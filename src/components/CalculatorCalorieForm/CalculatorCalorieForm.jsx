@@ -79,26 +79,27 @@ function CalculatorCalorieForm() {
             <SC.InputWrapper>
               <SC.InputBlock>
                 <SC.Label>
-                  <SC.InputField placeholder=" " name="height" type="number" isError={!!errors.height}/>
+                  <SC.InputField placeholder=" " name="height" type="number" isError={!!errors.height && !!touched.height}/>
                   <SC.LabelValue>Зріст*</SC.LabelValue>
                   <SC.Error component="div" name="height" />
                 </SC.Label>
 
                 <SC.Label>
-                  <SC.InputField placeholder=" " name="age" type="number" isError={!!errors.age}/>
+                  <SC.InputField placeholder=" " name="age" type="number" isError={!!errors.age && touched.age}
+                  />
                   <SC.LabelValue>Вік*</SC.LabelValue>
                   <SC.Error component="div" name="age" />
                 </SC.Label>
 
                 <SC.Label>
-                  <SC.InputField placeholder=" " name="currentWeight" type="number" isError={!!errors.currentWeight}/>
+                  <SC.InputField placeholder=" " name="currentWeight" type="number" isError={!!errors.currentWeight && touched.currentWeight}/>
                   <SC.LabelValue>Нинішня вага*</SC.LabelValue>
                   <SC.Error component="div" name="currentWeight" />
                 </SC.Label>
               </SC.InputBlock>
               <SC.InputBlock>
                 <SC.Label>
-                  <SC.InputField placeholder=" " name="desireWeight" type="number" isError={!!errors.desireWeight}/>
+                  <SC.InputField placeholder=" " name="desireWeight" type="number" isError={!!errors.desireWeight && touched.desireWeight}/>
                   <SC.LabelValue>Бажана вага*</SC.LabelValue>
                   <SC.Error component="div" name="desireWeight" />
                 </SC.Label>
