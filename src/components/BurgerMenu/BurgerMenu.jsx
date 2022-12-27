@@ -1,7 +1,10 @@
+import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { closeModal } from 'redux/services/ModalSlice';
 import { Container, Diary, Calculator } from './BurgerMenu.styled';
+
+const modalRoot = document.querySelector('#modal-root');
 
 export const BurgerMenu = () => {
   const url = window.location.href.split('/').pop();
@@ -19,7 +22,7 @@ export const BurgerMenu = () => {
     dispatch(closeModal());
   };
 
-  return (
+  return createPortal(
     <Container>
       {!url ? (
         <Diary onClick={handleClick} active>
@@ -35,6 +38,7 @@ export const BurgerMenu = () => {
       ) : (
         <Calculator onClick={handleClick}>CALCULATOR</Calculator>
       )}
-    </Container>
+    </Container>,
+    modalRoot
   );
 };
