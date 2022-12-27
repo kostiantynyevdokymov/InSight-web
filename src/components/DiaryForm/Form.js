@@ -19,6 +19,7 @@ import { Input } from './Input/Input';
 import { addDiaryEntry } from 'redux/diary/diaryOperations';
 import { LoaderSmall } from 'components/Loader/LoaderSmall';
 import { selectIsLoadingDiary } from 'redux/selectors';
+import { useCallback } from 'react';
 
 export const Form = ({ onClick }) => {
   const [showAutocomplete, setShowAutocomplete] = useState(false);
@@ -34,15 +35,19 @@ export const Form = ({ onClick }) => {
 
   const isLoading = useSelector(selectIsLoadingDiary);
 
-  const getProducts = debounce(async () => {
-    try {
-      const resp = await axios.get(`/products?title=${valueProd}`);
-      setAllProducts(resp.data);
-      return resp.data;
-    } catch (error) {
-      setAllProducts([]);
-    }
-  }, 500);
+  const getProducts = useCallback(
+    () =>
+      debounce(async () => {
+        try {
+          const resp = await axios.get(`/products?title=${valueProd}`);
+          setAllProducts(resp.data);
+          return resp.data;
+        } catch (error) {
+          setAllProducts([]);
+        }
+      }, 500)(),
+    [valueProd]
+  );
 
   const itemClickHandler = (event, index) => {
     setChosedProduct(allProducts[index]);
@@ -128,9 +133,15 @@ export const Form = ({ onClick }) => {
           )}
         </ProductBlock>
         <Input id="diaryweight" name="diaryweight" placeholder="Grams" value={weightValue} onChange={onInputChange} />
-        <ButtonDairy>{isLoading ? <LoaderSmall /> : (<>
-          <Add>Add</Add>
-          <Plus>+</Plus></>)} G
+        <ButtonDairy>
+          {isLoading ? (
+            <LoaderSmall />
+          ) : (
+            <>
+              <Add>Add</Add>
+              <Plus>+</Plus>
+            </>
+          )}
         </ButtonDairy>
       </SForm>
     </Container>
