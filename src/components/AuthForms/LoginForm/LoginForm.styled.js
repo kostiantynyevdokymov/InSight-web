@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const Login = styled.div`
   padding-top: 38px;
+  margin-left: auto;
+  margin-right: auto;
   width: 280px;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -81,9 +83,14 @@ export const InputForm = styled.input`
 `;
 
 export const ButtonLogContainer = styled.div`
-  margin-right: auto;
-  margin-left: auto;
   margin-top: 60px;
+  display: flex;
+
+  @media screen and (max-width: 767px) {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -92,6 +99,13 @@ export const ButtonLogContainer = styled.div`
 `;
 
 export const ButtonReg = styled.div`
+  @media screen and (max-width: 767px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
   @media screen and (min-width: 768px) {
     margin-left: 20px;
   }

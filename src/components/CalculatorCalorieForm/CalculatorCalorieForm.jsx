@@ -9,7 +9,6 @@ import { setParams } from 'redux/user/userSlice';
 import { useEffect } from 'react';
 import { fetchDiet, fetchUserDiet } from 'redux/diet/dietOperations';
 import { refreshUser } from 'redux/user/userOperations';
-import { LoaderSmall } from 'components/Loader/LoaderSmall';
 
 function CalculatorCalorieForm({ modal }) {
   const dispatch = useDispatch();
@@ -115,7 +114,9 @@ function CalculatorCalorieForm({ modal }) {
                 </SC.RadioGroupContainer>
               </SC.InputBlock>
             </SC.InputWrapper>
-            <SC.Button type="submit">{isLoading ? <LoaderSmall /> : 'Start loosing weight'}</SC.Button>
+            <SC.Button type="submit" disabled={isLoading}>
+              Start loosing weight
+            </SC.Button>
           </SC.FormikForm>
         )}
       </Formik>

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const Registration = styled.div`
   padding-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
   width: 280px;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -72,6 +74,13 @@ export const ButtonRegContainer = styled.div`
 `;
 
 export const ButtonReg = styled.div`
+  @media screen and (max-width: 767px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
   margin-bottom: 20px;
 
   @media screen and (min-width: 768px) {
@@ -80,6 +89,13 @@ export const ButtonReg = styled.div`
 `;
 
 export const ButtonLog = styled.div`
+  @media screen and (max-width: 767px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
   @media screen and (min-width: 768px) {
     margin-left: 20px;
   }

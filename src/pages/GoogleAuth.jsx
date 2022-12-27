@@ -8,10 +8,6 @@ const GoogleAuth = () => {
 
   const urlParams = new URL(window.location.href).searchParams;
 
-  console.log(urlParams.has('token'));
-  console.log(urlParams.has('name'));
-  console.log(urlParams.has('email'));
-
   if (urlParams.has('name') && urlParams.has('email') && urlParams.has('token')) {
     const user = {
       name: urlParams.get('name'),

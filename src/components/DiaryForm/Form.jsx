@@ -17,7 +17,6 @@ import {
 import { Input } from './Input/Input';
 
 import { addDiaryEntry } from 'redux/diary/diaryOperations';
-import { LoaderSmall } from 'components/Loader/LoaderSmall';
 import { selectIsLoadingDiary } from 'redux/selectors';
 import { useCallback } from 'react';
 
@@ -133,15 +132,9 @@ export const Form = ({ onClick }) => {
           )}
         </ProductBlock>
         <Input id="diaryweight" name="diaryweight" placeholder="Grams" value={weightValue} onChange={onInputChange} />
-        <ButtonDairy>
-          {isLoading ? (
-            <LoaderSmall />
-          ) : (
-            <>
-              <Add>Add</Add>
-              <Plus>+</Plus>
-            </>
-          )}
+        <ButtonDairy disabled={isLoading}>
+          <Add>Add</Add>
+          <Plus>+</Plus>
         </ButtonDairy>
       </SForm>
     </Container>
