@@ -1,11 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { closeModal } from 'redux/services/ModalSlice';
 import { Container, Diary, Calculator } from './BurgerMenu.styled';
 
 export const BurgerMenu = () => {
   const url = window.location.href.split('/').pop();
-  const { isOpen } = useSelector(state => state.modal);
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
