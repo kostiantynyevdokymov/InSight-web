@@ -82,7 +82,7 @@ export const Form = ({ onClick }) => {
       setChosedProduct([]);
       setAllProducts([]);
     }
-  }, [getProducts, valueProd]);
+  }, [valueProd]);
 
   useEffect(() => {
     const handleKeyDownEsc = e => {
@@ -128,9 +128,16 @@ export const Form = ({ onClick }) => {
           )}
         </ProductBlock>
         <Input id="diaryweight" name="diaryweight" placeholder="Grams" value={weightValue} onChange={onInputChange} />
-        <ButtonDairy>{isLoading ? <LoaderSmall /> : (<>
-          <Add>Add</Add>
-          <Plus>+</Plus></>)} G
+        <ButtonDairy>
+          {isLoading ? (
+            <LoaderSmall />
+          ) : (
+            <>
+              <Add>Add</Add>
+              <Plus>+</Plus>
+            </>
+          )}{' '}
+          G
         </ButtonDairy>
       </SForm>
     </Container>
