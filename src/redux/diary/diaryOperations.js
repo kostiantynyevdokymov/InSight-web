@@ -6,7 +6,7 @@ export const addDiaryEntry = createAsyncThunk('diary/addDiaryEntry', async ({ da
     const response = await axios.post(`/diary/${day}`, { id: id, weight: weight });
     return response.data;
   } catch (err) {
-    return thunkAPI.rejectWithValue(err.message);
+    return thunkAPI.rejectWithValue(err.response.data.message || err.message);
   }
 });
 
@@ -15,7 +15,7 @@ export const deleteDiaryEntry = createAsyncThunk('diary/deleteDiaryEntry', async
     const response = await axios.delete(`/diary/${day}/${id}`);
     return response.data;
   } catch (err) {
-    return thunkAPI.rejectWithValue(err.message);
+    return thunkAPI.rejectWithValue(err.response.data.message || err.message);
   }
 });
 
@@ -24,7 +24,7 @@ export const getDailyDiary = createAsyncThunk('diary/getDailyDiary', async (day,
     const response = await axios.get(`/diary/${day}`);
     return response.data;
   } catch (err) {
-    return thunkAPI.rejectWithValue(err.message);
+    return thunkAPI.rejectWithValue(err.response.data.message || err.message);
   }
 });
 

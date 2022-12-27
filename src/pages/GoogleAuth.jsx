@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { Navigate } from 'react-router';
 import { googleLogin } from 'redux/user/userSlice';
+import { authHeader } from 'redux/utils/authHeader';
 
 const GoogleAuth = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const GoogleAuth = () => {
     };
 
     dispatch(googleLogin(user));
+    authHeader.set(user.token);
   }
 
   return <Navigate to="/" replace />;

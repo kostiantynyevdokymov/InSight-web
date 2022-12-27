@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 export const NavHeaderContainer = styled.nav`
   text-align: end;
   display: flex;
-  height: 40px;
   border-bottom: ${p => p.theme.border.header};
+  height: 40px;
   @media screen and (max-width: 767px) {
     background: ${p => p.theme.colors.background.greyBackground};
   }

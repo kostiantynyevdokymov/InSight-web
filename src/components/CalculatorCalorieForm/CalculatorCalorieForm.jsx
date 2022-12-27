@@ -4,19 +4,23 @@ import { useAuth } from 'hooks/useAuth';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import SC from './CalculatorCalorieForm.styled';
-import { selectUserParams } from 'redux/selectors';
+import { selectIsLoadingUser, selectUserParams } from 'redux/selectors';
 import { setParams } from 'redux/user/userSlice';
 import { useEffect } from 'react';
 import { fetchDiet, fetchUserDiet } from 'redux/diet/dietOperations';
 import { refreshUser } from 'redux/user/userOperations';
+import { LoaderSmall } from 'components/Loader/LoaderSmall';
 
 function CalculatorCalorieForm({ modal }) {
   const dispatch = useDispatch();
   const userParams = useSelector(selectUserParams);
   const { isLoggedIn } = useAuth();
+  const isLoading = useSelector(selectIsLoadingUser);
 
   const handleSubmit = values => {
     dispatch(setParams(values));
+    if (isLoggedIn) dispatch(fetchUserDiet(values));
+    else dispatch(fetchDiet(values));
     modal();
   };
 
@@ -50,11 +54,6 @@ function CalculatorCalorieForm({ modal }) {
     if (isLoggedIn) dispatch(refreshUser());
   }, [dispatch, isLoggedIn]);
 
-  useEffect(() => {
-    if (isLoggedIn) dispatch(fetchUserDiet(userParams));
-    else dispatch(fetchDiet(userParams));
-  }, [dispatch, isLoggedIn, userParams]);
-
   return (
     <>
       <Formik
@@ -77,41 +76,26 @@ function CalculatorCalorieForm({ modal }) {
             <SC.InputWrapper>
               <SC.InputBlock>
                 <SC.Label>
-                  <SC.InputField
-                    placeholder=" "
-                    name="height"
-                    type="number"
-                    isError={!!errors.height && !!touched.height}
-                  />
+                  <SC.InputField placeholder=" " name="height" type="number" iserror={!!errors.height && !!touched.height ? 1 : 0} />
                   <SC.LabelValue>Height *</SC.LabelValue>
                   <SC.Error component="div" name="height" />
                 </SC.Label>
 
                 <SC.Label>
-                  <SC.InputField placeholder=" " name="age" type="number" isError={!!errors.age && touched.age} />
+                  <SC.InputField placeholder=" " name="age" type="number" iserror={!!errors.age && touched.age ? 1 : 0} />
                   <SC.LabelValue>Age *</SC.LabelValue>
                   <SC.Error component="div" name="age" />
                 </SC.Label>
 
                 <SC.Label>
-                  <SC.InputField
-                    placeholder=" "
-                    name="currentWeight"
-                    type="number"
-                    isError={!!errors.currentWeight && touched.currentWeight}
-                  />
+                  <SC.InputField placeholder=" " name="currentWeight" type="number" iserror={!!errors.currentWeight && touched.currentWeight ? 1 : 0} />
                   <SC.LabelValue>Current weight *</SC.LabelValue>
                   <SC.Error component="div" name="currentWeight" />
                 </SC.Label>
               </SC.InputBlock>
               <SC.InputBlock>
                 <SC.Label>
-                  <SC.InputField
-                    placeholder=" "
-                    name="desireWeight"
-                    type="number"
-                    isError={!!errors.desireWeight && touched.desireWeight}
-                  />
+                  <SC.InputField placeholder=" " name="desireWeight" type="number" iserror={!!errors.desireWeight && touched.desireWeight ? 1 : 0} />
                   <SC.LabelValue>Desired weight *</SC.LabelValue>
                   <SC.Error component="div" name="desireWeight" />
                 </SC.Label>
@@ -131,7 +115,7 @@ function CalculatorCalorieForm({ modal }) {
                 </SC.RadioGroupContainer>
               </SC.InputBlock>
             </SC.InputWrapper>
-            <SC.Button type="submit">Start loosing weight</SC.Button>
+            <SC.Button type="submit">{isLoading ? <LoaderSmall /> : 'Start loosing weight'}</SC.Button>
           </SC.FormikForm>
         )}
       </Formik>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { debounce } from 'lodash';
 import axios from 'axios';
@@ -17,6 +17,8 @@ import {
 import { Input } from './Input/Input';
 
 import { addDiaryEntry } from 'redux/diary/diaryOperations';
+import { LoaderSmall } from 'components/Loader/LoaderSmall';
+import { selectIsLoadingDiary } from 'redux/selectors';
 
 export const Form = ({ onClick }) => {
   const [showAutocomplete, setShowAutocomplete] = useState(false);
@@ -29,6 +31,8 @@ export const Form = ({ onClick }) => {
   const dispatch = useDispatch();
   const params = useParams();
   const autocompleteMenu = useRef();
+
+  const isLoading = useSelector(selectIsLoadingDiary);
 
   const getProducts = debounce(async () => {
     try {
@@ -78,7 +82,7 @@ export const Form = ({ onClick }) => {
       setChosedProduct([]);
       setAllProducts([]);
     }
-  }, [valueProd]);
+  }, [getProducts, valueProd]);
 
   useEffect(() => {
     const handleKeyDownEsc = e => {
@@ -124,9 +128,9 @@ export const Form = ({ onClick }) => {
           )}
         </ProductBlock>
         <Input id="diaryweight" name="diaryweight" placeholder="Grams" value={weightValue} onChange={onInputChange} />
-        <ButtonDairy>
+        <ButtonDairy>{isLoading ? <LoaderSmall /> : (<>
           <Add>Add</Add>
-          <Plus>+</Plus>
+          <Plus>+</Plus></>)} G
         </ButtonDairy>
       </SForm>
     </Container>

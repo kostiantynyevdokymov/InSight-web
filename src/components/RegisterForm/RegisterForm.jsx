@@ -21,6 +21,7 @@ import { InputMail } from 'components/InputFormValid/InputEmail';
 import { InputPassword } from 'components/InputFormValid/InputPassword';
 import { LoaderSmall } from 'components/Loader/LoaderSmall';
 import { StyledAccentButton, StyledDefaultButton } from 'components/Common/FormComponents';
+import { useEffect } from 'react';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -32,28 +33,26 @@ export const RegisterForm = () => {
   const googleUrl = `${constants.apiServerAddress}/user/google`;
 
   const handleChange = e => {
+    if (isError) setIsError(false);
     const newUserData = { ...user };
     newUserData[e.currentTarget.name] = e.currentTarget.value;
     setUser(newUserData);
   };
 
   const resetForm = () => {
-    setUser(initialUser);
+    setUser({ ...user, password: '' });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
     setIsError(false);
-    await dispatch(registerUser({ name, email, password }));
-    
-    if (!isLoading && userError) {
-      setIsError(true);
-    } else {
-      resetForm();
-    };
+    dispatch(registerUser({ name: user.name, email: user.email, password: user.password }));
+    resetForm();
   };
 
-  const { name, email, password } = user;
+  useEffect(() => {
+    if (!isLoading && userError) setIsError(true);
+  }, [isLoading, user, userError]);
 
   return (
     <Registration>
@@ -63,26 +62,26 @@ export const RegisterForm = () => {
         <StyledInputGroup>
           <StyledLabelInput>
             Name *
-            <InputName value={name} onChange={handleChange} />
+            <InputName value={user.name} onChange={handleChange} />
           </StyledLabelInput>
         </StyledInputGroup>
 
         <StyledInputGroup>
           <StyledLabelInput>
             E-mail *
-            <InputMail value={email} onChange={handleChange} />
+            <InputMail value={user.email} onChange={handleChange} />
           </StyledLabelInput>
         </StyledInputGroup>
 
         <StyledInputGroup>
           <StyledLabelInput>
             Password *
-            <InputPassword value={password} onChange={handleChange} />
+            <InputPassword value={user.password} onChange={handleChange} />
           </StyledLabelInput>
         </StyledInputGroup>
 
         {isError ? <StyledError>{userError}</StyledError> : null}
-        
+
         <ButtonRegContainer>
           <ButtonReg>
             <StyledAccentButton type="submit" disabled={isLoading}>
