@@ -105,22 +105,6 @@ export const ButtonLog = styled.div`
   }
 `;
 
-export const AccentButton = styled.button`
-  height: 44px;
-  width: 182px;
-  color: ${p => p.theme.button.accentButton.text};
-  border: ${p => p.theme.button.accentButton.border};
-  background-color: ${p => p.theme.button.accentButton.background};
-  box-shadow: ${p => p.theme.button.shadow.default};
-  border-radius: 30px;
-`;
-
-export const DefaultButton = styled.button`
-  height: 44px;
-  width: 182px;
-  color: ${p => p.theme.button.defaultButton.text};
-  border: ${p => p.theme.button.defaultButton.border};
-  background-color: ${p => p.theme.button.defaultButton.background};
-  box-shadow: none;
-  border-radius: 30px;
+export const StyledError = styled.div`
+  color: #e11616;
 `;

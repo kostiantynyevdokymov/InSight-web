@@ -50,6 +50,7 @@ export const theme = {
     none: 0,
     normal: '5px',
     large: '10px',
+    xlarge: '30px',
     round: '50%',
   },
   mp: returnParams,

@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { constants } from 'constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from 'redux/user/userOperations';
-import { selectIsLoadingUser } from 'redux/user/userSelectors';
-import { Loader } from 'components/Loader/Loader';
+import { selectIsLoadingUser, selectErrorUser } from 'redux/user/userSelectors';
 import { Link } from 'react-router-dom';
 import {
   Login,
@@ -13,26 +12,31 @@ import {
   StyledLabelInput,
   ButtonLogContainer,
   ButtonReg,
-  AccentButton,
   ButtonLog,
-  DefaultButton,
+  StyledError,
 } from './LoginForm.styled';
 
-import { InputMail } from 'components/AuthForms/InputFormValid/InputEmail';
-import { InputPassword } from 'components/AuthForms/InputFormValid/InputPassword';
+import { InputMail } from 'components/InputFormValid/InputEmail';
+import { InputPassword } from 'components/InputFormValid/InputPassword';
+import { LoaderSmall } from 'components/Loader/LoaderSmall';
+import { StyledAccentButton, StyledDefaultButton } from 'components/Common/FormComponents';
+import { useEffect } from 'react';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const initialUser = { email: '', password: '' };
   const [user, setUser] = useState(initialUser);
+  const [isError, setIsError] = useState(false);
   const isLoading = useSelector(selectIsLoadingUser);
+  const userError = useSelector(selectErrorUser);
   const googleUrl = `${constants.apiServerAddress}/user/google`;
 
   const resetForm = () => {
-    setUser(initialUser);
+    setUser({ ...user, password: '' });
   };
 
   const handleChange = e => {
+    if (isError) setIsError(false);
     const newUserData = { ...user };
     newUserData[e.currentTarget.name] = e.currentTarget.value;
     setUser(newUserData);
@@ -40,11 +44,14 @@ export const LoginForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(loginUser({ email, password }));
+    setIsError(false);
+    dispatch(loginUser({ email: user.email, password: user.password }));
     resetForm();
   };
 
-  const { email, password } = user;
+  useEffect(() => {
+    if (!isLoading && userError) setIsError(true);
+  }, [isLoading, userError]);
 
   return (
     <Login>
@@ -54,34 +61,36 @@ export const LoginForm = () => {
         <StyledInputGroup>
           <StyledLabelInput>
             E-mail *
-            <InputMail value={email} onChange={handleChange} />
+            <InputMail value={user.email} onChange={handleChange} />
           </StyledLabelInput>
         </StyledInputGroup>
 
         <StyledInputGroup>
           <StyledLabelInput>
             Password *
-            <InputPassword value={password} onChange={handleChange} />
+            <InputPassword value={user.password} onChange={handleChange} />
           </StyledLabelInput>
         </StyledInputGroup>
 
+        {isError ? <StyledError>{userError}</StyledError> : null}
+
         <ButtonLogContainer>
           <ButtonLog>
-            <AccentButton type="submit" disabled={isLoading}>
-              {isLoading ? <Loader ariaLabel="loader-spinner" visible={true} /> : 'Log in'}
-            </AccentButton>
+            <StyledAccentButton type="submit" disabled={isLoading}>
+              {isLoading ? <LoaderSmall /> : 'Log in'}
+            </StyledAccentButton>
           </ButtonLog>
 
           <ButtonReg>
             <Link to={'/register'}>
-              <DefaultButton type="button">Register</DefaultButton>
+              <StyledDefaultButton type="button">Register</StyledDefaultButton>
             </Link>
           </ButtonReg>
         </ButtonLogContainer>
 
         <ButtonReg style={{ margin: 0, marginTop: 20 }}>
           <a href={googleUrl}>
-            <DefaultButton type="button">Google</DefaultButton>
+            <StyledDefaultButton type="button">Google</StyledDefaultButton>
           </a>
         </ButtonReg>
       </FormLogin>

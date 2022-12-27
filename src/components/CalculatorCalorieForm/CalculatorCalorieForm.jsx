@@ -1,48 +1,69 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useAuth } from 'hooks/useAuth';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import SC from './CalculatorCalorieForm.styled';
+import { selectIsLoadingUser, selectUserParams } from 'redux/selectors';
+import { setParams } from 'redux/user/userSlice';
+import { useEffect } from 'react';
+import { fetchDiet, fetchUserDiet } from 'redux/diet/dietOperations';
+import { refreshUser } from 'redux/user/userOperations';
+import { LoaderSmall } from 'components/Loader/LoaderSmall';
 
-function CalculatorCalorieForm() {
+function CalculatorCalorieForm({ modal }) {
+  const dispatch = useDispatch();
+  const userParams = useSelector(selectUserParams);
+  const { isLoggedIn } = useAuth();
+  const isLoading = useSelector(selectIsLoadingUser);
+
   const handleSubmit = values => {
-    values.bloodType = Number(values.bloodType);
+    dispatch(setParams(values));
+    if (isLoggedIn) dispatch(fetchUserDiet(values));
+    else dispatch(fetchDiet(values));
+    modal();
   };
+
   const ErrorMessagesSchema = Yup.object().shape({
     height: Yup.number('Значення має бути число')
       .min(100, 'Вкажіть значення більше 100 см')
       .max(260, 'Вкажіть значення менше 260 см')
       .required("Обов'язкове поле"),
     age: Yup.number('Значення має бути число')
-      .min(12, 'Вкажіть значення більше 12')
+      .min(18, 'Вкажіть значення більше 18')
       .max(100, 'Вкажіть значення менше 100')
       .required("Обов'язкове поле"),
-    weight: Yup.number('Значення має бути число')
+    currentWeight: Yup.number('Значення має бути число')
       .min(40, 'Мінімальна вага 40 кг')
-      .max(200, 'Максимальна вага 200 кг')
+      .max(500, 'Максимальна вага 500 кг')
       .required("Обов'язкове поле"),
-    desiredWeight: Yup.number('Значення має бути число')
+    desireWeight: Yup.number('Значення має бути число')
       .min(40, 'Мінімальна вага 40 кг')
-      .max(150, 'Максимальна вага 150 кг')
+      .max(500, 'Максимальна вага 500 кг')
       .required("Обов'язкове поле")
-      .when('weight', (weight, schema) => {
+      .when('currentWeight', (currentWeight, schema) => {
         return schema.test({
-          test: desiredWeight => !!weight && desiredWeight < weight,
+          test: desireWeight => !!currentWeight && desireWeight < currentWeight,
           message: 'Бажана вага повинна бути менше поточної',
         });
       }),
     bloodType: Yup.number().required("Обов'язкове поле"),
   });
 
+  useEffect(() => {
+    if (isLoggedIn) dispatch(refreshUser());
+  }, [dispatch, isLoggedIn]);
+
   return (
     <>
       <Formik
         validationSchema={ErrorMessagesSchema}
         initialValues={{
-          height: '',
-          age: '',
-          weight: '',
-          desiredWeight: '',
-          bloodType: '1',
+          height: userParams && userParams.height ? userParams.height : '',
+          age: userParams && userParams.age ? userParams.age : '',
+          currentWeight: userParams && userParams.currentWeight ? userParams.currentWeight : '',
+          desireWeight: userParams && userParams.desireWeight ? userParams.desireWeight : '',
+          bloodType: userParams && userParams.bloodType ? userParams.bloodType.toString() : '',
         }}
         enableReinitialize
         onSubmit={values => {
@@ -51,57 +72,35 @@ function CalculatorCalorieForm() {
       >
         {({ errors, touched }) => (
           <SC.FormikForm>
-            <SC.Title>Розрахуйте свою денну норму калорій прямо зараз</SC.Title>
+            <SC.Title>Calculate your daily calorie intake right now</SC.Title>
             <SC.InputWrapper>
               <SC.InputBlock>
                 <SC.Label>
-                  {touched.height && errors.height ? (
-                    <SC.ErrorInputField placeholder=" " name="height" type="number" min="100" max="260" required />
-                  ) : (
-                    <SC.InputField placeholder=" " name="height" type="number" min="100" max="260" required />
-                  )}
-                  <SC.LabelValue>Зріст *</SC.LabelValue>
-                  {touched.height && errors.height && <SC.Error>{errors.height}</SC.Error>}
-                </SC.Label>
-                <SC.Label>
-                  {touched.age && errors.age ? (
-                    <SC.ErrorInputField placeholder=" " name="age" type="number" min="12" max="100" required />
-                  ) : (
-                    <SC.InputField placeholder=" " name="age" type="number" min="12" max="100" required />
-                  )}
-                  <SC.LabelValue>Вік *</SC.LabelValue>
-                  {touched.age && errors.age && <SC.Error>{errors.age}</SC.Error>}
+                  <SC.InputField placeholder=" " name="height" type="number" iserror={!!errors.height && !!touched.height ? 1 : 0} />
+                  <SC.LabelValue>Height *</SC.LabelValue>
+                  <SC.Error component="div" name="height" />
                 </SC.Label>
 
                 <SC.Label>
-                  {touched.weight && errors.weight ? (
-                    <SC.ErrorInputField placeholder=" " name="weight" type="number" min="40" max="200" required />
-                  ) : (
-                    <SC.InputField placeholder=" " name="weight" type="number" min="40" max="200" required />
-                  )}
-                  <SC.LabelValue>Нинішня вага *</SC.LabelValue>
-                  {touched.weight && errors.weight && <SC.Error>{errors.weight}</SC.Error>}
+                  <SC.InputField placeholder=" " name="age" type="number" iserror={!!errors.age && touched.age ? 1 : 0} />
+                  <SC.LabelValue>Age *</SC.LabelValue>
+                  <SC.Error component="div" name="age" />
+                </SC.Label>
+
+                <SC.Label>
+                  <SC.InputField placeholder=" " name="currentWeight" type="number" iserror={!!errors.currentWeight && touched.currentWeight ? 1 : 0} />
+                  <SC.LabelValue>Current weight *</SC.LabelValue>
+                  <SC.Error component="div" name="currentWeight" />
                 </SC.Label>
               </SC.InputBlock>
               <SC.InputBlock>
                 <SC.Label>
-                  {touched.desiredWeight && errors.desiredWeight ? (
-                    <SC.ErrorInputField
-                      placeholder=" "
-                      name="desiredWeight"
-                      type="number"
-                      min="40"
-                      max="150"
-                      required
-                    />
-                  ) : (
-                    <SC.InputField placeholder=" " name="desiredWeight" type="number" min="40" max="150" required />
-                  )}
-                  <SC.LabelValue>Бажана вага *</SC.LabelValue>
-                  {touched.desiredWeight && errors.desiredWeight && <SC.Error>{errors.desiredWeight}</SC.Error>}
+                  <SC.InputField placeholder=" " name="desireWeight" type="number" iserror={!!errors.desireWeight && touched.desireWeight ? 1 : 0} />
+                  <SC.LabelValue>Desired weight *</SC.LabelValue>
+                  <SC.Error component="div" name="desireWeight" />
                 </SC.Label>
                 <SC.RadioGroupContainer>
-                  <SC.RadioTitle>Група крові *</SC.RadioTitle>
+                  <SC.RadioTitle>Blood type *</SC.RadioTitle>
                   {touched.bloodType && errors.bloodType && <SC.RadioError>{errors.bloodType}</SC.RadioError>}
                   <SC.RadioWrapper role="group">
                     <SC.RadioField id="first" type="radio" name="bloodType" value="1" />
@@ -116,7 +115,7 @@ function CalculatorCalorieForm() {
                 </SC.RadioGroupContainer>
               </SC.InputBlock>
             </SC.InputWrapper>
-            <SC.Button type="submit">Почніть худнути</SC.Button>
+            <SC.Button type="submit">{isLoading ? <LoaderSmall /> : 'Start loosing weight'}</SC.Button>
           </SC.FormikForm>
         )}
       </Formik>

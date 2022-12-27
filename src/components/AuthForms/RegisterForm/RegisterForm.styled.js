@@ -104,3 +104,7 @@ export const DefaultButton = styled.button`
   box-shadow: none;
   border-radius: 30px;
 `;
+
+export const StyledError = styled.div`
+  color: #e11616;
+`;

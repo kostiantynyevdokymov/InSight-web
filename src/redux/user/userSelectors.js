@@ -5,7 +5,7 @@ export const selectUserAuth = store => {
 
 export const selectUserToken = store => store.user.token;
 
-export const selectParams = store => store.user.params;
+export const selectUserParams = store => store.user.params;
 
 export const selectIsLoadingUser = store => store.user.isLoading;
 
