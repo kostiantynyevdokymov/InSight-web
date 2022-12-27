@@ -1,4 +1,12 @@
-import { Back, NavHeaderContainer, HamburgerMenu, LogoContainer, LinkDiary, LinkCalculator } from './NavHeader.styled';
+import {
+  Back,
+  NavHeaderContainer,
+  HamburgerMenu,
+  LogoContainer,
+  LinkDiary,
+  LinkCalculator,
+  DadContainer,
+} from './NavHeader.styled';
 import { TiArrowBack } from 'react-icons/ti';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrClose } from 'react-icons/gr';
@@ -25,7 +33,7 @@ export const NavHeader = ({ showButton, onButtonClick }) => {
   };
 
   return (
-    <div style={{ maxWidth: '1280px', marginLeft: 'auto', marginRight: 'auto' }}>
+    <DadContainer>
       {isMobile && (
         <>
           <LogoContainer>
@@ -68,6 +76,6 @@ export const NavHeader = ({ showButton, onButtonClick }) => {
           </NavHeaderContainer>
         </>
       )}
-    </div>
+    </DadContainer>
   );
 };

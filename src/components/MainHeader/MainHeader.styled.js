@@ -19,8 +19,6 @@ export const HeaderContainer = styled.div`
   padding-right: ${p => p.theme.spacing[3]}px;
   max-width: 480px;
 
-  
-
   @media screen and (min-width: 1280px) {
     max-width: 1280px;
     border: none;
