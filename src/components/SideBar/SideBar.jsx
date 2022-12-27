@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 
 import { Section, Container, List, Title, Item, Text } from './SideBar.styled';
 import { NotRecomendedFoodList } from './NotRecomendedFoodList/NotRecomendedFoodList';
 
-import { selectDiary, selectDiet } from 'redux/selectors';
+import { selectDiary, selectDiet, selectUserIsLoggedIn, selectUserParams } from 'redux/selectors';
+import { fetchUserDiet } from 'redux/diet/dietOperations';
 
 export const SideBar = () => {
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const params = useParams();
 
   const { inputDiary } = useSelector(selectDiary);
   const diet = useSelector(selectDiet);
+  const userParams = useSelector(selectUserParams);
+  const isLoggedIn = useSelector(selectUserIsLoggedIn);
 
   const onShowClick = () => {
     setShow(!show);
@@ -26,6 +30,11 @@ export const SideBar = () => {
   }, 0);
 
   const left = diet.dailyCalories - consumed;
+  const percent = Math.ceil((consumed / diet.dailyCalories) * 100);
+
+  useEffect(() => {
+    if (isLoggedIn && userParams.height > 0 && diet.dailyCalories === 0) dispatch(fetchUserDiet(userParams));
+  }, [diet, isLoggedIn, userParams, dispatch]);
 
   return (
     <Section>
@@ -33,21 +42,21 @@ export const SideBar = () => {
         <List>
           <Title>Summary for {params.day}</Title>
           <Item>
-            <Text>Left</Text>
-            <Text>{left} kcal</Text>
+            <Text>Daily rate</Text>
+            <Text>{String(diet.dailyCalories).padStart(3, '0')} kcal</Text>
           </Item>
           <Item>
             <Text>Consumed</Text>
-            <Text>{consumed} kcal</Text>
+            <Text>{String(consumed).padStart(3, '0')} kcal</Text>
           </Item>
           <Item>
-            <Text>Daily rate</Text>
-            <Text>{diet.dailyCalories} kcal</Text>
+            <Text>Left</Text>
+            <Text>{left < 0 ? '- - -' : String(left).padStart(3, '0')} kcal</Text>
           </Item>
           <Item>
-            <Text>&#37; of total</Text>
+            <Text>&#37; of total consumed</Text>
             {diet.dailyCalories ? (
-              <Text>{Math.ceil((consumed / diet.dailyCalories) * 100)} &#37;</Text>
+              <Text>{String(percent > 100 ? 100 : percent).padStart(2, '0')} &#37;</Text>
             ) : (
               <Text>0 &#37;</Text>
             )}
