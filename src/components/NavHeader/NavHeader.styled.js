@@ -15,7 +15,7 @@ export const NavHeaderContainer = styled.nav`
   @media screen and (min-width: 1280px) {
     border-bottom: none;
     align-items: flex-end;
-    padding: ${theme.mp(6, 0, 3, 0)};
+    padding: ${theme.mp(5, 0, 3, 0)};
   } ;
 `;
 export const LogoContainer = styled.div`
