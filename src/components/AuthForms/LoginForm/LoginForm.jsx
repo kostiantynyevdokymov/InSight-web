@@ -16,11 +16,12 @@ import {
   StyledError,
 } from './LoginForm.styled';
 
-import { InputMail } from 'components/InputFormValid/InputEmail';
-import { InputPassword } from 'components/InputFormValid/InputPassword';
+import { InputMail } from 'components/AuthForms/InputFormValid/InputEmail';
+import { InputPassword } from 'components/AuthForms/InputFormValid/InputPassword';
 import { LoaderSmall } from 'components/Loader/LoaderSmall';
 import { StyledAccentButton, StyledDefaultButton } from 'components/Common/FormComponents';
 import { useEffect } from 'react';
+import { GoogleLoginButton } from 'components/Common/GoogleButton';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -90,7 +91,7 @@ export const LoginForm = () => {
 
         <ButtonReg style={{ margin: 0, marginTop: 20 }}>
           <a href={googleUrl}>
-            <StyledDefaultButton type="button">Google</StyledDefaultButton>
+            <GoogleLoginButton type="button">Google</GoogleLoginButton>
           </a>
         </ButtonReg>
       </FormLogin>

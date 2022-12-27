@@ -49,7 +49,7 @@ export const List = styled.ul`
   width: 280px;
 
   @media screen and (max-width: 767px) {
-    &: not(: last-child) {
+    &:not(:last-child) {
       padding-bottom: ${p => p.theme.mp(4)};
     }
   }

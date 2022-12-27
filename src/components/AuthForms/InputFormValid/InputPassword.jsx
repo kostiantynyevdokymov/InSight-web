@@ -9,7 +9,7 @@ export const InputPassword = ({ onChange, value }) => (
     required
     onChange={onChange}
     value={value}
-    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+    // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
     title="Має містити принаймні одну цифру, одну велику та малу літеру та принаймні 6 або більше символів"
   />
 );

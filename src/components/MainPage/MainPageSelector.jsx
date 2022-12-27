@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router';
-import { AuthHeader } from 'components/AuthHeader/AuthHeader';
+import { AuthHeader } from 'components/Header/AuthLinks/AuthLinks';
+import { LogoMain } from 'components/Logo/Logo';
 import {
   Wrapper,
   Layer,
@@ -14,6 +15,7 @@ const MainPageSelector = () => {
   return (
     <Wrapper>
       <MainPageHeaderStyled>
+        <LogoMain />
         <AuthHeader />
       </MainPageHeaderStyled>
       <MainPageFormContainer>
