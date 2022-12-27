@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const HeaderContainer = styled.nav`
-  padding-bottom: ${p => p.theme.spacing[3]}px;
-  padding-top: ${p => p.theme.spacing[4]}px;
+  padding-bottom: ${p => p.theme.mp(3)};
+  padding-top: ${p => p.theme.mp(4)};
   display: flex;
   align-items: center;
   @media screen and (min-width: 320px) {
@@ -13,7 +13,7 @@ export const HeaderContainer = styled.nav`
     justify-content: flex-start;
   }
   @media screen and (min-width: 1280px) {
-    border-bottom: none;
+    padding-top: ${p => p.theme.mp(6)};
     align-items: flex-end;
   }
 `;
@@ -25,8 +25,8 @@ export const LinkSignIn = styled(NavLink)`
     margin-left: 360px;
   }
   @media screen and (min-width: 1280px) {
-    margin-left: ${p => p.theme.spacing[3]}px;
-    padding-left: ${p => p.theme.spacing[3]}px;
+    margin-left: ${p => p.theme.mp(3)};
+    padding-left: ${p => p.theme.mp(3)};
     border-left: ${p => p.theme.border.header};
   }
 `;
