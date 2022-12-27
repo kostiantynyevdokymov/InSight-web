@@ -20,6 +20,7 @@ import { InputMail } from 'components/InputFormValid/InputEmail';
 import { InputPassword } from 'components/InputFormValid/InputPassword';
 import { LoaderSmall } from 'components/Loader/LoaderSmall';
 import { StyledAccentButton, StyledDefaultButton } from 'components/Common/FormComponents';
+import { useEffect } from 'react';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -31,28 +32,26 @@ export const LoginForm = () => {
   const googleUrl = `${constants.apiServerAddress}/user/google`;
 
   const resetForm = () => {
-    setUser(initialUser);
+    setUser({ ...user, password: '' });
   };
 
   const handleChange = e => {
+    if (isError) setIsError(false);
     const newUserData = { ...user };
     newUserData[e.currentTarget.name] = e.currentTarget.value;
     setUser(newUserData);
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
     setIsError(false);
-    await dispatch(loginUser({ email, password }));
-
-    if (!isLoading && userError) {
-      setIsError(true);
-    } else {
-      resetForm();
-    };
+    dispatch(loginUser({ email: user.email, password: user.password }));
+    resetForm();
   };
 
-  const { email, password } = user;
+  useEffect(() => {
+    if (!isLoading && userError) setIsError(true);
+  }, [isLoading, userError]);
 
   return (
     <Login>
@@ -62,14 +61,14 @@ export const LoginForm = () => {
         <StyledInputGroup>
           <StyledLabelInput>
             E-mail *
-            <InputMail value={email} onChange={handleChange} />
+            <InputMail value={user.email} onChange={handleChange} />
           </StyledLabelInput>
         </StyledInputGroup>
 
         <StyledInputGroup>
           <StyledLabelInput>
             Password *
-            <InputPassword value={password} onChange={handleChange} />
+            <InputPassword value={user.password} onChange={handleChange} />
           </StyledLabelInput>
         </StyledInputGroup>
 
