@@ -48,7 +48,7 @@ export const LinkDiary = styled(NavLink)`
     border-left: ${p => p.theme.border.header};
   }
   :hover {
-    color: ${p => p.theme.colors.text.accentText}; 
+    color: ${p => p.theme.colors.text.accentText};
   }
 `;
 export const LinkCalculator = styled(NavLink)`
@@ -56,16 +56,24 @@ export const LinkCalculator = styled(NavLink)`
   color: ${p => p.theme.colors.text.mediumText};
   text-decoration: none;
   :hover {
-    color: ${p => p.theme.colors.text.accentText}; 
+    color: ${p => p.theme.colors.text.accentText};
   }
 `;
 export const HamburgerMenu = styled.button`
   display: block;
   border: none;
   background-color: inherit;
+  cursor: pointer;
   margin: ${p => p.theme.mp(0, 3, 0, 'auto')};
   @media screen and (min-width: 768px) {
     margin: ${p => p.theme.mp(0, 3, 0, 0)};
+  }
+
+  &:hover {
+    color: ${p => p.theme.colors.text.accentText};
+  }
+  &:focus {
+    color: ${p => p.theme.colors.text.accentText};
   }
 `;
 export const Back = styled.button`
@@ -73,5 +81,13 @@ export const Back = styled.button`
   border: none;
   background-color: inherit;
   margin-right: auto;
+  cursor: pointer;
   margin-left: ${p => p.theme.spacing[3]}px;
+
+  &:hover {
+    color: ${p => p.theme.colors.text.accentText};
+  }
+  &:focus {
+    color: ${p => p.theme.colors.text.accentText};
+  }
 `;

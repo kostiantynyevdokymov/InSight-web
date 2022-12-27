@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+    margin-left: auto;
+    margin-right: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,6 +23,7 @@ export const Diary = styled.button`
   font-size: ${p => p.theme.fontSizes.m};
   padding-bottom: ${p => p.theme.mp(3)};
   color: ${p => (p.active ? '#9B9FAA' : '#FFF')};
+  cursor: pointer;
 `;
 
 export const Calculator = styled(Diary)``;
