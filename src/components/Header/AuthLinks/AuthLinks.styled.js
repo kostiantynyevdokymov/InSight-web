@@ -22,7 +22,7 @@ export const LinkSignIn = styled(NavLink)`
   color: ${p => p.theme.colors.text.defaultText};
   text-decoration: none;
   @media screen and (min-width: 768px) {
-    margin-left: 360px;
+    margin-left: auto;
   }
   @media screen and (min-width: 1280px) {
     margin-left: ${p => p.theme.mp(3)};
