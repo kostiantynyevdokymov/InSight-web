@@ -16,8 +16,8 @@ import {
   StyledError,
 } from './LoginForm.styled';
 
-import { InputMail } from 'components/InputFormValid/InputEmail';
-import { InputPassword } from 'components/InputFormValid/InputPassword';
+import { InputMail } from 'components/AuthForms/InputFormValid/InputEmail';
+import { InputPassword } from 'components/AuthForms/InputFormValid/InputPassword';
 import { LoaderSmall } from 'components/Loader/LoaderSmall';
 import { StyledAccentButton, StyledDefaultButton } from 'components/Common/FormComponents';
 import { useEffect } from 'react';
