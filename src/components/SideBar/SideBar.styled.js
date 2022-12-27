@@ -22,6 +22,9 @@ export const Container = styled.div`
     padding: ${p => p.theme.mp(5, 4)};
   }
 
+  @media screen and (max-width: 1280px) {
+    background: ${p => p.theme.colors.background.greyBackground};
+  }
   @media screen and (min-width: 1280px) {
     flex-direction: column;
     align-items: center;
