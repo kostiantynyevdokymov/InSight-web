@@ -17,7 +17,6 @@ import {
 import { Input } from './Input/Input';
 
 import { addDiaryEntry } from 'redux/diary/diaryOperations';
-import { LoaderSmall } from 'components/Loader/LoaderSmall';
 import { selectIsLoadingDiary } from 'redux/selectors';
 import { useCallback } from 'react';
 
