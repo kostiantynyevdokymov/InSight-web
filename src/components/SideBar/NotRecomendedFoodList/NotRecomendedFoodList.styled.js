@@ -17,4 +17,7 @@ export const Text = styled.p`
 
 export const ShowMore = styled.a`
   cursor: pointer;
+  :hover {
+    color: ${p => p.theme.colors.text.accentText}; 
+  }
 `;

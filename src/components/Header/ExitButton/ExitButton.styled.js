@@ -8,4 +8,7 @@ export const Exit = styled.button`
   border-left: ${p => p.theme.border.header};
   color: ${p => p.theme.colors.text.mediumText};
   cursor: pointer;
+  :hover {
+    color: ${p => p.theme.colors.text.accentText}; 
+  }
 `;

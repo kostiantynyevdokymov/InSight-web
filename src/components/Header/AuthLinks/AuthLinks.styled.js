@@ -29,6 +29,9 @@ export const LinkSignIn = styled(NavLink)`
     padding-left: ${p => p.theme.mp(3)};
     border-left: ${p => p.theme.border.header};
   }
+  :hover {
+    color: ${p => p.theme.colors.text.accentText}; 
+  }
 `;
 
 export const LinkRegistration = styled(NavLink)`
@@ -36,5 +39,8 @@ export const LinkRegistration = styled(NavLink)`
   color: ${p => p.theme.colors.text.mediumText};
   text-decoration: none;
   @media screen and (min-width: 320px) {
+  }
+  :hover {
+    color: ${p => p.theme.colors.text.accentText}; 
   }
 `;
