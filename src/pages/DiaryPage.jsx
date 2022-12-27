@@ -13,12 +13,16 @@ import { Modal } from 'components/Modal/Modal';
 import { deleteDiaryEntry } from 'redux/diary/diaryOperations';
 import { selectDiary } from 'redux/selectors';
 import { useAuth } from 'hooks/useAuth';
+import { NavHeader } from 'components/NavHeader/NavHeader';
+import { BurgerMenu } from 'components/BurgerMenu/BurgerMenu';
 
 const DiaryPage = () => {
   const { isLoggedIn } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
   const { inputDiary } = useSelector(selectDiary);
+  const globalModal = useSelector(state => state.modal.isOpen);
+
   const dispatch = useDispatch();
   const params = useParams();
 
@@ -47,24 +51,33 @@ const DiaryPage = () => {
 
   return isLoggedIn ? (
     <Container>
-      <LeftSection>
-        <Calendar screenWidth={width} />
-        {width > 768 && <Form />}
-        {inputDiary.length !== 0 ? (
-          <DiryproductList products={inputDiary} onClickItem={onRemoveItemHandler} />
-        ) : (
-          <EmptyList>
-            <h3>Still did not added any products</h3>
-          </EmptyList>
-        )}
-        {width < 768 && <ModalButton onClick={onModalClose}>{<Plus style={{ display: 'block' }}>+</Plus>}</ModalButton>}
-        {isOpen && (
-          <Modal onClose={onModalClose}>
-            <Form onClick={onModalClose} />
-          </Modal>
-        )}
-      </LeftSection>
-      <SideBar />
+      {!globalModal ? (
+        <>
+          <LeftSection>
+            <Calendar screenWidth={width} />
+            {width > 768 && <Form />}
+            {inputDiary.length !== 0 ? (
+              <DiryproductList products={inputDiary} onClickItem={onRemoveItemHandler} />
+            ) : (
+              <EmptyList>
+                <h3>Still did not added any products</h3>
+              </EmptyList>
+            )}
+            {width < 768 && (
+              <ModalButton onClick={onModalClose}>{<Plus style={{ display: 'block' }}>+</Plus>}</ModalButton>
+            )}
+            {isOpen && width < 768 && (
+              <Modal onClose={onModalClose}>
+                <NavHeader showButton={isOpen} onButtonClick={onModalClose} />
+                <Form onClick={onModalClose} />
+              </Modal>
+            )}
+          </LeftSection>
+          <SideBar />
+        </>
+      ) : (
+        <BurgerMenu />
+      )}
     </Container>
   ) : (
     <Navigate to="/login" />
