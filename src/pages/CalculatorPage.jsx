@@ -8,12 +8,14 @@ import { useSelector } from 'react-redux';
 import { selectDiet, selectUserIsLoggedIn } from 'redux/selectors';
 import { NavHeader } from 'components/NavHeader/NavHeader';
 import { AuthHeader } from 'components/AuthHeader/AuthHeader';
+import { BurgerMenu } from 'components/BurgerMenu/BurgerMenu';
 
 const Calculator = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const diet = useSelector(selectDiet);
   const isLoggedIn = useSelector(selectUserIsLoggedIn);
+  const globalModal = useSelector(state => state.modal.isOpen);
 
   const useWindowWidth = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -35,14 +37,24 @@ const Calculator = () => {
 
   return (
     <Container>
-      <LeftSection>
-        <CalculatorCalorieForm modal={modalHandler} />
-      </LeftSection>
-      {isLoggedIn && <SideBar />}
+      {globalModal ? (
+        <BurgerMenu />
+      ) : (
+        <LeftSection>
+          <CalculatorCalorieForm modal={modalHandler} />
+        </LeftSection>
+      )}
+      {isLoggedIn && !globalModal && <SideBar />}
       {isOpen && diet && (
         <Modal onClose={modalHandler}>
-          {isLoggedIn && width < 768 ? <NavHeader /> : <AuthHeader />}
-          <CaloriesIntake diet={diet} />
+          {width < 768 ? (
+            <>
+              {isLoggedIn ? <NavHeader showButton={isOpen} onButtonClick={modalHandler} /> : <AuthHeader />}
+              <CaloriesIntake diet={diet} />
+            </>
+          ) : (
+            <CaloriesIntake diet={diet} />
+          )}
         </Modal>
       )}
     </Container>

@@ -20,12 +20,11 @@ export const HeaderContainer = styled.nav`
   }
 `;
 export const LinkSignIn = styled(NavLink)`
-  margin: ${theme.mp(0, 0, 0, 3)};
+  margin-left: ${theme.mp(3)};
   color: ${theme.colors.text.defaultText};
   text-decoration: none;
-  margin-left: auto;
   @media screen and (min-width: 768px) {
-    margin-left: auto;
+    margin-left: 360px;
   }
   @media screen and (min-width: 1280px) {
     margin-left: ${theme.spacing[3]}px;
@@ -35,7 +34,7 @@ export const LinkSignIn = styled(NavLink)`
 `;
 
 export const LinkRegistration = styled(NavLink)`
-  margin: ${theme.mp(0, 3, 0, 3)};
+  margin-left: ${theme.mp(3)};
   color: ${theme.colors.text.mediumText};
   text-decoration: none;
   @media screen and (min-width: 320px) {
