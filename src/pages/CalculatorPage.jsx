@@ -56,7 +56,7 @@ const Calculator = () => {
           )}
         </Modal>
       )}
-      {isLoggedIn && diet && <SideBar />}
+      {isLoggedIn && !globalModal && <SideBar />}
     </Container>
   );
 };
