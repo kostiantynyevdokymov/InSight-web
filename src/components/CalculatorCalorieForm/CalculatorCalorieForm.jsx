@@ -7,12 +7,21 @@ import { selectIsLoadingUser, selectUserParams } from 'redux/selectors';
 import { setParams } from 'redux/user/userSlice';
 import { fetchDiet, fetchUserDiet } from 'redux/diet/dietOperations';
 import SC from './CalculatorCalorieForm.styled';
+import { refreshUser } from 'redux/user/userOperations';
 
 function CalculatorCalorieForm({ modal }) {
   const dispatch = useDispatch();
   const userParams = useSelector(selectUserParams);
   const { isLoggedIn } = useAuth();
   const isLoading = useSelector(selectIsLoadingUser);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, []);
+
+  useEffect(() => {
+    if (isLoggedIn && !!userParams.height) dispatch(fetchUserDiet(userParams));
+  }, [dispatch, isLoggedIn, userParams]);
 
   const handleSubmit = values => {
     dispatch(setParams(values));
@@ -37,19 +46,15 @@ function CalculatorCalorieForm({ modal }) {
     desireWeight: Yup.number('This should be a number')
       .min(40, 'Minimum possible weight is 40 kg')
       .max(500, 'Maximum possible weight is 500 kg')
-      .required("This is a required field")
+      .required('This is a required field')
       .when('currentWeight', (currentWeight, schema) => {
         return schema.test({
           test: desireWeight => !!currentWeight && desireWeight < currentWeight,
           message: 'Target weight should be less than your current weight',
         });
       }),
-    bloodType: Yup.number().required("This is a required field"),
+    bloodType: Yup.number().required('This is a required field'),
   });
-
-  useEffect(() => {
-    if (isLoggedIn && !!userParams.height) dispatch(fetchUserDiet(userParams));
-  }, [dispatch, isLoggedIn, userParams]);
 
   return (
     <>
