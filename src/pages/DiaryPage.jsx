@@ -13,7 +13,7 @@ import { Modal } from 'components/Modal/Modal';
 import { deleteDiaryEntry } from 'redux/diary/diaryOperations';
 import { selectDiary, selectIsLoadingDiary } from 'redux/selectors';
 import { useAuth } from 'hooks/useAuth';
-import { NavHeader } from 'components/NavHeader/NavHeader';
+import { NavHeader } from 'components/Header/NavHeader/NavHeader';
 import { BurgerMenu } from 'components/BurgerMenu/BurgerMenu';
 import { LoaderSmall } from 'components/Loader/LoaderSmall';
 

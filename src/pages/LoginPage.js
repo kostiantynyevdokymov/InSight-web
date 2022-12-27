@@ -1,4 +1,4 @@
-import { LoginForm } from 'components/LoginForm/LoginForm';
+import { LoginForm } from 'components/AuthForms/LoginForm/LoginForm';
 import { useAuth } from 'hooks/useAuth';
 import { Navigate, useSearchParams } from 'react-router-dom';
 

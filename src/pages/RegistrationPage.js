@@ -1,4 +1,4 @@
-import { RegisterForm } from 'components/RegisterForm/RegisterForm';
+import { RegisterForm } from 'components/AuthForms/RegisterForm/RegisterForm';
 import { useAuth } from 'hooks/useAuth';
 import { Navigate, useSearchParams } from 'react-router-dom';
 
