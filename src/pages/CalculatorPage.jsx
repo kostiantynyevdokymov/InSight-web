@@ -44,7 +44,6 @@ const Calculator = () => {
           <CalculatorCalorieForm modal={modalHandler} />
         </LeftSection>
       )}
-      {isLoggedIn && !globalModal && <SideBar />}
       {isOpen && diet && (
         <Modal onClose={modalHandler}>
           {width < 768 ? (
@@ -55,6 +54,7 @@ const Calculator = () => {
           ) : (
             <CaloriesIntake diet={diet} />
           )}
+          {isLoggedIn && diet && <SideBar />}
         </Modal>
       )}
     </Container>
