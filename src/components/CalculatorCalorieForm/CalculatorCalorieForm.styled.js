@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { Form, Field } from 'formik';
+import { Form, Field, ErrorMessage} from 'formik';
 
 const Title = styled.h2`
   margin-bottom: 40px;
   font-family: Verdana;
   font-style: normal;
-  font-weight: bold;
+  font-weight: ${p => p.theme.fontWeights.bold};
   font-size: 18px;
   line-height: 26px;
   color: #212121;
@@ -19,18 +19,26 @@ const Title = styled.h2`
   @media screen and (min-width: 1280px) {
     font-size: 34px;
     line-height: 41px;
-    margin-bottom: 85px;
   }
 `;
 const FormikForm = styled(Form)`
-  width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 300px;
+  margin-bottom: 10px;
+  padding: ${p => p.theme.mp(3)};
+  box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.9);
 
   @media screen and (min-width: 768px) {
-    width: 605px;
-  }
-
-  @media screen and (min-width: 1280px) {
     margin: 0;
+    max-width: 605px;
+    padding-left: ${p => p.theme.mp(4)};
+    padding-right: ${p => p.theme.mp(4)};
+  }
+  @media screen and (min-width: 1280px) {
+    padding-left: ${p => p.theme.mp(3)};
+    padding-right: ${p => p.theme.mp(3)};
   }
 `;
 
@@ -162,7 +170,7 @@ const RadioField = styled(Field)`
     background: #fc842d;
   }
 `;
-const Error = styled.div`
+const Error = styled(ErrorMessage)`
   width: 300px;
   position: absolute;
   top: 22px;
@@ -187,10 +195,11 @@ const LabelValue = styled.p`
   transition: 0.3s;
 `;
 const InputField = styled(Field)`
-  margin-bottom: 40px;
+  margin-bottom: ${p => p.iserror ? '50px' : '40px'};
   width: 240px;
   border: 0;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: ${p => p.iserror ? '1px solid #e11616' : '1px solid #e0e0e0'};
+  background-color: ${p => p.iserror ? '#e1161613' : 'inherit'};
   &:focus {
     outline: none;
   }
@@ -203,24 +212,7 @@ const InputField = styled(Field)`
     margin: 0;
   }
 `;
-const ErrorInputField = styled(Field)`
-  margin-bottom: 40px;
-  width: 240px;
-  border: 0;
-  background-color: #e1161613;
-  border-bottom: 1px solid #e11616;
-  &:focus {
-    outline: none;
-  }
-  & {
-    -moz-appearance: textfield;
-  }
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-`;
+
 const SC = {
   Title,
   FormikForm,
@@ -237,7 +229,6 @@ const SC = {
   Error,
   LabelValue,
   InputField,
-  ErrorInputField,
 };
 
 export default SC;

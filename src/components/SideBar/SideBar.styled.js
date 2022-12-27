@@ -8,6 +8,9 @@ export const Section = styled.section`
     background-repeat: no-repeat;
     background-position: right;
   }
+  @media screen and (max-width: 1279px) {
+    background-color: ${p => p.theme.colors.background.greyBackground};
+  }
 
   @media screen and (min-width: 1280px) {
     width: 520px;

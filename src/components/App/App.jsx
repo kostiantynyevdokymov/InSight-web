@@ -11,7 +11,7 @@ const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const GoogleAuth = lazy(() => import('pages/GoogleAuth'));
 const GoogleRedirect = lazy(() => import('pages/GoogleRedirect'));
-const Calculator = lazy(() => import('pages/Calculator'));
+const CalculatorPage = lazy(() => import('pages/CalculatorPage'));
 const DiaryPage = lazy(() => import('pages/DiaryPage'));
 
 const CommonLayout = lazy(() => import('pages/CommonLayout'));
@@ -31,14 +31,14 @@ export const App = () => {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<CommonLayout />}>
-          <Route index element={<Calculator />} />
+          <Route index element={<CalculatorPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegistrationPage />} />
 
           <Route path="google" element={<GoogleRedirect />} />
           <Route path="google-auth" element={<GoogleAuth />} />
 
-          <Route path="calculator" element={<Calculator />} />
+          <Route path="calculator" element={<CalculatorPage />} />
           <Route path="diary" element={<DiaryPage />}>
             <Route path=":day" element={<DiaryPage />} />
           </Route>

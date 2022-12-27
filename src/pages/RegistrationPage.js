@@ -1,16 +1,13 @@
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
 import { useAuth } from 'hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useSearchParams } from 'react-router-dom';
 
 const LoginPage = () => {
   const { isLoggedIn } = useAuth();
-  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const retPath = searchParams.get('retPath') || '/';
 
-  console.log({ isLoggedIn });
-
-  if (isLoggedIn) navigate('/');
-
-  return <RegisterForm />;
+  return isLoggedIn ? <Navigate to={`/${retPath}`} /> : <RegisterForm />;
 };
 
 export default LoginPage;
