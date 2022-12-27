@@ -136,8 +136,7 @@ export const Form = ({ onClick }) => {
               <Add>Add</Add>
               <Plus>+</Plus>
             </>
-          )}{' '}
-          G
+          )}
         </ButtonDairy>
       </SForm>
     </Container>

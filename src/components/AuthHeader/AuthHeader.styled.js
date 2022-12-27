@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { theme } from '../Common/Theme';
 
 export const HeaderContainer = styled.nav`
-  border-bottom: ${theme.border.header};
   padding-bottom: ${theme.spacing[3]}px;
   padding-top: ${theme.spacing[4]}px;
   display: flex;
