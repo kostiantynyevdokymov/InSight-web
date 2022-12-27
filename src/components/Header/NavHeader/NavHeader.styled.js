@@ -47,11 +47,17 @@ export const LinkDiary = styled(NavLink)`
     padding-left: ${p => p.theme.spacing[3]}px;
     border-left: ${p => p.theme.border.header};
   }
+  :hover {
+    color: ${p => p.theme.colors.text.accentText}; 
+  }
 `;
 export const LinkCalculator = styled(NavLink)`
   margin: ${p => p.theme.mp(0, 3, 0, 3)};
   color: ${p => p.theme.colors.text.mediumText};
   text-decoration: none;
+  :hover {
+    color: ${p => p.theme.colors.text.accentText}; 
+  }
 `;
 export const HamburgerMenu = styled.button`
   display: block;
