@@ -63,4 +63,5 @@ export const ButtonX = styled.button`
   border: none;
   width: 10px;
   color: ${p => p.theme.colors.text.mediumText};
+  cursor: pointer;
 `;
