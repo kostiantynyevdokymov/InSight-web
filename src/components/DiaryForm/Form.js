@@ -134,14 +134,8 @@ export const Form = ({ onClick }) => {
         </ProductBlock>
         <Input id="diaryweight" name="diaryweight" placeholder="Grams" value={weightValue} onChange={onInputChange} />
         <ButtonDairy disabled={isLoading}>
-          {isLoading ? (
-            <LoaderSmall />
-          ) : (
-            <>
-              <Add>Add</Add>
-              <Plus>+</Plus>
-            </>
-          )}
+          <Add>Add</Add>
+          <Plus>+</Plus>
         </ButtonDairy>
       </SForm>
     </Container>
