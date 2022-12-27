@@ -1,3 +1,4 @@
+import { StyledAccentButton } from 'components/Common/FormComponents';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -74,23 +75,15 @@ export const AutocompleteItems = styled.li`
   }
 `;
 
-export const ButtonDairy = styled.button`
+export const ButtonDairy = styled(StyledAccentButton)`
   margin-top: ${p => p.theme.spacing[5]}px;
   margin-left: auto;
   margin-right: auto;
   width: 176px;
   height: 44px;
-  background-color: ${p => p.theme.colors.text.accentText};
   border-radius: 22px;
-  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-  border: none;
-  color: ${p => p.theme.colors.text.inverseText};
 
   @media screen and (min-width: 768px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: auto;
     margin-bottom: auto;
     height: 48px;
     width: 48px;

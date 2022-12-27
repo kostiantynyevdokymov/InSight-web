@@ -16,6 +16,7 @@ const BasicButton = styled.button`
   border-radius: ${p => p.theme.radii.xlarge};
 
   transition: box-shadow ${p => p.theme.animation.fast};
+  cursor: pointer;
 
   &:hover,
   &:focus {

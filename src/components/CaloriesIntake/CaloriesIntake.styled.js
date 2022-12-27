@@ -1,3 +1,4 @@
+import { StyledAccentButton } from 'components/Common/FormComponents';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -63,29 +64,11 @@ export const Text = styled.h3`
   padding-bottom: ${p => p.theme.mp(3)};
 `;
 
-export const Button = styled.button`
-  padding: 13px 0;
-  display: block;
+export const Button = styled(StyledAccentButton)`
   width: 210px;
-  border: 2px solid #fc842d;
-  border-radius: 30px;
-  background-color: #fc842d;
-  color: #ffffff;
-  font-weight: 700;
-  font-family: Verdana;
-  font-size: 14px;
-  line-height: 1.21;
-  text-align: center;
-  letter-spacing: 0.04em;
-  outline: none;
   margin-left: auto;
   margin-right: auto;
 
-  &:hover {
-    background-color: #fc842d;
-    color: #ffffff;
-    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-  }
   @media screen and (min-width: 768px) {
   }
 
