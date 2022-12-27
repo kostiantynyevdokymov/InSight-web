@@ -1,4 +1,4 @@
-import { LinkSignIn, LinkRegistration, HeaderContainer } from './AuthHeader.styled';
+import { LinkSignIn, LinkRegistration, HeaderContainer } from './AuthLinks.styled';
 import { LogoMain } from 'components/Logo/Logo';
 
 export const AuthHeader = () => {

@@ -6,8 +6,8 @@ import { Modal } from 'components/Modal/Modal';
 import { CaloriesIntake } from 'components/CaloriesIntake/CaloriesIntake';
 import { useSelector } from 'react-redux';
 import { selectDiet, selectUserIsLoggedIn } from 'redux/selectors';
-import { NavHeader } from 'components/NavHeader/NavHeader';
-import { AuthHeader } from 'components/AuthHeader/AuthHeader';
+import { NavHeader } from 'components/Header/NavHeader/NavHeader';
+import { AuthHeader } from 'components/Header/AuthLinks/AuthLinks';
 
 const Calculator = () => {
   const [isOpen, setIsOpen] = useState(false);

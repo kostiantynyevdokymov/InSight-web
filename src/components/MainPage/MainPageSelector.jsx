@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router';
-import { AuthHeader } from 'components/AuthHeader/AuthHeader';
+import { AuthHeader } from 'components/Header/AuthLinks/AuthLinks';
 import {
   Wrapper,
   Layer,
