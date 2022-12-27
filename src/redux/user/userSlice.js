@@ -18,7 +18,7 @@ export const initialParamsState = {
   bloodType: 0,
 };
 
-const initialState = {
+export const initialUserState = {
   name: null,
   email: null,
   token: null,
@@ -35,7 +35,7 @@ const initialState = {
 
 const userSlice = createSlice({
   name: 'user',
-  initialState,
+  initialState: initialUserState,
   reducers: {
     googleLogin: handleGoogleLogin,
     setParams: handleSetParams,

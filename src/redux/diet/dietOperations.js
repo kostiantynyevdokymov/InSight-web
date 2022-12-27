@@ -8,7 +8,7 @@ export const fetchDiet = createAsyncThunk(
       const response = await axios.post('/diet', { height, age, currentWeight, desireWeight, bloodType });
       return response.data;
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
+      return thunkAPI.rejectWithValue(err.response.data.message || err.message);
     }
   }
 );
@@ -20,7 +20,7 @@ export const fetchUserDiet = createAsyncThunk(
       const response = await axios.post('/diet/user', { height, age, currentWeight, desireWeight, bloodType });
       return response.data;
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
+      return thunkAPI.rejectWithValue(err.response.data.message || err.message);
     }
   }
 );

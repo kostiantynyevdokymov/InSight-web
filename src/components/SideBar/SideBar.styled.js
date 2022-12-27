@@ -1,24 +1,14 @@
 import styled from 'styled-components';
 
-import SideBarImg_1280 from '../../images/SideBarImg_1280.png';
-import SideBarImg_768 from '../../images/SideBarImg_768.png';
-
 export const Section = styled.section`
   max-width: 480px;
 
   @media screen and (min-width: 768px) {
     max-width: 768px;
-    background-image: url(${SideBarImg_768});
-    background-repeat: no-repeat;
-    background-position: right;
-  }
-  @media screen and (max-width: 1279px) {
-    background-color: ${p => p.theme.colors.background.greyBackground};
   }
 
   @media screen and (min-width: 1280px) {
     width: 520px;
-    background-image: url(${SideBarImg_1280});
   }
 `;
 

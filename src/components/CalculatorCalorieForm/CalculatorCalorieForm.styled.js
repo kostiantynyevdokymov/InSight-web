@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Form, Field, ErrorMessage} from 'formik';
+import { StyledAccentButton } from 'components/Common/FormComponents';
 
 const Title = styled.h2`
   margin-bottom: 40px;
@@ -67,28 +68,10 @@ const InputBlock = styled.div`
 const Label = styled.label`
   position: relative;
 `;
-const Button = styled.button`
-  padding: 13px 0;
-  display: block;
+const Button = styled(StyledAccentButton)`
   width: 210px;
-  border: 2px solid #fc842d;
-  border-radius: 30px;
-  background-color: #fc842d;
-  color: #ffffff;
-  font-weight: 700;
-  font-family: Verdana;
-  font-size: 14px;
-  line-height: 1.21;
-  text-align: center;
-  letter-spacing: 0.04em;
-  outline: none;
   margin: 0 auto;
-
-  &:hover {
-    background-color: #fc842d;
-    color: #ffffff;
-    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-  }
+  
   @media screen and (min-width: 768px) {
     margin: 0;
   }
@@ -195,11 +178,11 @@ const LabelValue = styled.p`
   transition: 0.3s;
 `;
 const InputField = styled(Field)`
-  margin-bottom: ${p => p.isError ? '50px' : '40px'};
+  margin-bottom: ${p => p.iserror ? '50px' : '40px'};
   width: 240px;
   border: 0;
-  border-bottom: ${p => p.isError ? '1px solid #e11616' : '1px solid #e0e0e0'};
-  background-color: ${p => p.isError ? '#e1161613' : 'inherit'};
+  border-bottom: ${p => p.iserror ? '1px solid #e11616' : '1px solid #e0e0e0'};
+  background-color: ${p => p.iserror ? '#e1161613' : 'inherit'};
   &:focus {
     outline: none;
   }

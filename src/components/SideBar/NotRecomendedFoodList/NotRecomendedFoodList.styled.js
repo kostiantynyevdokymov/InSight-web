@@ -5,9 +5,9 @@ export const Item = styled.li`
   align-items: center;
   justify-content: space-between;
 
-  &: not(: last-child) {
+  &:not(:last-child) {
     padding-bottom: ${p => p.theme.mp(3)};
-  } ;
+  }
 `;
 
 export const Text = styled.p`
@@ -17,4 +17,7 @@ export const Text = styled.p`
 
 export const ShowMore = styled.a`
   cursor: pointer;
+  :hover {
+    color: ${p => p.theme.colors.text.accentText}; 
+  }
 `;

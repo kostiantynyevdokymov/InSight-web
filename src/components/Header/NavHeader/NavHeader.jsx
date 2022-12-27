@@ -1,37 +1,52 @@
-import { Back, NavHeaderContainer, HamburgerMenu, LogoContainer, LinkDiary, LinkCalculator } from './NavHeader.styled';
+import {
+  Back,
+  NavHeaderContainer,
+  HamburgerMenu,
+  LogoContainer,
+  LinkDiary,
+  LinkCalculator,
+  DadContainer,
+} from './NavHeader.styled';
 import { TiArrowBack } from 'react-icons/ti';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { useNavigate } from 'react-router';
+import { GrClose } from 'react-icons/gr';
 import { LogoMain } from 'components/Logo/Logo';
 import { useMediaQuery } from 'react-responsive';
 import { ExitButton } from 'components/Header/ExitButton/ExitButton';
 import { NameButton } from 'components/Header/NameButton/NameButton';
-
-export const NavHeader = () => {
-  const navigate = useNavigate();
-  const url = window.location.href.split('/').pop();
-
+import { useDispatch, useSelector } from 'react-redux';
+import { closeModal, openModal } from 'redux/services/ModalSlice';
+export const NavHeader = ({ showButton, onButtonClick }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({ query: '(min-width: 768px) and (max-width: 1279px)' });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
 
+  const dispatch = useDispatch();
+  const { isOpen } = useSelector(state => state.modal);
+
+  const onBurgerClick = () => {
+    if (isOpen) {
+      dispatch(closeModal());
+      return;
+    }
+    dispatch(openModal());
+  };
+
   return (
-    <div style={{ maxWidth: '1280px', marginLeft: 'auto', marginRight: 'auto' }}>
+    <DadContainer>
       {isMobile && (
         <>
           <LogoContainer>
             <LogoMain />
-            <HamburgerMenu type="button">
-              <GiHamburgerMenu size={20} />
+            <HamburgerMenu type="button" onClick={onBurgerClick}>
+              {!isOpen ? <GiHamburgerMenu size={20} /> : <GrClose size={20} />}
             </HamburgerMenu>
           </LogoContainer>
           <NavHeaderContainer>
-            {(url === 'diary' || url === 'calculator') && (
-              <>
-                <Back type="button" onClick={() => navigate(-1)}>
-                  <TiArrowBack size={20} />
-                </Back>
-              </>
+            {showButton && (
+              <Back type="button" onClick={onButtonClick}>
+                <TiArrowBack size={20} />
+              </Back>
             )}
             <NameButton />
             <ExitButton />
@@ -44,8 +59,8 @@ export const NavHeader = () => {
             <LogoMain />
             <NameButton />
             <ExitButton />
-            <HamburgerMenu type="button">
-              <GiHamburgerMenu size={20} />
+            <HamburgerMenu type="button" onClick={onBurgerClick}>
+              {!isOpen ? <GiHamburgerMenu size={20} /> : <GrClose size={20} />}
             </HamburgerMenu>
           </NavHeaderContainer>
         </>
@@ -61,6 +76,6 @@ export const NavHeader = () => {
           </NavHeaderContainer>
         </>
       )}
-    </div>
+    </DadContainer>
   );
 };

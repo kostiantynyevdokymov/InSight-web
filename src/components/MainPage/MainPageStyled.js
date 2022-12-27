@@ -39,17 +39,21 @@ export const MainPageHeaderStyled = styled.div`
 `;
 
 export const MainPageFormContainer = styled.div`
-  position: absolute;
-  top: calc(100% / 5.7);
-  margin-left: calc(100% / 24);
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    top: calc(100% / 5.7);
+    margin-left: calc(100% / 24);
+  }
 `;
 
 export const Wrapper = styled.div`
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 100vh;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+  }
 `;
 
 const StrawberryStyled = styled.img`

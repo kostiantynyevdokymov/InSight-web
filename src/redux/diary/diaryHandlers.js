@@ -1,10 +1,12 @@
 export const handleAddDiaryEntry = (state, action) => {
-  state.inputDiary.push(action.payload);
+  const retDiary = state.inputDiary.filter(item => item._id !== action.payload._id);
+  retDiary.unshift(action.payload);
+  state.inputDiary = retDiary;
 };
 
 export const handleDeleteDiaryEntry = (state, action) => {
-  const idx = state.inputDiary.findIndex(input => input._id === action.payload._id);
-  if (idx >= 0) state.inputDiary.splice(idx, 1);
+  // const retDiary = ;
+  state.inputDiary = state.inputDiary.filter(item => item._id !== action.payload._id);
 };
 
 export const handleGetDailyDiary = (state, action) => {
