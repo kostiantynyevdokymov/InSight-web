@@ -27,7 +27,3 @@ export const getDailyDiary = createAsyncThunk('diary/getDailyDiary', async (day,
     return thunkAPI.rejectWithValue(err.response.data.message || err.message);
   }
 });
-
-export const resetDailyDiary = createAsyncThunk('diary/resetDailyDiary', async (_, thunkAPI) => {
-  return [];
-});

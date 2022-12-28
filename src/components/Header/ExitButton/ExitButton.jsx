@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { logoutUser } from 'redux/user/userOperations';
+import { resetDailyDiary } from 'redux/diary/diarySlice';
 import { Exit, ExitModalThumb, ExitModalText } from './ExitButton.styled';
 import { StyledAccentButton } from 'components/Common/FormComponents';
 import { Modal } from 'components/Modal/Modal';
@@ -17,6 +18,7 @@ export const ExitButton = () => {
   };
 
   const ExitHandler = () => {
+    dispatch(resetDailyDiary());
     dispatch(logoutUser());
     navigate('/');
   };

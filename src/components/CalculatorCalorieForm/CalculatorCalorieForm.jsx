@@ -16,8 +16,8 @@ function CalculatorCalorieForm({ modal }) {
   const isLoading = useSelector(selectIsLoadingUser);
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    if (isLoggedIn) dispatch(refreshUser());
+  }, [dispatch, isLoggedIn]);
 
   useEffect(() => {
     if (isLoggedIn && !!userParams.height) dispatch(fetchUserDiet(userParams));

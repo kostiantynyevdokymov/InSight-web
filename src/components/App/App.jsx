@@ -23,10 +23,12 @@ export const App = () => {
   useEffect(() => {
     if (!isRefreshing) return;
 
-    authHeader.set(token);
-    dispatch(refreshUser());
+    if (token?.length > 0) {
+      authHeader.set(token);
+      dispatch(refreshUser());
+    }
   }, [dispatch, isRefreshing, token]);
-
+  
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
