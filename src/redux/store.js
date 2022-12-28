@@ -17,7 +17,7 @@ const presistedUserReducer = persistReducer(
   {
     key: 'user',
     storage,
-    whitelist: ['token'],
+    whitelist: ['token', 'params'],
   },
   userReducer
 );
