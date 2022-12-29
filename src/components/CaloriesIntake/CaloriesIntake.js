@@ -15,6 +15,11 @@ export const CaloriesIntake = ({ diet }) => {
     setShow(!show);
   };
 
+  const onStartLoosingClick = () => {
+    if (!isLoggedIn) navigate('/register');
+    else navigate('/diary');
+  };
+
   return (
     <Container>
       <HeaderBlock>
@@ -29,17 +34,7 @@ export const CaloriesIntake = ({ diet }) => {
           <NotRecomendedFoodList products={diet.stopProducts} show={show} onClick={onShowClick} />
         )}
       </List>
-      <Button
-        onClick={() => {
-          if (!isLoggedIn) {
-            navigate('/login');
-            return;
-          }
-          navigate('/diary');
-        }}
-      >
-        Start losing weight
-      </Button>
+      <Button onClick={onStartLoosingClick}>Start losing weight</Button>
     </Container>
   );
 };
