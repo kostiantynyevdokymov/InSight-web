@@ -1,27 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { useAuth } from 'hooks/useAuth';
-import { selectIsLoadingUser, selectUserParams } from 'redux/selectors';
+import { selectIsLoadingUser, selectUserIsLoggedIn, selectUserParams } from 'redux/selectors';
 import { setParams } from 'redux/user/userSlice';
 import { fetchDiet, fetchUserDiet } from 'redux/diet/dietOperations';
 import SC from './CalculatorCalorieForm.styled';
-import { refreshUser } from 'redux/user/userOperations';
 
 function CalculatorCalorieForm({ modal }) {
   const dispatch = useDispatch();
   const userParams = useSelector(selectUserParams);
-  const { isLoggedIn } = useAuth();
+  const isLoggedIn = useSelector(selectUserIsLoggedIn);
   const isLoading = useSelector(selectIsLoadingUser);
-
-  useEffect(() => {
-    if (isLoggedIn) dispatch(refreshUser());
-  }, [dispatch, isLoggedIn]);
-
-  useEffect(() => {
-    if (isLoggedIn && !!userParams.height) dispatch(fetchUserDiet(userParams));
-  }, [dispatch, isLoggedIn, userParams]);
 
   const handleSubmit = values => {
     dispatch(setParams(values));
