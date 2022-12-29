@@ -6,11 +6,13 @@ export const theme = {
       inverseText: '#FFFFFF',
       accentText: '#FC842D',
       calorieText: '#264061',
+      errorText: '#e116161',
     },
     background: {
       pageBackground: '#FFFFFF',
       greyBackground: '#F0F1F3',
       secondBackground: '#264061',
+      errorBackground:'#e1161613'
     },
     modalBackdropColor: 'rgba(33, 33, 33, 0.12)',
 
@@ -65,6 +67,7 @@ export const theme = {
   border: {
     default: '1px solid #212121',
     header: '2px solid #E0E0E0',
+    error: '1px solid #e11616',
 
     dev: '1px solid tomato',
   },

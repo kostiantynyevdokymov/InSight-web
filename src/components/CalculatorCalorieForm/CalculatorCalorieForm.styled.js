@@ -183,8 +183,8 @@ const InputField = styled(Field)`
   margin-bottom: ${p => (p.iserror ? '50px' : '40px')};
   width: 240px;
   border: 0;
-  border-bottom: ${p => (p.iserror ? '1px solid #e11616' : '1px solid #e0e0e0')};
-  background-color: ${p => (p.iserror ? '#e1161613' : 'inherit')};
+  border-bottom: ${p => (p.iserror ? p.theme.border.error : p.theme.border.header)};
+  background-color: ${p => (p.iserror ? p.theme.colors.background.errorBackground : 'inherit')};
   &:focus {
     outline: none;
   }
