@@ -24,6 +24,13 @@ export const Diary = styled.button`
   padding-bottom: ${p => p.theme.mp(3)};
   color: ${p => (p.active ? '#9B9FAA' : '#FFF')};
   cursor: pointer;
+
+  &:hover {
+    color: ${p => p.theme.colors.text.accentText};
+  }
+  &:focus {
+    color: ${p => p.theme.colors.text.accentText};
+  }
 `;
 
 export const Calculator = styled(Diary)``;
