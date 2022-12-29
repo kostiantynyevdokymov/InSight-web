@@ -55,13 +55,24 @@ export const Form = ({ onClick }) => {
 
   const onSubmitForm = e => {
     e.preventDefault();
+    
+    if (weightValue <= 0) {
+      window.alert('Enter positive weight');
+      return;
+    }
+
+    if (!allProducts.includes(chosedProduct)) {
+      window.alert('Choose a product from the list');
+      return;
+    }
+
     const date = params.day.split('.').join('');
     dispatch(addDiaryEntry({ day: date, id: chosedProduct._id, weight: weightValue }));
+    
     setValueProd('');
     setWeightValue('');
-    if (onClick) {
-      onClick();
-    }
+
+    if (onClick) onClick();
   };
 
   const onDiryProductClick = () => {
@@ -131,7 +142,7 @@ export const Form = ({ onClick }) => {
           )}
         </ProductBlock>
         <Input id="diaryweight" name="diaryweight" placeholder="Grams" value={weightValue} onChange={onInputChange} />
-        <ButtonDairy disabled={isLoading || !weightValue || weightValue <= 0}>
+        <ButtonDairy disabled={isLoading}>
           <Add>Add</Add>
           <Plus>+</Plus>
         </ButtonDairy>
