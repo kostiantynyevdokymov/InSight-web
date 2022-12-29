@@ -11,22 +11,21 @@ import { DiryproductList } from 'components/DiryProductsList/DiryProductList';
 import { Modal } from 'components/Modal/Modal';
 
 import { deleteDiaryEntry } from 'redux/diary/diaryOperations';
-import { selectDiary, selectIsLoadingDiary } from 'redux/selectors';
-import { useAuth } from 'hooks/useAuth';
+import { selectDiary, selectIsLoadingDiary, selectUserIsLoggedIn } from 'redux/selectors';
 import { NavHeader } from 'components/Header/NavHeader/NavHeader';
 import { BurgerMenu } from 'components/BurgerMenu/BurgerMenu';
 import { LoaderSmall } from 'components/Loader/LoaderSmall';
 
 const DiaryPage = () => {
-  const { isLoggedIn } = useAuth();
+  const dispatch = useDispatch();
+  const params = useParams();
+
   const [isOpen, setIsOpen] = useState(false);
 
   const { inputDiary } = useSelector(selectDiary);
   const globalModal = useSelector(state => state.modal.isOpen);
   const isLoading = useSelector(selectIsLoadingDiary);
-
-  const dispatch = useDispatch();
-  const params = useParams();
+  const isLoggedIn = useSelector(selectUserIsLoggedIn);
 
   const useWindowWidth = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);

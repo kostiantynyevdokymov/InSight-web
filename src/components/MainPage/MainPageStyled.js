@@ -50,7 +50,8 @@ export const Wrapper = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     width: 100%;
     height: 100vh;
   }

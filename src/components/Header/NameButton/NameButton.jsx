@@ -1,9 +1,10 @@
-import { useAuth } from 'hooks/useAuth';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUserAuth } from 'redux/selectors';
 import { Name } from './NameButton.styled';
 
 export const NameButton = () => {
-  const { name } = useAuth();
+  const { name } = useSelector(selectUserAuth);
   const [clickCount, setClickCount] = useState(0);
 
   const HandleButtonPress = () => {

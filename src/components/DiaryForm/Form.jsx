@@ -22,11 +22,11 @@ import { useCallback } from 'react';
 
 export const Form = ({ onClick }) => {
   const [showAutocomplete, setShowAutocomplete] = useState(false);
-
   const [allProducts, setAllProducts] = useState([]);
   const [chosedProduct, setChosedProduct] = useState();
   const [valueProd, setValueProd] = useState('');
   const [weightValue, setWeightValue] = useState('');
+  const [isProductValid, setIsProductValid] = useState(false);
 
   const dispatch = useDispatch();
   const params = useParams();
@@ -48,21 +48,33 @@ export const Form = ({ onClick }) => {
     [valueProd]
   );
 
-  const itemClickHandler = (event, index) => {
-    setChosedProduct(allProducts[index]);
-    setValueProd(event.target.textContent);
-    setShowAutocomplete(!showAutocomplete);
+  const haveProd = (arr, item) => {
+    const prod = arr.find(obj => obj._id === item._id);
+    if (prod) {
+      return true;
+    }
   };
 
   const onSubmitForm = e => {
     e.preventDefault();
+
+    if (weightValue <= 0) {
+      window.alert('Enter positive weight');
+      return;
+    }
+
+    if (!isProductValid) {
+      window.alert('Choose a product from the list');
+      return;
+    }
+
     const date = params.day.split('.').join('');
     dispatch(addDiaryEntry({ day: date, id: chosedProduct._id, weight: weightValue }));
+
     setValueProd('');
     setWeightValue('');
-    if (onClick) {
-      onClick();
-    }
+
+    if (onClick) onClick();
   };
 
   const onDiryProductClick = () => {
@@ -70,18 +82,27 @@ export const Form = ({ onClick }) => {
   };
 
   const onInputChange = e => {
-    if (e.target.name === 'diaryproduct') {
-      setValueProd(e.target.value);
-    }
-    if (e.target.name === 'diaryweight') {
-      setWeightValue(e.target.value);
-    }
+    if (e.target.name === 'diaryproduct') setValueProd(e.target.value);
+    if (e.target.name === 'diaryweight') setWeightValue(parseInt(e.target.value));
+  };
+
+  const itemClickHandler = (event, index) => {
+    setChosedProduct(allProducts[index]);
+    setValueProd(event.target.textContent);
+    setShowAutocomplete(!showAutocomplete);
   };
 
   useEffect(() => {
-    if (valueProd.length > 2) {
-      getProducts();
+    if (allProducts.length !== 0 && chosedProduct.length !== 0) {
+      setIsProductValid(haveProd(allProducts, chosedProduct));
+      return;
     }
+    setIsProductValid(false);
+  }, [allProducts, chosedProduct]);
+
+  useEffect(() => {
+    if (valueProd.length > 2) getProducts();
+
     if (valueProd === '') {
       setChosedProduct([]);
       setAllProducts([]);
@@ -118,6 +139,7 @@ export const Form = ({ onClick }) => {
             value={valueProd}
             onClick={onDiryProductClick}
             onChange={onInputChange}
+            type={'text'}
           />
           {allProducts.length !== 0 && showAutocomplete && (
             <AutocompleteList>
@@ -131,7 +153,14 @@ export const Form = ({ onClick }) => {
             </AutocompleteList>
           )}
         </ProductBlock>
-        <Input id="diaryweight" name="diaryweight" placeholder="Grams" value={weightValue} onChange={onInputChange} />
+        <Input
+          id="diaryweight"
+          name="diaryweight"
+          placeholder="Grams"
+          value={weightValue}
+          onChange={onInputChange}
+          type={'number'}
+        />
         <ButtonDairy disabled={isLoading}>
           <Add>Add</Add>
           <Plus>+</Plus>

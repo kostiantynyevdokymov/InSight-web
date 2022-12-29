@@ -10,25 +10,10 @@ import {
 } from './userHandlers';
 import { loginUser, logoutUser, refreshUser, registerUser } from './userOperations';
 
-export const initialParamsState = {
-  height: 0,
-  age: 0,
-  currentWeight: 0,
-  desiredWeight: 0,
-  bloodType: 0,
-};
-
 export const initialUserState = {
   name: null,
   email: null,
   token: null,
-  params: {
-    height: 0,
-    age: 0,
-    currentWeight: 0,
-    desiredWeight: 0,
-    bloodType: 0,
-  },
   isLoading: false,
   error: null,
 };
