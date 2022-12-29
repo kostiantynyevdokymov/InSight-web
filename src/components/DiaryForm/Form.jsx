@@ -22,7 +22,6 @@ import { useCallback } from 'react';
 
 export const Form = ({ onClick }) => {
   const [showAutocomplete, setShowAutocomplete] = useState(false);
-
   const [allProducts, setAllProducts] = useState([]);
   const [chosedProduct, setChosedProduct] = useState();
   const [valueProd, setValueProd] = useState('');
@@ -132,7 +131,7 @@ export const Form = ({ onClick }) => {
           )}
         </ProductBlock>
         <Input id="diaryweight" name="diaryweight" placeholder="Grams" value={weightValue} onChange={onInputChange} />
-        <ButtonDairy disabled={isLoading}>
+        <ButtonDairy disabled={isLoading || !weightValue || weightValue <= 0}>
           <Add>Add</Add>
           <Plus>+</Plus>
         </ButtonDairy>
