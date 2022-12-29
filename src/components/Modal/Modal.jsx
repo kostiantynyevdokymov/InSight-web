@@ -4,7 +4,7 @@ import { Backdrop, ModalViev, Close } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const Modal = ({ onClose, children }) => {
+export const Modal = ({ onClose, children, alert }) => {
   useEffect(() => {
     const hadleKeyDown = event => {
       if (event.code === 'Escape') {
@@ -28,10 +28,17 @@ export const Modal = ({ onClose, children }) => {
 
   return createPortal(
     <Backdrop onClick={handleBackDropClick}>
-      <ModalViev>
-        <Close type="button" size="20px" onClick={onClose}></Close>
-        {children}
-      </ModalViev>
+      {alert ? (
+        <ModalViev alert>
+          <Close type="button" size="20px" onClick={onClose}></Close>
+          {children}
+        </ModalViev>
+      ) : (
+        <ModalViev>
+          <Close type="button" size="20px" onClick={onClose}></Close>
+          {children}
+        </ModalViev>
+      )}
     </Backdrop>,
     modalRoot
   );

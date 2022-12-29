@@ -29,7 +29,7 @@ export const ExitButton = () => {
         Exit
       </Exit>
       {isModalOpen && (
-        <Modal onClose={modalHandler}>
+        <Modal onClose={modalHandler} alert={'alert'}>
           <ExitModalThumb>
             <ExitModalText>Are you sure?</ExitModalText>
             <StyledAccentButton onClick={ExitHandler}>Yes, I want to exit!</StyledAccentButton>

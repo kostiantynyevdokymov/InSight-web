@@ -30,8 +30,8 @@ export const ModalViev = styled.div`
   overflow-y: auto;
 
   @media screen and (min-width: 767px) {
-    width: 672px;
-    height: 572px;
+    width: ${p => (p.alert ? '300px' : '672px')};
+    height: ${p => (p.alert ? '350px' : '572px')};
     flex-direction: column;
     align-items: center;
   } ;
