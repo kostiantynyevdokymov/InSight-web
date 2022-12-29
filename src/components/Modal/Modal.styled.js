@@ -46,6 +46,10 @@ export const Close = styled(GrFormClose)`
   height: 20px;
   padding: 0;
 
+  &:hover {
+    transform: scale(1.3);
+  }
+
   @media screen and (max-width: 767px) {
     display: none;
   }
