@@ -47,7 +47,13 @@ export const SideBar = () => {
           <Item>
             <Text>n&#37; of normal</Text>
             {diet.dailyCalories ? (
-              <Text>{String(percent > 100 ? 100 : percent).padStart(2, '0')} &#37;</Text>
+              <>
+                {percent > 100 ? (
+                  <Text style={{ borderBottom: '2px solid tomato' }}>{percent} &#37;</Text>
+                ) : (
+                  <Text>{percent} &#37;</Text>
+                )}
+              </>
             ) : (
               <Text>0 &#37;</Text>
             )}

@@ -48,11 +48,11 @@ export const Form = ({ onClick }) => {
     [valueProd]
   );
 
-  const itemClickHandler = (event, index) => {
-    setChosedProduct(allProducts[index]);
-    setValueProd(event.target.textContent);
-    setShowAutocomplete(!showAutocomplete);
-    setIsProductValid(true);
+  const haveProd = (arr, item) => {
+    const prod = arr.find(obj => obj._id === item._id);
+    if (prod) {
+      return true;
+    }
   };
 
   const onSubmitForm = e => {
@@ -62,8 +62,6 @@ export const Form = ({ onClick }) => {
       window.alert('Enter positive weight');
       return;
     }
-
-    console.log(allProducts);
 
     if (!isProductValid) {
       window.alert('Choose a product from the list');
@@ -86,8 +84,21 @@ export const Form = ({ onClick }) => {
   const onInputChange = e => {
     if (e.target.name === 'diaryproduct') setValueProd(e.target.value);
     if (e.target.name === 'diaryweight') setWeightValue(parseInt(e.target.value));
-    if (isProductValid) setIsProductValid(false);
   };
+
+  const itemClickHandler = (event, index) => {
+    setChosedProduct(allProducts[index]);
+    setValueProd(event.target.textContent);
+    setShowAutocomplete(!showAutocomplete);
+  };
+
+  useEffect(() => {
+    if (allProducts.length !== 0 && chosedProduct.length !== 0) {
+      setIsProductValid(haveProd(allProducts, chosedProduct));
+      return;
+    }
+    setIsProductValid(false);
+  }, [allProducts, chosedProduct]);
 
   useEffect(() => {
     if (valueProd.length > 2) getProducts();
@@ -128,6 +139,7 @@ export const Form = ({ onClick }) => {
             value={valueProd}
             onClick={onDiryProductClick}
             onChange={onInputChange}
+            type={'text'}
           />
           {allProducts.length !== 0 && showAutocomplete && (
             <AutocompleteList>
@@ -141,7 +153,14 @@ export const Form = ({ onClick }) => {
             </AutocompleteList>
           )}
         </ProductBlock>
-        <Input id="diaryweight" name="diaryweight" placeholder="Grams" value={weightValue} onChange={onInputChange} />
+        <Input
+          id="diaryweight"
+          name="diaryweight"
+          placeholder="Grams"
+          value={weightValue}
+          onChange={onInputChange}
+          type={'number'}
+        />
         <ButtonDairy disabled={isLoading}>
           <Add>Add</Add>
           <Plus>+</Plus>
