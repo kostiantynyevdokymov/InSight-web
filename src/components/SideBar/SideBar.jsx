@@ -32,10 +32,6 @@ export const SideBar = () => {
   const left = diet.dailyCalories - consumed;
   const percent = Math.ceil((consumed / diet.dailyCalories) * 100);
 
-  useEffect(() => {
-    if (isLoggedIn && userParams.height > 0 && diet.dailyCalories === 0) dispatch(fetchUserDiet(userParams));
-  }, [diet, isLoggedIn, userParams, dispatch]);
-
   return (
     <Section>
       <Container>
