@@ -3,8 +3,7 @@ import {
   NavHeaderContainer,
   HamburgerMenu,
   LogoContainer,
-  LinkDiary,
-  LinkCalculator,
+  StyledNavLink,
   DadContainer,
 } from './NavHeader.styled';
 import { TiArrowBack } from 'react-icons/ti';
@@ -69,8 +68,8 @@ export const NavHeader = ({ showButton, onButtonClick }) => {
         <>
           <NavHeaderContainer>
             <LogoMain />
-            <LinkDiary to={'diary'}>DIARY</LinkDiary>
-            <LinkCalculator to={'calculator'}>CALCULATOR</LinkCalculator>
+            <StyledNavLink to={'diary'}>DIARY</StyledNavLink>
+            <StyledNavLink to={'calculator'}>CALCULATOR</StyledNavLink>
             <NameButton />
             <ExitButton />
           </NavHeaderContainer>

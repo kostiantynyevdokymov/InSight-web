@@ -35,9 +35,9 @@ export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
 `;
-export const LinkDiary = styled(NavLink)`
+export const StyledNavLink = styled(NavLink)`
   margin: ${p => p.theme.mp(0, 0, 0, 3)};
-  color: ${p => p.theme.colors.text.defaultText};
+  color: ${p => p.theme.colors.text.mediumText};
   text-decoration: none;
   margin-left: auto;
   @media screen and (min-width: 320px) {
@@ -50,13 +50,8 @@ export const LinkDiary = styled(NavLink)`
   :hover {
     color: ${p => p.theme.colors.text.accentText};
   }
-`;
-export const LinkCalculator = styled(NavLink)`
-  margin: ${p => p.theme.mp(0, 3, 0, 3)};
-  color: ${p => p.theme.colors.text.mediumText};
-  text-decoration: none;
-  :hover {
-    color: ${p => p.theme.colors.text.accentText};
+  &.active {
+    color: ${p => p.theme.colors.text.defaultText};
   }
 `;
 export const HamburgerMenu = styled.button`

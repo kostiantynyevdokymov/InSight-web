@@ -17,9 +17,9 @@ export const HeaderContainer = styled.nav`
     align-items: flex-end;
   }
 `;
-export const LinkSignIn = styled(NavLink)`
+export const AuthLink = styled(NavLink)`
   margin: ${p => p.theme.mp(0, 0, 0, 3)};
-  color: ${p => p.theme.colors.text.defaultText};
+  color: ${p => p.theme.colors.text.mediumText};
   text-decoration: none;
   @media screen and (min-width: 768px) {
     margin-left: auto;
@@ -30,17 +30,9 @@ export const LinkSignIn = styled(NavLink)`
     border-left: ${p => p.theme.border.header};
   }
   :hover {
-    color: ${p => p.theme.colors.text.accentText}; 
+    color: ${p => p.theme.colors.text.accentText};
   }
-`;
-
-export const LinkRegistration = styled(NavLink)`
-  margin: ${p => p.theme.mp(0, 3, 0, 3)};
-  color: ${p => p.theme.colors.text.mediumText};
-  text-decoration: none;
-  @media screen and (min-width: 320px) {
-  }
-  :hover {
-    color: ${p => p.theme.colors.text.accentText}; 
+  &.active {
+    color: ${p => p.theme.colors.text.defaultText};
   }
 `;
