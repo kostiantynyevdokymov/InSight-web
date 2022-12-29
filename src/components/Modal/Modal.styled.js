@@ -14,6 +14,7 @@ export const Backdrop = styled.div`
   align-items: center;
 
   background-color: rgba(33, 33, 33, 0.12);
+  pointer-events: all;
 `;
 
 export const ModalViev = styled.div`
@@ -25,6 +26,8 @@ export const ModalViev = styled.div`
   background-color: #ffffff;
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 
   @media screen and (min-width: 767px) {
     width: 672px;

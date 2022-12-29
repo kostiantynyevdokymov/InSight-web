@@ -12,9 +12,11 @@ export const Modal = ({ onClose, children }) => {
       }
     };
     window.addEventListener('keydown', hadleKeyDown);
+    document.querySelector('body').classList.add('body-is-modal-open');
 
     return () => {
       window.removeEventListener('keydown', hadleKeyDown);
+      document.querySelector('body').classList.remove('body-is-modal-open');
     };
   }, [onClose]);
 
