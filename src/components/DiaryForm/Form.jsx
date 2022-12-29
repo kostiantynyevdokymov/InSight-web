@@ -26,6 +26,7 @@ export const Form = ({ onClick }) => {
   const [chosedProduct, setChosedProduct] = useState();
   const [valueProd, setValueProd] = useState('');
   const [weightValue, setWeightValue] = useState('');
+  const [isProductValid, setIsProductValid] = useState(false);
 
   const dispatch = useDispatch();
   const params = useParams();
@@ -51,24 +52,27 @@ export const Form = ({ onClick }) => {
     setChosedProduct(allProducts[index]);
     setValueProd(event.target.textContent);
     setShowAutocomplete(!showAutocomplete);
+    setIsProductValid(true);
   };
 
   const onSubmitForm = e => {
     e.preventDefault();
-    
+
     if (weightValue <= 0) {
       window.alert('Enter positive weight');
       return;
     }
 
-    if (!allProducts.includes(chosedProduct)) {
+    console.log(allProducts);
+
+    if (!isProductValid) {
       window.alert('Choose a product from the list');
       return;
     }
 
     const date = params.day.split('.').join('');
     dispatch(addDiaryEntry({ day: date, id: chosedProduct._id, weight: weightValue }));
-    
+
     setValueProd('');
     setWeightValue('');
 
@@ -80,18 +84,14 @@ export const Form = ({ onClick }) => {
   };
 
   const onInputChange = e => {
-    if (e.target.name === 'diaryproduct') {
-      setValueProd(e.target.value);
-    }
-    if (e.target.name === 'diaryweight') {
-      setWeightValue(e.target.value);
-    }
+    if (e.target.name === 'diaryproduct') setValueProd(e.target.value);
+    if (e.target.name === 'diaryweight') setWeightValue(parseInt(e.target.value));
+    if (isProductValid) setIsProductValid(false);
   };
 
   useEffect(() => {
-    if (valueProd.length > 2) {
-      getProducts();
-    }
+    if (valueProd.length > 2) getProducts();
+
     if (valueProd === '') {
       setChosedProduct([]);
       setAllProducts([]);
