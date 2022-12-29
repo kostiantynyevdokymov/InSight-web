@@ -1,9 +1,10 @@
 import { RegisterForm } from 'components/AuthForms/RegisterForm/RegisterForm';
-import { useAuth } from 'hooks/useAuth';
+import { useSelector } from 'react-redux';
 import { Navigate, useSearchParams } from 'react-router-dom';
+import { selectUserIsLoggedIn } from 'redux/selectors';
 
 const LoginPage = () => {
-  const { isLoggedIn } = useAuth();
+  const isLoggedIn = useSelector(selectUserIsLoggedIn);
   const [searchParams] = useSearchParams();
   const retPath = searchParams.get('retPath') || '/';
 
