@@ -6,7 +6,7 @@ import {
   handleGetDailyDiary,
   handleResetDailyDiary,
 } from './diaryHandlers';
-import { addDiaryEntry, deleteDiaryEntry, getDailyDiary, resetDailyDiary } from './diaryOperations';
+import { addDiaryEntry, deleteDiaryEntry, getDailyDiary } from './diaryOperations';
 
 const initialState = {
   date: null,
@@ -18,16 +18,19 @@ const initialState = {
 const diarySlice = createSlice({
   name: 'diary',
   initialState,
+  reducers: {
+    resetDailyDiary: handleResetDailyDiary,
+  },
   extraReducers: builder => {
     builder
       .addCase(addDiaryEntry.fulfilled, handleAddDiaryEntry)
       .addCase(deleteDiaryEntry.fulfilled, handleDeleteDiaryEntry)
       .addCase(getDailyDiary.fulfilled, handleGetDailyDiary)
-      .addCase(resetDailyDiary.fulfilled, handleResetDailyDiary)
       .addMatcher(action => action.type.endsWith('/pending'), handlePending)
       .addMatcher(action => action.type.endsWith('/fulfilled'), handleFulfilled)
       .addMatcher(action => action.type.endsWith('/rejected'), handleRejected);
   },
 });
 
+export const { resetDailyDiary } = diarySlice.actions;
 export default diarySlice.reducer;

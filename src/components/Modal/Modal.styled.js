@@ -14,11 +14,11 @@ export const Backdrop = styled.div`
   align-items: center;
 
   background-color: rgba(33, 33, 33, 0.12);
+  pointer-events: all;
 `;
 
 export const ModalViev = styled.div`
   position: absolute;
-  overflow: scroll;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -26,10 +26,12 @@ export const ModalViev = styled.div`
   background-color: #ffffff;
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 
   @media screen and (min-width: 767px) {
-    width: 672px;
-    height: 572px;
+    width: ${p => (p.alert ? '300px' : '672px')};
+    height: ${p => (p.alert ? '350px' : '572px')};
     flex-direction: column;
     align-items: center;
   } ;
@@ -43,6 +45,10 @@ export const Close = styled(GrFormClose)`
   width: 20px;
   height: 20px;
   padding: 0;
+
+  &:hover {
+    transform: scale(1.3);
+  }
 
   @media screen and (max-width: 767px) {
     display: none;

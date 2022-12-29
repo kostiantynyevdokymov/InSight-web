@@ -1,10 +1,10 @@
-import { LinkSignIn, LinkRegistration, HeaderContainer } from './AuthLinks.styled';
+import { AuthLink, HeaderContainer } from './AuthLinks.styled';
 
 export const AuthHeader = () => {
   return (
     <HeaderContainer>
-      <LinkSignIn to={'login'}>SIGN IN</LinkSignIn>
-      <LinkRegistration to={'register'}>REGISTRATION</LinkRegistration>
+      <AuthLink to={'login'}>SIGN IN</AuthLink>
+      <AuthLink to={'register'}>REGISTRATION</AuthLink>
     </HeaderContainer>
   );
 };

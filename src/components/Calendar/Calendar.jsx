@@ -6,7 +6,8 @@ import DatePicker from 'react-datepicker';
 import { Block, CalendarBox, DateText, Icon, Modal } from './Calendar.styled';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { getDailyDiary, resetDailyDiary } from 'redux/diary/diaryOperations';
+import { getDailyDiary } from 'redux/diary/diaryOperations';
+import { resetDailyDiary } from 'redux/diary/diarySlice';
 
 export const Calendar = ({ screenWidth }) => {
   const [choseDate, setChoseDate] = useState();

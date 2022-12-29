@@ -14,12 +14,12 @@ export const Exit = styled.button`
 `;
 
 export const ExitModalThumb = styled.div`
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   flex-direction: column;
   gap: 25px;
-  width: 100%;
-  height: 100%;
-  padding: ${p => p.theme.spacing[3]}px;
+  padding-top: ${p => p.theme.spacing[6]}px;
   justify-content: center;
   align-items: center;
 `;

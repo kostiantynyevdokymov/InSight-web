@@ -1,27 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { useAuth } from 'hooks/useAuth';
-import { selectIsLoadingUser, selectUserParams } from 'redux/selectors';
+import { selectIsLoadingUser, selectUserIsLoggedIn, selectUserParams } from 'redux/selectors';
 import { setParams } from 'redux/user/userSlice';
 import { fetchDiet, fetchUserDiet } from 'redux/diet/dietOperations';
 import SC from './CalculatorCalorieForm.styled';
-import { refreshUser } from 'redux/user/userOperations';
 
 function CalculatorCalorieForm({ modal }) {
   const dispatch = useDispatch();
   const userParams = useSelector(selectUserParams);
-  const { isLoggedIn } = useAuth();
+  const isLoggedIn = useSelector(selectUserIsLoggedIn);
   const isLoading = useSelector(selectIsLoadingUser);
-
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (isLoggedIn && !!userParams.height) dispatch(fetchUserDiet(userParams));
-  }, [dispatch, isLoggedIn, userParams]);
 
   const handleSubmit = values => {
     dispatch(setParams(values));
@@ -33,18 +23,18 @@ function CalculatorCalorieForm({ modal }) {
   const ErrorMessagesSchema = Yup.object().shape({
     height: Yup.number('This should be a number')
       .min(100, 'Height should be more than 100 cm')
-      .max(260, 'Height should be less than 260 cm')
+      .max(250, 'Height should be less than 250 cm')
       .required('This is a required field'),
     age: Yup.number('This should be a number')
       .min(18, 'Age should be 18')
       .max(100, 'Age should be 100')
       .required('This is a required field'),
     currentWeight: Yup.number('This should be a number')
-      .min(40, 'Minimum possible weight is 40 kg')
+      .min(20, 'Minimum possible weight is 20 kg')
       .max(500, 'Maximum possible weight is 500 kg')
       .required('This is a required field'),
     desireWeight: Yup.number('This should be a number')
-      .min(40, 'Minimum possible weight is 40 kg')
+      .min(20, 'Minimum possible weight is 20 kg')
       .max(500, 'Maximum possible weight is 500 kg')
       .required('This is a required field')
       .when('currentWeight', (currentWeight, schema) => {

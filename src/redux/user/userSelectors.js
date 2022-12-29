@@ -12,6 +12,11 @@ export const selectIsLoadingUser = store => store.user.isLoading;
 export const selectErrorUser = store => store.user.error;
 
 export const selectUserIsLoggedIn = store => {
+  const { email, token } = selectUserAuth(store);
+  return !!token && !!email;
+};
+
+export const selectUserIsRefreshing = store => {
   const { name, token } = selectUserAuth(store);
-  return token !== null && name !== null;
+  return !!token && !name;
 };

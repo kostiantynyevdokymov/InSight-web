@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const HeaderContainer = styled.nav`
+  padding-right: ${p => p.theme.mp(3)};
   padding-bottom: ${p => p.theme.mp(3)};
   padding-top: ${p => p.theme.mp(4)};
   display: flex;
@@ -13,34 +14,31 @@ export const HeaderContainer = styled.nav`
     justify-content: flex-start;
   }
   @media screen and (min-width: 1280px) {
+    padding-right: 0;
     padding-top: ${p => p.theme.mp(6)};
     align-items: flex-end;
   }
 `;
-export const LinkSignIn = styled(NavLink)`
+export const AuthLink = styled(NavLink)`
+  padding-right: ${p => p.theme.mp(3)};
   margin: ${p => p.theme.mp(0, 0, 0, 3)};
-  color: ${p => p.theme.colors.text.defaultText};
+  color: ${p => p.theme.colors.text.mediumText};
   text-decoration: none;
   @media screen and (min-width: 768px) {
     margin-left: auto;
+    padding-right: ${p => p.theme.mp(3)};
   }
+
   @media screen and (min-width: 1280px) {
     margin-left: ${p => p.theme.mp(3)};
     padding-left: ${p => p.theme.mp(3)};
+    padding-right: 0;
     border-left: ${p => p.theme.border.header};
   }
   :hover {
-    color: ${p => p.theme.colors.text.accentText}; 
+    color: ${p => p.theme.colors.text.accentText};
   }
-`;
-
-export const LinkRegistration = styled(NavLink)`
-  margin: ${p => p.theme.mp(0, 3, 0, 3)};
-  color: ${p => p.theme.colors.text.mediumText};
-  text-decoration: none;
-  @media screen and (min-width: 320px) {
-  }
-  :hover {
-    color: ${p => p.theme.colors.text.accentText}; 
+  &.active {
+    color: ${p => p.theme.colors.text.defaultText};
   }
 `;

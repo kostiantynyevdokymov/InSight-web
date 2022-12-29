@@ -31,6 +31,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.body-is-modal-open {
+  overflow:hidden;
+  pointer-events: none;
+}
+
+.portal-is-modal-open {
+  pointer-events: none;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

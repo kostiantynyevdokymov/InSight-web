@@ -1,6 +1,6 @@
 import { DairyInput } from './Input.styled';
 
-export const Input = ({ id, name, placeholder, value, onChange, onClick }) => {
+export const Input = ({ id, name, placeholder, value, onChange, onClick, type }) => {
   return (
     <>
       <DairyInput
@@ -11,6 +11,7 @@ export const Input = ({ id, name, placeholder, value, onChange, onClick }) => {
         value={value}
         onChange={onChange}
         onClick={onClick}
+        type={type}
       />
     </>
   );

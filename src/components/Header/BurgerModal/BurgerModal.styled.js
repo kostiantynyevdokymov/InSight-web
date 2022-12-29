@@ -8,7 +8,7 @@ export const BurgerModal = styled.div`
   top: 80px;
   left: 0;
   z-index: 1000;
-  transform: translate(-100%);
+  transform: translate(-110%);
 
   &:active {
     transform: translate(0%);
@@ -45,8 +45,9 @@ export const LinkContainer = styled.div`
 
 export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
-  color: #969faa;
+  color: ${p => p.theme.colors.text.mediumText};
+
   &.active {
-    color: #fff;
+    color: ${p => p.theme.colors.text.inverseText};
   }
 `;
